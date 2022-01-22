@@ -24,10 +24,14 @@ class GlobalRegister {
     static func register() {
         do {
             let queue = Queue<Command>()
+            let helper = Helper()
             let errorHandleList = ErrorHandleList()
             try (IoC.register("Queue.Command") { _ in
                 queue
             } as Command).execute()
+            queue.queue(try (IoC.register("Helper") { _ in
+                helper
+            } as Command))
             queue.queue(try (IoC.register("Error.Handle.List") { _ in
                 errorHandleList
             } as Command))
