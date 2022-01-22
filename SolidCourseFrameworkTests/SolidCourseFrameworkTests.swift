@@ -23,6 +23,7 @@ class SolidCourseFrameworkTests: XCTestCase {
         try super.setUpWithError()
         sut1 = MockUObject()
         sut2 = MockUObject()
+        GlobalRegister.register()
     }
 
     override func tearDownWithError() throws {
@@ -31,7 +32,7 @@ class SolidCourseFrameworkTests: XCTestCase {
         try super.tearDownWithError()
     }
     
-    // 1
+    // Command
     
     func fillUObjectMove(sut: MockUObject!) {
         stub(sut) { mock in
@@ -125,6 +126,68 @@ class SolidCourseFrameworkTests: XCTestCase {
         verify(sut1).getProperty(propertyName: "AngularVelocity")
         verify(sut1).getProperty(propertyName: "MaxDirection")
         verify(sut1).setProperty(propertyName: "Direction", propertyValue: any())
+    }
+    
+    // IoC
+    
+    func testIoCRegisterResolve() throws {
+        fillUObjectMove(sut: sut1)
+        try (IoC.register("Adapter.Movable") {
+            MovableAdapter(m: $0[0] as! UObject)
+        } as Command).execute()
+        try (IoC.register("Command.Move") {
+            MoveCommand(m: try IoC.resolve("Adapter.Movable", $0[0]))
+        } as Command).execute()
+        XCTAssertNoThrow(try (try IoC.resolve("Command.Move", sut1!) as Command).execute())
+        verify(sut1).setProperty(propertyName: "Position", propertyValue: any())
+    }
+    
+    func testIoCScope() throws {
+        fillUObjectMove(sut: sut1)
+        fillUObjectMove(sut: sut2)
+        try (IoC.register("Adapter.Movable") {
+            MovableAdapter(m: $0[0] as! UObject)
+        } as Command).execute()
+        try (IoC.register("Command.Move") {
+            MoveCommand(m: try IoC.resolve("Adapter.Movable", $0[0]))
+        } as Command).execute()
+        try (IoC.resolve("Change.Scope", "Th1") as Command).execute()
+        try (IoC.register("SubQueue.Command") {
+            let q = Queue<Command>()
+            for _ in 0...4 {
+                q.queue(try (IoC.resolve("Command.Move", $0[0]) as Command))
+            }
+            return q
+        } as Command).execute()
+        try (IoC.resolve("Change.Scope", "Root") as Command).execute()
+        try (IoC.resolve("Change.Scope", "Th2") as Command).execute()
+        try (IoC.register("SubQueue.Command") {
+            let q = Queue<Command>()
+            for _ in 0...2 {
+                q.queue(try (IoC.resolve("Command.Move", $0[0]) as Command))
+            }
+            return q
+        } as Command).execute()
+        var i = 0
+        Thread {
+            try! (IoC.resolve("Change.Scope", "Th1") as Command).execute()
+            let q = (try! IoC.resolve("SubQueue.Command", self.sut1!) as Queue<Command>)
+            while !q.isEmpty() {
+                try! (q.dequeue()!).execute()
+            }
+            i += 1
+        } .start()
+        Thread {
+            try! (IoC.resolve("Change.Scope", "Th2") as Command).execute()
+            let q = (try! IoC.resolve("SubQueue.Command", self.sut2!) as Queue<Command>)
+            while !q.isEmpty() {
+                try! (q.dequeue()!).execute()
+            }
+            i += 1
+        } .start()
+        while i < 2 {}
+        verify(sut1, times(5)).setProperty(propertyName: "Position", propertyValue: any())
+        verify(sut2, times(3)).setProperty(propertyName: "Position", propertyValue: any())
     }
 }
 

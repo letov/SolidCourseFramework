@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2A9A9BA408CB917765D681C8 /* Pods_SolidCourseFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9CDB67D5F0BBF9EEE14E29 /* Pods_SolidCourseFramework.framework */; };
+		B208636E279C80EE0000F0C6 /* IoC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B4F970279C8033001E0F15 /* IoC.swift */; };
+		B208636F279C80F00000F0C6 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B4F96E279C801B001E0F15 /* Command.swift */; };
+		B2086370279C80F20000F0C6 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B4F972279C804E001E0F15 /* Queue.swift */; };
 		B209216E27736CCE007C0AA2 /* GeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209216D27736CCE007C0AA2 /* GeneratedMocks.swift */; };
 		B27EC7072773689E00BD3E4D /* SolidCourseFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B27EC6FE2773689E00BD3E4D /* SolidCourseFramework.framework */; };
 		B27EC70C2773689E00BD3E4D /* SolidCourseFrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27EC70B2773689E00BD3E4D /* SolidCourseFrameworkTests.swift */; };
@@ -34,6 +37,9 @@
 		B27EC7062773689E00BD3E4D /* SolidCourseFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SolidCourseFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B27EC70B2773689E00BD3E4D /* SolidCourseFrameworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolidCourseFrameworkTests.swift; sourceTree = "<group>"; };
 		B27EC716277368F600BD3E4D /* SolidCourseFramework.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolidCourseFramework.swift; sourceTree = "<group>"; };
+		B2B4F96E279C801B001E0F15 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
+		B2B4F970279C8033001E0F15 /* IoC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IoC.swift; sourceTree = "<group>"; };
+		B2B4F972279C804E001E0F15 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		CE33FB66BC7F1FD7CCA75088 /* Pods-SolidCourseFramework-SolidCourseFrameworkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidCourseFramework-SolidCourseFrameworkTests.debug.xcconfig"; path = "Target Support Files/Pods-SolidCourseFramework-SolidCourseFrameworkTests/Pods-SolidCourseFramework-SolidCourseFrameworkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D136A083976A7D8374FF553F /* Pods-SolidCourseFramework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidCourseFramework.debug.xcconfig"; path = "Target Support Files/Pods-SolidCourseFramework/Pods-SolidCourseFramework.debug.xcconfig"; sourceTree = "<group>"; };
 		F67A5748D34A3A9E65EED6B7 /* Pods_SolidCourseFramework_SolidCourseFrameworkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SolidCourseFramework_SolidCourseFrameworkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,6 +100,9 @@
 		B27EC7002773689E00BD3E4D /* SolidCourseFramework */ = {
 			isa = PBXGroup;
 			children = (
+				B2B4F972279C804E001E0F15 /* Queue.swift */,
+				B2B4F96E279C801B001E0F15 /* Command.swift */,
+				B2B4F970279C8033001E0F15 /* IoC.swift */,
 				B27EC716277368F600BD3E4D /* SolidCourseFramework.swift */,
 			);
 			path = SolidCourseFramework;
@@ -312,6 +321,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B27EC717277368F600BD3E4D /* SolidCourseFramework.swift in Sources */,
+				B208636E279C80EE0000F0C6 /* IoC.swift in Sources */,
+				B208636F279C80F00000F0C6 /* Command.swift in Sources */,
+				B2086370279C80F20000F0C6 /* Queue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
