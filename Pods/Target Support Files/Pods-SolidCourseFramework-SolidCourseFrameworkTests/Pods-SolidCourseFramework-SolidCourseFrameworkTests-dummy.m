@@ -1,0 +1,5 @@
+#import <Foundation/Foundation.h>
+@interface PodsDummy_Pods_SolidCourseFramework_SolidCourseFrameworkTests : NSObject
+@end
+@implementation PodsDummy_Pods_SolidCourseFramework_SolidCourseFrameworkTests
+@end

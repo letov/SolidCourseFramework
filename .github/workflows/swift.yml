@@ -1,0 +1,15 @@
+name: Swift
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+      run: xcodebuild -workspace SolidCourseFramework.xcworkspace -scheme SolidCourseFramework
+    - name: Run tests
+      run: xcodebuild -workspace SolidCourseFramework.xcworkspace -scheme SolidCourseFramework test

@@ -1,0 +1,934 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		01F1A2441579248D9468A52065A9C009 /* DefaultValueRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85812C1C4B26B6CB86844A9EDCC9116 /* DefaultValueRegistry.swift */; };
+		01F92E6564C9ECB2BA713A27A2B12560 /* Pods-SolidCourseFramework-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 672E287DB1DAB3A46471A1AA0DECD9A2 /* Pods-SolidCourseFramework-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		04B91DD72E9CCAE596995E8ED7D99C5F /* ArgumentCaptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DB52A851EE994E5A1A5A55F56C564B /* ArgumentCaptor.swift */; };
+		0790854B8260F6B3C0263372C5C4CEBF /* StubbingProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA39B3E873FBDC2F6032069F656FA9D7 /* StubbingProxy.swift */; };
+		0E765697FF6EE56E7248036095847150 /* MockBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF6AF995BF7AC5C1DBFB647CC5394E4 /* MockBuilder.swift */; };
+		149BA04AD11729AC4DDFB9D397A8F91E /* MockManager+preconfigured.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33601612FD4A0BB1AC0D29354D03004E /* MockManager+preconfigured.swift */; };
+		19A887880C9D75A692CBECCA7199A3B3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D06C28D0C11A6EB728E6A690B05D259 /* Cocoa.framework */; };
+		1A83F1100ED904F93419159996BAC89B /* StubFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E734C925BED27F42175F8FD85D4B98 /* StubFunction.swift */; };
+		1A9F17D93C0870739F66AE4241F9D7C9 /* StubFunctionThenThrowingTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27629BCBB32B911CF22B96F449641812 /* StubFunctionThenThrowingTrait.swift */; };
+		1D8C30C49304F8440777B07940A812A5 /* StubFunctionThenThrowTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A499317C4551588E90AA938D593125 /* StubFunctionThenThrowTrait.swift */; };
+		23C7B253B2776617750B5ED02D69CFC8 /* StubFunctionThenCallRealImplementationTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D93DA67EAB2B293EDD1A15F1955E76C /* StubFunctionThenCallRealImplementationTrait.swift */; };
+		24408198626ECEE885E89DE3A831BF7E /* BaseStubFunctionTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A98CB822D8372CC42C94E67570DAA6 /* BaseStubFunctionTrait.swift */; };
+		26A8AE9925DFD89278A9D531AF0473EB /* MockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0969959DD7FA142998AE6DDD71367486 /* MockManager.swift */; };
+		27EEBAB00AF2A0F380F3D7A2F5B53A95 /* ToBeStubbedReadOnlyProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA201FCAC53F2CD4661CF7FDCA1A25B /* ToBeStubbedReadOnlyProperty.swift */; };
+		2F95C05163C00C5F89E512F1164192C9 /* Set+matchers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AA75FDE556398EF5D571FB8D530C8B /* Set+matchers.swift */; };
+		371C7C06043B6940BDED481E133928DA /* CuckooFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9625AC78E66DB0A3872DAE21721A6F4 /* CuckooFunctions.swift */; };
+		39C78B3B6E32FB1F0B52315C7DD4E25A /* Dictionary+matchers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D71E95149EB95E10C14D9BB8DE397FA /* Dictionary+matchers.swift */; };
+		3A239AED1823573C4888855111327031 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3338EA35CFE6F626B7A4C5E2975E780 /* Mock.swift */; };
+		3F396C646DCE1CA1AC17FACC18923801 /* Array+matchers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E5468F1733373F4A2ECD092F7769C3 /* Array+matchers.swift */; };
+		488546D3A123CB22C571F919025F8279 /* VerifyProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955DA6F32D3197936C57F2FA0DD417CC /* VerifyProperty.swift */; };
+		4E0E6BCDB69494EF30E2233815621719 /* Pods-SolidCourseFramework-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E666668BBB626DFD242AF94FE70218CF /* Pods-SolidCourseFramework-dummy.m */; };
+		4F702E6B46CF9DAE6FF0D5BC9F05DDDA /* ToBeStubbedProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE1F26AC120F2EFBF24E86DC7B48BE8 /* ToBeStubbedProperty.swift */; };
+		5A014D2C71297344AD2765F187A8126A /* Cuckoo-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BDB25897E82A7FEFF05FE8E1D032B7F /* Cuckoo-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5DBD23F0C9DF9ED62965BD4506DA1B01 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE909F7B6DC1F7F30FA5CF6F95F6D59 /* XCTest.framework */; };
+		5DDA38F950E3865FF8A28B91706A02EC /* StubCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745021BD6D4D1CE4D17D42128CB6AD09 /* StubCall.swift */; };
+		67C26C2D07E13445DA81E12836CE0A1C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B39FC88CAFBA5A60542517ADABAE12DA /* Foundation.framework */; };
+		7872F7CAAE5FF842D684CE6FE9E0371C /* CallMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07602AD0B38967CA0C31F97DE8E4693A /* CallMatcher.swift */; };
+		7B453BC9AA6BBB3541C1E523380CAE16 /* StubFunctionThenDoNothingTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FA85074BA33B6DE76A7963E0639DCB /* StubFunctionThenDoNothingTrait.swift */; };
+		85D890418CB73CCE40B370206003A30E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D06C28D0C11A6EB728E6A690B05D259 /* Cocoa.framework */; };
+		85E4F876B245AC549894D68CF4A948B6 /* Pods-SolidCourseFramework-SolidCourseFrameworkTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 47117D0EBF9BB24B332A6A32CDA22F88 /* Pods-SolidCourseFramework-SolidCourseFrameworkTests-dummy.m */; };
+		90A3EF6C5F4DEAA036EFB6E249F3445F /* StubAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B137A4A7AC23AC48E10B39B422D0B585 /* StubAction.swift */; };
+		91AB746522564285F57432E45D30629C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4622A996C62B33D7A5592678A9EE237F /* Utils.swift */; };
+		9690F1D41B8A9AEDF2B389B083380EC9 /* Cuckoo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 22ADBF2D5798CC998BD6EB539A75266B /* Cuckoo-dummy.m */; };
+		A5F1A97E2FA3A5F5EB67CD6A05CB63C9 /* ParameterMatcherFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF74FDFB249A39835428F3AB76F30F59 /* ParameterMatcherFunctions.swift */; };
+		A750BB3B9CB4C6F0F06C405101E15BB0 /* ThreadLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9174804345A5BED766F989B137E16A18 /* ThreadLocal.swift */; };
+		AE3BCCEAEA950463F73B9BF50EA90DA8 /* StubFunctionThenReturnTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEF2DDEC30C13497D6F4941F15B9E27 /* StubFunctionThenReturnTrait.swift */; };
+		B0673365F50A132667B076C990B0FDDC /* StubFunctionThenTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11CDF5565FA2A35A6F1FE5E17F0D9825 /* StubFunctionThenTrait.swift */; };
+		B90E7763CCB8CE7CE078D5134B47992D /* CallMatcherFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A26420D83C9AF999055ECD071704F3 /* CallMatcherFunctions.swift */; };
+		D007013A6B336697296101033801BEFF /* VerificationProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D4976AA69AE7CB376598422D57C140 /* VerificationProxy.swift */; };
+		D923FABA347921F0C82B577CD7779D10 /* ParameterMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D7DF6E29C1AD1B34803AC507AEB43F /* ParameterMatcher.swift */; };
+		E30033673A9B7FDA3FCFCD226E1C99B9 /* StubThrowingFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89FFDEC5471B65CB6062F74C53C4721 /* StubThrowingFunction.swift */; };
+		E410335FE8AF8AE4D00BD9C69A0CAF36 /* Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E85CFB94FBCDA077627B1AB2DD575C3 /* Stub.swift */; };
+		E7CC4E64C6514CE184E0AC213C76CF06 /* Matchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9189DC44FEB6A938F274B3E5A78BD5 /* Matchable.swift */; };
+		E820F48C01832F90183E3C1DCDBA8BFE /* VerifyReadOnlyProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7431D39B69D80B5DF8A1DFC83BCF59BF /* VerifyReadOnlyProperty.swift */; };
+		ECDDCDF6E1736413502436860B6BF19A /* StubNoReturnThrowingFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C974935CEA562492B4BE6063B7893857 /* StubNoReturnThrowingFunction.swift */; };
+		EF30EAEDFAB3B1753237114DC7A14F32 /* Pods-SolidCourseFramework-SolidCourseFrameworkTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B5E596019CCCF7C123CB1946F411D368 /* Pods-SolidCourseFramework-SolidCourseFrameworkTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F50FBA6C8616DF301D98DD0C9B49DC18 /* Mocked.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8BF3EE631B95A6437A1713D01DD55F /* Mocked.swift */; };
+		F7F34846DA673538BFE695208B7BCE45 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D06C28D0C11A6EB728E6A690B05D259 /* Cocoa.framework */; };
+		FC585F916F0717ED95F674C5F8625B71 /* CreateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A80FD6DD21A1FE461AB76FEE92E2253 /* CreateMock.swift */; };
+		FE433680B541A15F38FF6A4855312609 /* StubNoReturnFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33962A5E529215E98BE5AB1861F3BB2D /* StubNoReturnFunction.swift */; };
+		FE9E702E6627E3D9E303FE1F44384BB4 /* __DoNotUse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08963AD7BB7A7539A4FE775AD60C2453 /* __DoNotUse.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6895ECECF1EA59F2430057DF61CDABA8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CFCA8CA494372A14108299CE150648B8;
+			remoteInfo = Cuckoo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		06BBD3298EFC08D95EEFE526BDDCDBD1 /* Cuckoo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Cuckoo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		07602AD0B38967CA0C31F97DE8E4693A /* CallMatcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CallMatcher.swift; path = Source/Matching/CallMatcher.swift; sourceTree = "<group>"; };
+		08963AD7BB7A7539A4FE775AD60C2453 /* __DoNotUse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = __DoNotUse.swift; path = Source/Verification/__DoNotUse.swift; sourceTree = "<group>"; };
+		0969959DD7FA142998AE6DDD71367486 /* MockManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MockManager.swift; path = Source/MockManager.swift; sourceTree = "<group>"; };
+		0BDB25897E82A7FEFF05FE8E1D032B7F /* Cuckoo-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Cuckoo-umbrella.h"; sourceTree = "<group>"; };
+		0BF6AF995BF7AC5C1DBFB647CC5394E4 /* MockBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MockBuilder.swift; path = Source/Initialization/MockBuilder.swift; sourceTree = "<group>"; };
+		0CF7982336494399D772A5F663C0E6CC /* Pods-SolidCourseFramework-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SolidCourseFramework-acknowledgements.plist"; sourceTree = "<group>"; };
+		0D71E95149EB95E10C14D9BB8DE397FA /* Dictionary+matchers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Dictionary+matchers.swift"; path = "Source/Matching/Dictionary+matchers.swift"; sourceTree = "<group>"; };
+		0F421784872A9BB04FBEDA5DC23C4093 /* Cuckoo-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Cuckoo-Info.plist"; sourceTree = "<group>"; };
+		11CDF5565FA2A35A6F1FE5E17F0D9825 /* StubFunctionThenTrait.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StubFunctionThenTrait.swift; path = Source/Stubbing/StubFunction/Trait/StubFunctionThenTrait.swift; sourceTree = "<group>"; };
+		1992CC779531CC49D4DC3D50A7A5FAC5 /* Cuckoo-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Cuckoo-prefix.pch"; sourceTree = "<group>"; };
+		22ADBF2D5798CC998BD6EB539A75266B /* Cuckoo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Cuckoo-dummy.m"; sourceTree = "<group>"; };
+		27629BCBB32B911CF22B96F449641812 /* StubFunctionThenThrowingTrait.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StubFunctionThenThrowingTrait.swift; path = Source/Stubbing/StubFunction/Trait/StubFunctionThenThrowingTrait.swift; sourceTree = "<group>"; };
+		2AC50BAF797925559334B93D866EE2F3 /* Pods-SolidCourseFramework-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SolidCourseFramework-Info.plist"; sourceTree = "<group>"; };
+		2BDF0749BAFD6432BE08BF578806A16E /* Cuckoo.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Cuckoo.modulemap; sourceTree = "<group>"; };
+		2D06C28D0C11A6EB728E6A690B05D259 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		2D5CA81577E4364BD310B3385D79A49E /* Pods-SolidCourseFramework-SolidCourseFrameworkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SolidCourseFramework-SolidCourseFrameworkTests.debug.xcconfig"; sourceTree = "<group>"; };
+		30D7DF6E29C1AD1B34803AC507AEB43F /* ParameterMatcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterMatcher.swift; path = Source/Matching/ParameterMatcher.swift; sourceTree = "<group>"; };
+		33601612FD4A0BB1AC0D29354D03004E /* MockManager+preconfigured.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "MockManager+preconfigured.swift"; path = "Source/Initialization/MockManager+preconfigured.swift"; sourceTree = "<group>"; };
+		33962A5E529215E98BE5AB1861F3BB2D /* StubNoReturnFunction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StubNoReturnFunction.swift; path = Source/Stubbing/StubFunction/StubNoReturnFunction.swift; sourceTree = "<group>"; };
+		35E734C925BED27F42175F8FD85D4B98 /* StubFunction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StubFunction.swift; path = Source/Stubbing/StubFunction/StubFunction.swift; sourceTree = "<group>"; };
+		3645C184C5FA6482CD551DBBE50C1C35 /* Pods-SolidCourseFramework-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SolidCourseFramework-acknowledgements.markdown"; sourceTree = "<group>"; };
+		394900C0409E60287C8527E99D935012 /* Pods-SolidCourseFramework-SolidCourseFrameworkTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SolidCourseFramework-SolidCourseFrameworkTests-frameworks.sh"; sourceTree = "<group>"; };
+		3AED8D7023080BA1E3059164E22657B1 /* Pods-SolidCourseFramework-SolidCourseFrameworkTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SolidCourseFramework-SolidCourseFrameworkTests.modulemap"; sourceTree = "<group>"; };
+		3BEF2DDEC30C13497D6F4941F15B9E27 /* StubFunctionThenReturnTrait.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StubFunctionThenReturnTrait.swift; path = Source/Stubbing/StubFunction/Trait/StubFunctionThenReturnTrait.swift; sourceTree = "<group>"; };
+		3D93DA67EAB2B293EDD1A15F1955E76C /* StubFunctionThenCallRealImplementationTrait.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StubFunctionThenCallRealImplementationTrait.swift; path = Source/Stubbing/StubFunction/Trait/StubFunctionThenCallRealImplementationTrait.swift; sourceTree = "<group>"; };
+		4622A996C62B33D7A5592678A9EE237F /* Utils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = Source/Utils.swift; sourceTree = "<group>"; };
+		47117D0EBF9BB24B332A6A32CDA22F88 /* Pods-SolidCourseFramework-SolidCourseFrameworkTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SolidCourseFramework-SolidCourseFrameworkTests-dummy.m"; sourceTree = "<group>"; };
+		476A312DFE52E5463903B7CC3C4BE84B /* Pods-SolidCourseFramework-SolidCourseFrameworkTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SolidCourseFramework-SolidCourseFrameworkTests-Info.plist"; sourceTree = "<group>"; };
+		4C97948DEB0E1D2152AD60F61FD059B8 /* Pods-SolidCourseFramework-SolidCourseFrameworkTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SolidCourseFramework-SolidCourseFrameworkTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		4CE909F7B6DC1F7F30FA5CF6F95F6D59 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		51C9188C6294024688B67BBDE49554AA /* Pods-SolidCourseFramework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SolidCourseFramework.release.xcconfig"; sourceTree = "<group>"; };
+		60A5F794F1065A78F101DBF5C9F9278E /* Pods-SolidCourseFramework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SolidCourseFramework.debug.xcconfig"; sourceTree = "<group>"; };
+		62A26420D83C9AF999055ECD071704F3 /* CallMatcherFunctions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CallMatcherFunctions.swift; path = Source/Matching/CallMatcherFunctions.swift; sourceTree = "<group>"; };
+		672E287DB1DAB3A46471A1AA0DECD9A2 /* Pods-SolidCourseFramework-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SolidCourseFramework-umbrella.h"; sourceTree = "<group>"; };
+		6DA8E763A3E644707EA4FB9ABF7A07AD /* Pods_SolidCourseFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SolidCourseFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7431D39B69D80B5DF8A1DFC83BCF59BF /* VerifyReadOnlyProperty.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VerifyReadOnlyProperty.swift; path = Source/Verification/VerifyProperty/VerifyReadOnlyProperty.swift; sourceTree = "<group>"; };
+		745021BD6D4D1CE4D17D42128CB6AD09 /* StubCall.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StubCall.swift; path = Source/Stubbing/StubCall.swift; sourceTree = "<group>"; };
+		76D4976AA69AE7CB376598422D57C140 /* VerificationProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VerificationProxy.swift; path = Source/Mock/VerificationProxy.swift; sourceTree = "<group>"; };
+		78156283A3D9B67191AC5BEF94EC3FF1 /* Pods-SolidCourseFramework.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SolidCourseFramework.modulemap"; sourceTree = "<group>"; };
+		85FA85074BA33B6DE76A7963E0639DCB /* StubFunctionThenDoNothingTrait.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StubFunctionThenDoNothingTrait.swift; path = Source/Stubbing/StubFunction/Trait/StubFunctionThenDoNothingTrait.swift; sourceTree = "<group>"; };
+		9174804345A5BED766F989B137E16A18 /* ThreadLocal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ThreadLocal.swift; path = Source/Initialization/ThreadLocal.swift; sourceTree = "<group>"; };
+		955DA6F32D3197936C57F2FA0DD417CC /* VerifyProperty.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VerifyProperty.swift; path = Source/Verification/VerifyProperty/VerifyProperty.swift; sourceTree = "<group>"; };
+		9674477B5D813D4382AFC6769236CF2F /* Pods-SolidCourseFramework-SolidCourseFrameworkTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SolidCourseFramework-SolidCourseFrameworkTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		98A6D4EDDEB5106B1B24430D6FDD1ACA /* Pods_SolidCourseFramework_SolidCourseFrameworkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SolidCourseFramework_SolidCourseFrameworkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A80FD6DD21A1FE461AB76FEE92E2253 /* CreateMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CreateMock.swift; path = Source/Initialization/CreateMock.swift; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9E85CFB94FBCDA077627B1AB2DD575C3 /* Stub.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Stub.swift; path = Source/Stubbing/Stub.swift; sourceTree = "<group>"; };
+		A3338EA35CFE6F626B7A4C5E2975E780 /* Mock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Mock.swift; path = Source/Mock/Mock.swift; sourceTree = "<group>"; };
+		A3A98CB822D8372CC42C94E67570DAA6 /* BaseStubFunctionTrait.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BaseStubFunctionTrait.swift; path = Source/Stubbing/StubFunction/Trait/BaseStubFunctionTrait.swift; sourceTree = "<group>"; };
+		A9625AC78E66DB0A3872DAE21721A6F4 /* CuckooFunctions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CuckooFunctions.swift; path = Source/CuckooFunctions.swift; sourceTree = "<group>"; };
+		B137A4A7AC23AC48E10B39B422D0B585 /* StubAction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StubAction.swift; path = Source/Stubbing/StubAction.swift; sourceTree = "<group>"; };
+		B39FC88CAFBA5A60542517ADABAE12DA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		B5E596019CCCF7C123CB1946F411D368 /* Pods-SolidCourseFramework-SolidCourseFrameworkTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SolidCourseFramework-SolidCourseFrameworkTests-umbrella.h"; sourceTree = "<group>"; };
+		B89FFDEC5471B65CB6062F74C53C4721 /* StubThrowingFunction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StubThrowingFunction.swift; path = Source/Stubbing/StubFunction/StubThrowingFunction.swift; sourceTree = "<group>"; };
+		BA39B3E873FBDC2F6032069F656FA9D7 /* StubbingProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StubbingProxy.swift; path = Source/Mock/StubbingProxy.swift; sourceTree = "<group>"; };
+		C1E5468F1733373F4A2ECD092F7769C3 /* Array+matchers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Array+matchers.swift"; path = "Source/Matching/Array+matchers.swift"; sourceTree = "<group>"; };
+		C85812C1C4B26B6CB86844A9EDCC9116 /* DefaultValueRegistry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DefaultValueRegistry.swift; path = Source/DefaultValueRegistry.swift; sourceTree = "<group>"; };
+		C974935CEA562492B4BE6063B7893857 /* StubNoReturnThrowingFunction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StubNoReturnThrowingFunction.swift; path = Source/Stubbing/StubFunction/StubNoReturnThrowingFunction.swift; sourceTree = "<group>"; };
+		CA8BF3EE631B95A6437A1713D01DD55F /* Mocked.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Mocked.swift; path = Source/Mock/Mocked.swift; sourceTree = "<group>"; };
+		CC9189DC44FEB6A938F274B3E5A78BD5 /* Matchable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Matchable.swift; path = Source/Matching/Matchable.swift; sourceTree = "<group>"; };
+		E4A9B8A03961CA92C62A128661E96BC1 /* Pods-SolidCourseFramework-SolidCourseFrameworkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SolidCourseFramework-SolidCourseFrameworkTests.release.xcconfig"; sourceTree = "<group>"; };
+		E666668BBB626DFD242AF94FE70218CF /* Pods-SolidCourseFramework-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SolidCourseFramework-dummy.m"; sourceTree = "<group>"; };
+		EDA201FCAC53F2CD4661CF7FDCA1A25B /* ToBeStubbedReadOnlyProperty.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ToBeStubbedReadOnlyProperty.swift; path = Source/Stubbing/ToBeStubbedProperty/ToBeStubbedReadOnlyProperty.swift; sourceTree = "<group>"; };
+		EDE1F26AC120F2EFBF24E86DC7B48BE8 /* ToBeStubbedProperty.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ToBeStubbedProperty.swift; path = Source/Stubbing/ToBeStubbedProperty/ToBeStubbedProperty.swift; sourceTree = "<group>"; };
+		EE9F70896D07AA54C08FD9938AE4BBF4 /* Cuckoo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Cuckoo.release.xcconfig; sourceTree = "<group>"; };
+		EF74FDFB249A39835428F3AB76F30F59 /* ParameterMatcherFunctions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterMatcherFunctions.swift; path = Source/Matching/ParameterMatcherFunctions.swift; sourceTree = "<group>"; };
+		F4DB52A851EE994E5A1A5A55F56C564B /* ArgumentCaptor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ArgumentCaptor.swift; path = Source/Verification/ArgumentCaptor.swift; sourceTree = "<group>"; };
+		F5AA75FDE556398EF5D571FB8D530C8B /* Set+matchers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Set+matchers.swift"; path = "Source/Matching/Set+matchers.swift"; sourceTree = "<group>"; };
+		F6A499317C4551588E90AA938D593125 /* StubFunctionThenThrowTrait.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StubFunctionThenThrowTrait.swift; path = Source/Stubbing/StubFunction/Trait/StubFunctionThenThrowTrait.swift; sourceTree = "<group>"; };
+		FE615F8C0DD34CBF137673846A593115 /* Cuckoo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Cuckoo.debug.xcconfig; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7B7BAE3883632C33FCED6C7517DA49A2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				19A887880C9D75A692CBECCA7199A3B3 /* Cocoa.framework in Frameworks */,
+				67C26C2D07E13445DA81E12836CE0A1C /* Foundation.framework in Frameworks */,
+				5DBD23F0C9DF9ED62965BD4506DA1B01 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A8E675411F300E6D6674D2932E7B9B41 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				85D890418CB73CCE40B370206003A30E /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE00AEBBFEE023E2EDC8858D5D483CA9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7F34846DA673538BFE695208B7BCE45 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1AEF25D228616F14AD82C014631A2D62 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				2BDF0749BAFD6432BE08BF578806A16E /* Cuckoo.modulemap */,
+				22ADBF2D5798CC998BD6EB539A75266B /* Cuckoo-dummy.m */,
+				0F421784872A9BB04FBEDA5DC23C4093 /* Cuckoo-Info.plist */,
+				1992CC779531CC49D4DC3D50A7A5FAC5 /* Cuckoo-prefix.pch */,
+				0BDB25897E82A7FEFF05FE8E1D032B7F /* Cuckoo-umbrella.h */,
+				FE615F8C0DD34CBF137673846A593115 /* Cuckoo.debug.xcconfig */,
+				EE9F70896D07AA54C08FD9938AE4BBF4 /* Cuckoo.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Cuckoo";
+			sourceTree = "<group>";
+		};
+		21FD87E2C2A849A5337B8D789ACCA9E5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				06BBD3298EFC08D95EEFE526BDDCDBD1 /* Cuckoo.framework */,
+				6DA8E763A3E644707EA4FB9ABF7A07AD /* Pods_SolidCourseFramework.framework */,
+				98A6D4EDDEB5106B1B24430D6FDD1ACA /* Pods_SolidCourseFramework_SolidCourseFrameworkTests.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3E691BA90EF474C3C100408E3C97EF33 /* Pods-SolidCourseFramework-SolidCourseFrameworkTests */ = {
+			isa = PBXGroup;
+			children = (
+				3AED8D7023080BA1E3059164E22657B1 /* Pods-SolidCourseFramework-SolidCourseFrameworkTests.modulemap */,
+				4C97948DEB0E1D2152AD60F61FD059B8 /* Pods-SolidCourseFramework-SolidCourseFrameworkTests-acknowledgements.markdown */,
+				9674477B5D813D4382AFC6769236CF2F /* Pods-SolidCourseFramework-SolidCourseFrameworkTests-acknowledgements.plist */,
+				47117D0EBF9BB24B332A6A32CDA22F88 /* Pods-SolidCourseFramework-SolidCourseFrameworkTests-dummy.m */,
+				394900C0409E60287C8527E99D935012 /* Pods-SolidCourseFramework-SolidCourseFrameworkTests-frameworks.sh */,
+				476A312DFE52E5463903B7CC3C4BE84B /* Pods-SolidCourseFramework-SolidCourseFrameworkTests-Info.plist */,
+				B5E596019CCCF7C123CB1946F411D368 /* Pods-SolidCourseFramework-SolidCourseFrameworkTests-umbrella.h */,
+				2D5CA81577E4364BD310B3385D79A49E /* Pods-SolidCourseFramework-SolidCourseFrameworkTests.debug.xcconfig */,
+				E4A9B8A03961CA92C62A128661E96BC1 /* Pods-SolidCourseFramework-SolidCourseFrameworkTests.release.xcconfig */,
+			);
+			name = "Pods-SolidCourseFramework-SolidCourseFrameworkTests";
+			path = "Target Support Files/Pods-SolidCourseFramework-SolidCourseFrameworkTests";
+			sourceTree = "<group>";
+		};
+		70C0C09852531681CE0F0DF8734EB1B8 /* OS X */ = {
+			isa = PBXGroup;
+			children = (
+				2D06C28D0C11A6EB728E6A690B05D259 /* Cocoa.framework */,
+				B39FC88CAFBA5A60542517ADABAE12DA /* Foundation.framework */,
+				4CE909F7B6DC1F7F30FA5CF6F95F6D59 /* XCTest.framework */,
+			);
+			name = "OS X";
+			sourceTree = "<group>";
+		};
+		8B37C891C64B7445715ADD732C3F0A91 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EAEC30FD910DD46309F37AF895CF72F0 /* Cuckoo */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A3CDB250FFEFB42CA2C68F1FBD92997D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				70C0C09852531681CE0F0DF8734EB1B8 /* OS X */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B7C5E086A41E50CC49CD105327D95A79 /* Pods-SolidCourseFramework */ = {
+			isa = PBXGroup;
+			children = (
+				78156283A3D9B67191AC5BEF94EC3FF1 /* Pods-SolidCourseFramework.modulemap */,
+				3645C184C5FA6482CD551DBBE50C1C35 /* Pods-SolidCourseFramework-acknowledgements.markdown */,
+				0CF7982336494399D772A5F663C0E6CC /* Pods-SolidCourseFramework-acknowledgements.plist */,
+				E666668BBB626DFD242AF94FE70218CF /* Pods-SolidCourseFramework-dummy.m */,
+				2AC50BAF797925559334B93D866EE2F3 /* Pods-SolidCourseFramework-Info.plist */,
+				672E287DB1DAB3A46471A1AA0DECD9A2 /* Pods-SolidCourseFramework-umbrella.h */,
+				60A5F794F1065A78F101DBF5C9F9278E /* Pods-SolidCourseFramework.debug.xcconfig */,
+				51C9188C6294024688B67BBDE49554AA /* Pods-SolidCourseFramework.release.xcconfig */,
+			);
+			name = "Pods-SolidCourseFramework";
+			path = "Target Support Files/Pods-SolidCourseFramework";
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				A3CDB250FFEFB42CA2C68F1FBD92997D /* Frameworks */,
+				8B37C891C64B7445715ADD732C3F0A91 /* Pods */,
+				21FD87E2C2A849A5337B8D789ACCA9E5 /* Products */,
+				D022995E9645A2D27C04F64DB3B895FB /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D022995E9645A2D27C04F64DB3B895FB /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				B7C5E086A41E50CC49CD105327D95A79 /* Pods-SolidCourseFramework */,
+				3E691BA90EF474C3C100408E3C97EF33 /* Pods-SolidCourseFramework-SolidCourseFrameworkTests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		EAEC30FD910DD46309F37AF895CF72F0 /* Cuckoo */ = {
+			isa = PBXGroup;
+			children = (
+				1AEF25D228616F14AD82C014631A2D62 /* Support Files */,
+				EC5F81A7E698FB2A948D939F7B1836DA /* Swift */,
+			);
+			path = Cuckoo;
+			sourceTree = "<group>";
+		};
+		EC5F81A7E698FB2A948D939F7B1836DA /* Swift */ = {
+			isa = PBXGroup;
+			children = (
+				08963AD7BB7A7539A4FE775AD60C2453 /* __DoNotUse.swift */,
+				F4DB52A851EE994E5A1A5A55F56C564B /* ArgumentCaptor.swift */,
+				C1E5468F1733373F4A2ECD092F7769C3 /* Array+matchers.swift */,
+				A3A98CB822D8372CC42C94E67570DAA6 /* BaseStubFunctionTrait.swift */,
+				07602AD0B38967CA0C31F97DE8E4693A /* CallMatcher.swift */,
+				62A26420D83C9AF999055ECD071704F3 /* CallMatcherFunctions.swift */,
+				9A80FD6DD21A1FE461AB76FEE92E2253 /* CreateMock.swift */,
+				A9625AC78E66DB0A3872DAE21721A6F4 /* CuckooFunctions.swift */,
+				C85812C1C4B26B6CB86844A9EDCC9116 /* DefaultValueRegistry.swift */,
+				0D71E95149EB95E10C14D9BB8DE397FA /* Dictionary+matchers.swift */,
+				CC9189DC44FEB6A938F274B3E5A78BD5 /* Matchable.swift */,
+				A3338EA35CFE6F626B7A4C5E2975E780 /* Mock.swift */,
+				0BF6AF995BF7AC5C1DBFB647CC5394E4 /* MockBuilder.swift */,
+				CA8BF3EE631B95A6437A1713D01DD55F /* Mocked.swift */,
+				0969959DD7FA142998AE6DDD71367486 /* MockManager.swift */,
+				33601612FD4A0BB1AC0D29354D03004E /* MockManager+preconfigured.swift */,
+				30D7DF6E29C1AD1B34803AC507AEB43F /* ParameterMatcher.swift */,
+				EF74FDFB249A39835428F3AB76F30F59 /* ParameterMatcherFunctions.swift */,
+				F5AA75FDE556398EF5D571FB8D530C8B /* Set+matchers.swift */,
+				9E85CFB94FBCDA077627B1AB2DD575C3 /* Stub.swift */,
+				B137A4A7AC23AC48E10B39B422D0B585 /* StubAction.swift */,
+				BA39B3E873FBDC2F6032069F656FA9D7 /* StubbingProxy.swift */,
+				745021BD6D4D1CE4D17D42128CB6AD09 /* StubCall.swift */,
+				35E734C925BED27F42175F8FD85D4B98 /* StubFunction.swift */,
+				3D93DA67EAB2B293EDD1A15F1955E76C /* StubFunctionThenCallRealImplementationTrait.swift */,
+				85FA85074BA33B6DE76A7963E0639DCB /* StubFunctionThenDoNothingTrait.swift */,
+				3BEF2DDEC30C13497D6F4941F15B9E27 /* StubFunctionThenReturnTrait.swift */,
+				27629BCBB32B911CF22B96F449641812 /* StubFunctionThenThrowingTrait.swift */,
+				F6A499317C4551588E90AA938D593125 /* StubFunctionThenThrowTrait.swift */,
+				11CDF5565FA2A35A6F1FE5E17F0D9825 /* StubFunctionThenTrait.swift */,
+				33962A5E529215E98BE5AB1861F3BB2D /* StubNoReturnFunction.swift */,
+				C974935CEA562492B4BE6063B7893857 /* StubNoReturnThrowingFunction.swift */,
+				B89FFDEC5471B65CB6062F74C53C4721 /* StubThrowingFunction.swift */,
+				9174804345A5BED766F989B137E16A18 /* ThreadLocal.swift */,
+				EDE1F26AC120F2EFBF24E86DC7B48BE8 /* ToBeStubbedProperty.swift */,
+				EDA201FCAC53F2CD4661CF7FDCA1A25B /* ToBeStubbedReadOnlyProperty.swift */,
+				4622A996C62B33D7A5592678A9EE237F /* Utils.swift */,
+				76D4976AA69AE7CB376598422D57C140 /* VerificationProxy.swift */,
+				955DA6F32D3197936C57F2FA0DD417CC /* VerifyProperty.swift */,
+				7431D39B69D80B5DF8A1DFC83BCF59BF /* VerifyReadOnlyProperty.swift */,
+			);
+			name = Swift;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		26401D3C55489EA77D717D29013A9190 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF30EAEDFAB3B1753237114DC7A14F32 /* Pods-SolidCourseFramework-SolidCourseFrameworkTests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		78E22A1909FDAB2B858A545C899B297B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A014D2C71297344AD2765F187A8126A /* Cuckoo-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		833301AC8944018835B43CC2CD1DFE98 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01F92E6564C9ECB2BA713A27A2B12560 /* Pods-SolidCourseFramework-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		1B7889D3C0540414F11EFDEFC150B99F /* Pods-SolidCourseFramework-SolidCourseFrameworkTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F361E529BB5BC8F3D7398A64BC44F71B /* Build configuration list for PBXNativeTarget "Pods-SolidCourseFramework-SolidCourseFrameworkTests" */;
+			buildPhases = (
+				26401D3C55489EA77D717D29013A9190 /* Headers */,
+				F809395D7FF9EB9CA3650BB799BD867A /* Sources */,
+				BE00AEBBFEE023E2EDC8858D5D483CA9 /* Frameworks */,
+				57225D10AB9DB88FBF0EF88AB5399A05 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				68D7536E01D3EB203468F5921E901EC6 /* PBXTargetDependency */,
+			);
+			name = "Pods-SolidCourseFramework-SolidCourseFrameworkTests";
+			productName = Pods_SolidCourseFramework_SolidCourseFrameworkTests;
+			productReference = 98A6D4EDDEB5106B1B24430D6FDD1ACA /* Pods_SolidCourseFramework_SolidCourseFrameworkTests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		631511BD739BCCBCC6FF8FE2ABBA84B0 /* Pods-SolidCourseFramework */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5AB75BC58C0FEB6E759D822C5CF65023 /* Build configuration list for PBXNativeTarget "Pods-SolidCourseFramework" */;
+			buildPhases = (
+				833301AC8944018835B43CC2CD1DFE98 /* Headers */,
+				8029D0DF1855A1450091BF2A51A42B39 /* Sources */,
+				A8E675411F300E6D6674D2932E7B9B41 /* Frameworks */,
+				6525BCDFD94888117C8CC521A3EF4BA2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-SolidCourseFramework";
+			productName = Pods_SolidCourseFramework;
+			productReference = 6DA8E763A3E644707EA4FB9ABF7A07AD /* Pods_SolidCourseFramework.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		CFCA8CA494372A14108299CE150648B8 /* Cuckoo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4BE72E24E26E02870A73F44DF797371 /* Build configuration list for PBXNativeTarget "Cuckoo" */;
+			buildPhases = (
+				78E22A1909FDAB2B858A545C899B297B /* Headers */,
+				ABA2C2BB806D1EA4F876D1C1FB1A0F5A /* Sources */,
+				7B7BAE3883632C33FCED6C7517DA49A2 /* Frameworks */,
+				C1B081151FF4DD2BE30888F0A35F0CA6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Cuckoo;
+			productName = Cuckoo;
+			productReference = 06BBD3298EFC08D95EEFE526BDDCDBD1 /* Cuckoo.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1320;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = 21FD87E2C2A849A5337B8D789ACCA9E5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CFCA8CA494372A14108299CE150648B8 /* Cuckoo */,
+				631511BD739BCCBCC6FF8FE2ABBA84B0 /* Pods-SolidCourseFramework */,
+				1B7889D3C0540414F11EFDEFC150B99F /* Pods-SolidCourseFramework-SolidCourseFrameworkTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		57225D10AB9DB88FBF0EF88AB5399A05 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6525BCDFD94888117C8CC521A3EF4BA2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1B081151FF4DD2BE30888F0A35F0CA6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8029D0DF1855A1450091BF2A51A42B39 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E0E6BCDB69494EF30E2233815621719 /* Pods-SolidCourseFramework-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ABA2C2BB806D1EA4F876D1C1FB1A0F5A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE9E702E6627E3D9E303FE1F44384BB4 /* __DoNotUse.swift in Sources */,
+				04B91DD72E9CCAE596995E8ED7D99C5F /* ArgumentCaptor.swift in Sources */,
+				3F396C646DCE1CA1AC17FACC18923801 /* Array+matchers.swift in Sources */,
+				24408198626ECEE885E89DE3A831BF7E /* BaseStubFunctionTrait.swift in Sources */,
+				7872F7CAAE5FF842D684CE6FE9E0371C /* CallMatcher.swift in Sources */,
+				B90E7763CCB8CE7CE078D5134B47992D /* CallMatcherFunctions.swift in Sources */,
+				FC585F916F0717ED95F674C5F8625B71 /* CreateMock.swift in Sources */,
+				9690F1D41B8A9AEDF2B389B083380EC9 /* Cuckoo-dummy.m in Sources */,
+				371C7C06043B6940BDED481E133928DA /* CuckooFunctions.swift in Sources */,
+				01F1A2441579248D9468A52065A9C009 /* DefaultValueRegistry.swift in Sources */,
+				39C78B3B6E32FB1F0B52315C7DD4E25A /* Dictionary+matchers.swift in Sources */,
+				E7CC4E64C6514CE184E0AC213C76CF06 /* Matchable.swift in Sources */,
+				3A239AED1823573C4888855111327031 /* Mock.swift in Sources */,
+				0E765697FF6EE56E7248036095847150 /* MockBuilder.swift in Sources */,
+				F50FBA6C8616DF301D98DD0C9B49DC18 /* Mocked.swift in Sources */,
+				26A8AE9925DFD89278A9D531AF0473EB /* MockManager.swift in Sources */,
+				149BA04AD11729AC4DDFB9D397A8F91E /* MockManager+preconfigured.swift in Sources */,
+				D923FABA347921F0C82B577CD7779D10 /* ParameterMatcher.swift in Sources */,
+				A5F1A97E2FA3A5F5EB67CD6A05CB63C9 /* ParameterMatcherFunctions.swift in Sources */,
+				2F95C05163C00C5F89E512F1164192C9 /* Set+matchers.swift in Sources */,
+				E410335FE8AF8AE4D00BD9C69A0CAF36 /* Stub.swift in Sources */,
+				90A3EF6C5F4DEAA036EFB6E249F3445F /* StubAction.swift in Sources */,
+				0790854B8260F6B3C0263372C5C4CEBF /* StubbingProxy.swift in Sources */,
+				5DDA38F950E3865FF8A28B91706A02EC /* StubCall.swift in Sources */,
+				1A83F1100ED904F93419159996BAC89B /* StubFunction.swift in Sources */,
+				23C7B253B2776617750B5ED02D69CFC8 /* StubFunctionThenCallRealImplementationTrait.swift in Sources */,
+				7B453BC9AA6BBB3541C1E523380CAE16 /* StubFunctionThenDoNothingTrait.swift in Sources */,
+				AE3BCCEAEA950463F73B9BF50EA90DA8 /* StubFunctionThenReturnTrait.swift in Sources */,
+				1A9F17D93C0870739F66AE4241F9D7C9 /* StubFunctionThenThrowingTrait.swift in Sources */,
+				1D8C30C49304F8440777B07940A812A5 /* StubFunctionThenThrowTrait.swift in Sources */,
+				B0673365F50A132667B076C990B0FDDC /* StubFunctionThenTrait.swift in Sources */,
+				FE433680B541A15F38FF6A4855312609 /* StubNoReturnFunction.swift in Sources */,
+				ECDDCDF6E1736413502436860B6BF19A /* StubNoReturnThrowingFunction.swift in Sources */,
+				E30033673A9B7FDA3FCFCD226E1C99B9 /* StubThrowingFunction.swift in Sources */,
+				A750BB3B9CB4C6F0F06C405101E15BB0 /* ThreadLocal.swift in Sources */,
+				4F702E6B46CF9DAE6FF0D5BC9F05DDDA /* ToBeStubbedProperty.swift in Sources */,
+				27EEBAB00AF2A0F380F3D7A2F5B53A95 /* ToBeStubbedReadOnlyProperty.swift in Sources */,
+				91AB746522564285F57432E45D30629C /* Utils.swift in Sources */,
+				D007013A6B336697296101033801BEFF /* VerificationProxy.swift in Sources */,
+				488546D3A123CB22C571F919025F8279 /* VerifyProperty.swift in Sources */,
+				E820F48C01832F90183E3C1DCDBA8BFE /* VerifyReadOnlyProperty.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F809395D7FF9EB9CA3650BB799BD867A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				85E4F876B245AC549894D68CF4A948B6 /* Pods-SolidCourseFramework-SolidCourseFrameworkTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		68D7536E01D3EB203468F5921E901EC6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Cuckoo;
+			target = CFCA8CA494372A14108299CE150648B8 /* Cuckoo */;
+			targetProxy = 6895ECECF1EA59F2430057DF61CDABA8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0A78EBBD632E2A3C64A61D3715399DA9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D5CA81577E4364BD310B3385D79A49E /* Pods-SolidCourseFramework-SolidCourseFrameworkTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SolidCourseFramework-SolidCourseFrameworkTests/Pods-SolidCourseFramework-SolidCourseFrameworkTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 11.6;
+				MODULEMAP_FILE = "Target Support Files/Pods-SolidCourseFramework-SolidCourseFrameworkTests/Pods-SolidCourseFramework-SolidCourseFrameworkTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		3FBFD87B76BC09827E073AC2B6DC4844 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 60A5F794F1065A78F101DBF5C9F9278E /* Pods-SolidCourseFramework.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SolidCourseFramework/Pods-SolidCourseFramework-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 11.6;
+				MODULEMAP_FILE = "Target Support Files/Pods-SolidCourseFramework/Pods-SolidCourseFramework.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		41B139100314038EC3BB5BA2C0A20D08 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.6;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		B60CFD26D360CE16F08D8E4FDC50CEF3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.6;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		CE291972D670561B3FD3B39622A828C2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E4A9B8A03961CA92C62A128661E96BC1 /* Pods-SolidCourseFramework-SolidCourseFrameworkTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SolidCourseFramework-SolidCourseFrameworkTests/Pods-SolidCourseFramework-SolidCourseFrameworkTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 11.6;
+				MODULEMAP_FILE = "Target Support Files/Pods-SolidCourseFramework-SolidCourseFrameworkTests/Pods-SolidCourseFramework-SolidCourseFrameworkTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		D321A8F0CCAC59E0A271EF875B68BD46 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE9F70896D07AA54C08FD9938AE4BBF4 /* Cuckoo.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Cuckoo/Cuckoo-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Cuckoo/Cuckoo-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MODULEMAP_FILE = "Target Support Files/Cuckoo/Cuckoo.modulemap";
+				PRODUCT_MODULE_NAME = Cuckoo;
+				PRODUCT_NAME = Cuckoo;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		DB77ED2CC4E6BD6DF7756EFAAFAD3C81 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FE615F8C0DD34CBF137673846A593115 /* Cuckoo.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Cuckoo/Cuckoo-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Cuckoo/Cuckoo-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MODULEMAP_FILE = "Target Support Files/Cuckoo/Cuckoo.modulemap";
+				PRODUCT_MODULE_NAME = Cuckoo;
+				PRODUCT_NAME = Cuckoo;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E70E051D8BBBC894A7BA64991141D387 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 51C9188C6294024688B67BBDE49554AA /* Pods-SolidCourseFramework.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SolidCourseFramework/Pods-SolidCourseFramework-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 11.6;
+				MODULEMAP_FILE = "Target Support Files/Pods-SolidCourseFramework/Pods-SolidCourseFramework.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B60CFD26D360CE16F08D8E4FDC50CEF3 /* Debug */,
+				41B139100314038EC3BB5BA2C0A20D08 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5AB75BC58C0FEB6E759D822C5CF65023 /* Build configuration list for PBXNativeTarget "Pods-SolidCourseFramework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3FBFD87B76BC09827E073AC2B6DC4844 /* Debug */,
+				E70E051D8BBBC894A7BA64991141D387 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F361E529BB5BC8F3D7398A64BC44F71B /* Build configuration list for PBXNativeTarget "Pods-SolidCourseFramework-SolidCourseFrameworkTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A78EBBD632E2A3C64A61D3715399DA9 /* Debug */,
+				CE291972D670561B3FD3B39622A828C2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F4BE72E24E26E02870A73F44DF797371 /* Build configuration list for PBXNativeTarget "Cuckoo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB77ED2CC4E6BD6DF7756EFAAFAD3C81 /* Debug */,
+				D321A8F0CCAC59E0A271EF875B68BD46 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}
