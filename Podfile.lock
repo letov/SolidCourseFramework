@@ -1,13 +1,13 @@
 PODS:
-  - Cuckoo (1.6.0):
-    - Cuckoo/Swift (= 1.6.0)
-  - Cuckoo/Swift (1.6.0)
+  - Cuckoo (1.5.2):
+    - Cuckoo/Swift (= 1.5.2)
+  - Cuckoo/Swift (1.5.2)
   - Sourcery (1.6.1):
     - Sourcery/CLI-Only (= 1.6.1)
   - Sourcery/CLI-Only (1.6.1)
 
 DEPENDENCIES:
-  - Cuckoo
+  - Cuckoo (~> 1.5.2)
   - Sourcery
 
 SPEC REPOS:
@@ -16,9 +16,9 @@ SPEC REPOS:
     - Sourcery
 
 SPEC CHECKSUMS:
-  Cuckoo: 4da01933dfcc88b23a3bb3ac95314d35c93e7c3d
+  Cuckoo: df291c2d8462a39a16494a9db4ef112f5ca3bdc0
   Sourcery: f3759f803bd0739f74fc92a4341eed0473ce61ac
 
-PODFILE CHECKSUM: 617986b5fc32f6da8b378805431fca018a55ca8a
+PODFILE CHECKSUM: b0a85723071ccd0adf8ed37560b36f675bae0e26
 
 COCOAPODS: 1.11.2

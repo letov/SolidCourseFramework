@@ -104,16 +104,16 @@ extension Templates {
     {% endfor %}
     {{ method.accessibility }}{% if container.isImplementation and method.isOverriding %} override{% endif %} func {{ method.name }}{{ method.genericParameters }}({{ method.parameterSignature }}) {{ method.returnSignature }} {
         {{ method.self|openNestedClosure }}
-    return{% if method.isThrowing %} try{% endif %}{% if method.isAsync %} await{% endif %} cuckoo_manager.call{% if method.isThrowing %}{{ method.throwType|capitalize }}{% endif %}("{{method.fullyQualifiedName}}",
+    return{% if method.isThrowing %} try{% endif %} cuckoo_manager.call{% if method.isThrowing %}{{ method.throwType|capitalize }}{% endif %}("{{method.fullyQualifiedName}}",
             parameters: ({{method.parameterNames}}),
             escapingParameters: ({{method.escapingParameterNames}}),
             superclassCall:
                 {% if container.isImplementation %}
-                {% if method.isAsync %}await {% endif %}super.{{method.name}}({{method.call}})
+                super.{{method.name}}({{method.call}})
                 {% else %}
-                {% if method.isAsync %}await {% endif %}Cuckoo.MockManager.crashOnProtocolSuperclassCall()
+                Cuckoo.MockManager.crashOnProtocolSuperclassCall()
                 {% endif %},
-            defaultCall: {% if method.isAsync %}await {% endif %}__defaultImplStub!.{{method.name}}{%if method.isOptional %}!{%endif%}({{method.call}}))
+            defaultCall: __defaultImplStub!.{{method.name}}{%if method.isOptional %}!{%endif%}({{method.call}}))
         {{ method.parameters|closeNestedClosure }}
     }
     {% endfor %}
