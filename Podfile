@@ -9,6 +9,7 @@ target 'SolidCourseFramework' do
 
   target 'SolidCourseFrameworkTests' do
     pod "Cuckoo"
+    pod "Sourcery"
   end
 
 end

@@ -15,10 +15,45 @@ protocol UObject {
    func setProperty(propertyName: String, propertyValue: PropertyValue<Any>)
 }
 
+protocol Adapter {
+    var o: UObject { get set }
+    init(o: UObject)
+}
+
 enum ErrorList: Error {
     case commandException
     case ioCException
 }
+
+protocol Command {
+    func execute() throws
+}
+
+class MacroCommand: Command {
+    var commands = Array<Command>()
+    init(commands: Array<Command>) {
+        self.commands = commands
+    }
+    func execute() throws {
+        try _ = commands.map { try $0.execute() }
+    }
+}
+
+class AdapterList {
+    var table = Dictionary<String, Adapter.Type>()
+    func getKey(_ a: Any) -> String {
+        return String(describing: a)
+    }
+    subscript(_ abstract: Any) -> Adapter.Type? {
+        get {
+            return table[getKey(abstract)]
+        }
+        set {
+            table[getKey(abstract)] = newValue
+        }
+    }
+}
+
 
 class GlobalRegister {
     static func register() {
@@ -26,6 +61,7 @@ class GlobalRegister {
             let queue = Queue<Command>()
             let helper = Helper()
             let errorHandleList = ErrorHandleList()
+            let adapterList = AdapterList()
             try (IoC.register("Queue.Command") { _ in
                 queue
             } as Command).execute()
@@ -45,11 +81,20 @@ class GlobalRegister {
             } as Command))
             queue.queue(try (IoC.register("Error.Handle") {
                 let errorHandleList = try (IoC.resolve("Error.Handle.List") as ErrorHandleList)
-                return try (IoC.resolve(errorHandleList.getHandler(command: $0[0] as! Command), $0[0], $0[1]) as Command)
+                return try (IoC.resolve(errorHandleList[$0[0] as! Command], $0[0], $0[1]) as Command)
+            } as Command))
+            queue.queue(try (IoC.register("Adapter.List") {_ in
+                adapterList
+            } as Command))
+            queue.queue(try (IoC.register("Adapter") {
+                let adapterList: AdapterList = try IoC.resolve("Adapter.List")
+                return (adapterList[$0[0]]!).init(o: $0[1] as! UObject)
             } as Command))
             while !queue.isEmpty() {
                 try queue.dequeue()!.execute()
             }
+            AdapterRegister.register()
+            CommandRegister.register()
         } catch {
             fatalError()
         }

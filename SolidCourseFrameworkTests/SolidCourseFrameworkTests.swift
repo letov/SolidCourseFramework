@@ -66,13 +66,13 @@ class SolidCourseFrameworkTests: XCTestCase {
     
     func getMoveCommand(sut: MockUObject!) -> Command {
         fillUObjectMove(sut: sut)
-        let adapter = MovableAdapter(m: sut)
+        let adapter = MovableAdapter(o: sut)
         return MoveCommand(m: adapter)
     }
     
     func getFailMoveCommand(sut: MockUObject!) -> Command {
         fillFailUObjectMove(sut: sut)
-        let adapter = MovableAdapter(m: sut)
+        let adapter = MovableAdapter(o: sut)
         return MoveCommand(m: adapter)
     }
 
@@ -84,26 +84,6 @@ class SolidCourseFrameworkTests: XCTestCase {
         verify(sut1).setProperty(propertyName: "Position", propertyValue: any())
     }
 
-    func testFailMoveCommand1() throws {
-        stub(sut1) { mock in
-            when(mock.getProperty(propertyName: "Velocity")).thenReturn((value: simd_int2(-7, 3), canChange: true))
-            when(mock.setProperty(propertyName: "Position", propertyValue: any())).thenDoNothing()
-        }
-        let adapter = MovableAdapter(m: sut1)
-        let cmd = MoveCommand(m: adapter)
-        XCTAssertThrowsError(try cmd.execute())
-    }
-    
-    func testFailMoveCommand2() throws {
-        stub(sut1) { mock in
-            when(mock.getProperty(propertyName: "Position")).thenReturn((value: simd_int2(12, 5), canChange: true))
-            when(mock.setProperty(propertyName: "Position", propertyValue: any())).thenDoNothing()
-        }
-        let adapter = MovableAdapter(m: sut1)
-        let cmd = MoveCommand(m: adapter)
-        XCTAssertThrowsError(try cmd.execute())
-    }
-    
     func testFailMoveCommand3() throws {
         let cmd = getFailMoveCommand(sut: sut1)
         XCTAssertThrowsError(try cmd.execute())
@@ -119,7 +99,7 @@ class SolidCourseFrameworkTests: XCTestCase {
                 XCTAssertEqual(propertyValue.value as? Int, 16)
             }
         }
-        let adapter = RotateAdapter(r: sut1)
+        let adapter = RotableAdapter(o: sut1)
         let cmd = RotateCommand(r: adapter)
         XCTAssertNoThrow(try cmd.execute())
         verify(sut1).getProperty(propertyName: "Direction")
@@ -133,7 +113,7 @@ class SolidCourseFrameworkTests: XCTestCase {
     func testIoCRegisterResolve() throws {
         fillUObjectMove(sut: sut1)
         try (IoC.register("Adapter.Movable") {
-            MovableAdapter(m: $0[0] as! UObject)
+            MovableAdapter(o: $0[0] as! UObject)
         } as Command).execute()
         try (IoC.register("Command.Move") {
             MoveCommand(m: try IoC.resolve("Adapter.Movable", $0[0]))
@@ -146,7 +126,7 @@ class SolidCourseFrameworkTests: XCTestCase {
         fillUObjectMove(sut: sut1)
         fillUObjectMove(sut: sut2)
         try (IoC.register("Adapter.Movable") {
-            MovableAdapter(m: $0[0] as! UObject)
+            MovableAdapter(o: $0[0] as! UObject)
         } as Command).execute()
         try (IoC.register("Command.Move") {
             MoveCommand(m: try IoC.resolve("Adapter.Movable", $0[0]))
@@ -196,11 +176,11 @@ class SolidCourseFrameworkTests: XCTestCase {
         fillFailUObjectMove(sut: sut1)
 
         try (IoC.register("Command.Move") {
-            MoveCommand(m: MovableAdapter(m: $0[0] as! UObject))
+            MoveCommand(m: MovableAdapter(o: $0[0] as! UObject))
         } as Command).execute()
         let command: Command = try IoC.resolve("Command.Move", sut1!)
         
-        try (IoC.resolve("Error.Handle.List") as ErrorHandleList).addHandler(command: command, errorIoCKey: "Error.Log")
+        try (IoC.resolve("Error.Handle.List") as ErrorHandleList)[command] = "Error.Log"
 
         let queue: Queue<Command> = try IoC.resolve("Queue.Command")
         queue.queue(command)
@@ -212,7 +192,6 @@ class SolidCourseFrameworkTests: XCTestCase {
                 queue.queue(try (IoC.resolve("Error.Handle", cmd, error) as Command))
             }
         }
-        print()
         XCTAssertEqual(String(describing: queue.historyReversed(1)!).components(separatedBy: ".")[1], "MoveCommand")
         XCTAssertEqual(String(describing: queue.historyReversed(0)!).components(separatedBy: ".")[1], "ErrorCommand")
     }
@@ -221,7 +200,7 @@ class SolidCourseFrameworkTests: XCTestCase {
         fillFailUObjectMove(sut: sut1)
 
         try (IoC.register("Command.Move") {
-            MoveCommand(m: MovableAdapter(m: $0[0] as! UObject))
+            MoveCommand(m: MovableAdapter(o: $0[0] as! UObject))
         } as Command).execute()
         let command: Command = try IoC.resolve("Command.Move", sut1!)
         
@@ -229,16 +208,16 @@ class SolidCourseFrameworkTests: XCTestCase {
             ErrorCommand(command: $0[0] as! Command, error: $0[1] as! Error) { (command, _) in
                 (try! IoC.resolve("Queue.Command") as Queue<Command>).queue(command)
                 let errorHandleList = try! (IoC.resolve("Error.Handle.List") as ErrorHandleList)
-                errorHandleList.addHandler(command: command, errorIoCKey: "Error.Log")
+                errorHandleList[command] = "Error.Log"
             }
         } as Command).execute()
 
         let errorHandleList = try (IoC.resolve("Error.Handle.List") as ErrorHandleList)
-        errorHandleList.addHandler(command: command, errorIoCKey: "Error.Repeat")
+        errorHandleList[command] = "Error.Repeat"
         
         try (IoC.register("Error.Handle") {
             let errorHandleList = try (IoC.resolve("Error.Handle.List") as ErrorHandleList)
-            return try (IoC.resolve(errorHandleList.getHandler(command: $0[0] as! Command), $0[0], $0[1]) as Command)
+            return try (IoC.resolve(errorHandleList[$0[0] as! Command], $0[0], $0[1]) as Command)
         } as Command).execute()
 
         let queue: Queue<Command> = try IoC.resolve("Queue.Command")
@@ -261,7 +240,7 @@ class SolidCourseFrameworkTests: XCTestCase {
         fillFailUObjectMove(sut: sut1)
 
         try (IoC.register("Command.Move") {
-            MoveCommand(m: MovableAdapter(m: $0[0] as! UObject))
+            MoveCommand(m: MovableAdapter(o: $0[0] as! UObject))
         } as Command).execute()
         let command: Command = try IoC.resolve("Command.Move", sut1!)
         
@@ -269,7 +248,7 @@ class SolidCourseFrameworkTests: XCTestCase {
             ErrorCommand(command: $0[0] as! Command, error: $0[1] as! Error) { (command, _) in
                 (try! IoC.resolve("Queue.Command") as Queue<Command>).queue(command)
                 let errorHandleList = try! (IoC.resolve("Error.Handle.List") as ErrorHandleList)
-                errorHandleList.addHandler(command: command, errorIoCKey: "Error.Log")
+                errorHandleList[command] = "Error.Log"
             }
         } as Command).execute()
         
@@ -277,16 +256,16 @@ class SolidCourseFrameworkTests: XCTestCase {
             ErrorCommand(command: $0[0] as! Command, error: $0[1] as! Error) { (command, _) in
                 (try! IoC.resolve("Queue.Command") as Queue<Command>).queue(command)
                 let errorHandleList = try! (IoC.resolve("Error.Handle.List") as ErrorHandleList)
-                errorHandleList.addHandler(command: command, errorIoCKey: "Error.Repeat")
+                errorHandleList[command] = "Error.Repeat"
             }
         } as Command).execute()
 
         let errorHandleList = try (IoC.resolve("Error.Handle.List") as ErrorHandleList)
-        errorHandleList.addHandler(command: command, errorIoCKey: "Error.RepeatTwice")
+        errorHandleList[command] = "Error.RepeatTwice"
         
         try (IoC.register("Error.Handle") {
             let errorHandleList = try (IoC.resolve("Error.Handle.List") as ErrorHandleList)
-            return try (IoC.resolve(errorHandleList.getHandler(command: $0[0] as! Command), $0[0], $0[1]) as Command)
+            return try (IoC.resolve(errorHandleList[$0[0] as! Command], $0[0], $0[1]) as Command)
         } as Command).execute()
 
         let queue: Queue<Command> = try IoC.resolve("Queue.Command")
@@ -314,7 +293,7 @@ class SolidCourseFrameworkTests: XCTestCase {
             when(mock.getProperty(propertyName: "FuelReserve")).thenReturn((value: 10, canChange: false))
             when(mock.getProperty(propertyName: "FuelConsumptionRate")).thenReturn((value: 1, canChange: false))
         }
-        let adapter = FuelableAdapter(f: sut1)
+        let adapter = FuelableAdapter(o: sut1)
         let cmd = CheckFuelCommand(f: adapter)
         XCTAssertNoThrow(try cmd.execute())
         verify(sut1).getProperty(propertyName: "FuelReserve")
@@ -326,7 +305,7 @@ class SolidCourseFrameworkTests: XCTestCase {
             when(mock.getProperty(propertyName: "FuelReserve")).thenReturn((value: 1, canChange: false))
             when(mock.getProperty(propertyName: "FuelConsumptionRate")).thenReturn((value: 100, canChange: false))
         }
-        let adapter = FuelableAdapter(f: sut1)
+        let adapter = FuelableAdapter(o: sut1)
         let cmd = CheckFuelCommand(f: adapter)
         var error: Error?
         XCTAssertThrowsError(try cmd.execute()) {
@@ -346,7 +325,7 @@ class SolidCourseFrameworkTests: XCTestCase {
                 XCTAssertEqual(propertyValue.value as! Int, 7)
             }
         }
-        let adapter = FuelableAdapter(f: sut1)
+        let adapter = FuelableAdapter(o: sut1)
         let cmd = BurnFuelCommand(f: adapter)
         XCTAssertNoThrow(try cmd.execute())
         verify(sut1).getProperty(propertyName: "FuelReserve")
@@ -369,7 +348,7 @@ class SolidCourseFrameworkTests: XCTestCase {
                 XCTAssertEqual(propertyValue.value as! Int, 7)
             }
         }
-        let cmd = MoveFuelCommand(m: MovableAdapter(m: sut1), f: FuelableAdapter(f: sut1))
+        let cmd = MoveFuelCommand(m: MovableAdapter(o: sut1), f: FuelableAdapter(o: sut1))
         XCTAssertNoThrow(try cmd.execute())
     }
     
@@ -388,7 +367,7 @@ class SolidCourseFrameworkTests: XCTestCase {
                 XCTAssertEqual(propertyValue.value as! Int, 7)
             }
         }
-        let cmd = MoveFuelCommand(m: MovableAdapter(m: sut1), f: FuelableAdapter(f: sut1))
+        let cmd = MoveFuelCommand(m: MovableAdapter(o: sut1), f: FuelableAdapter(o: sut1))
         XCTAssertThrowsError(try cmd.execute())
     }
     
@@ -419,7 +398,7 @@ class SolidCourseFrameworkTests: XCTestCase {
             when(mock.getProperty(propertyName: "MaxDirection")).thenReturn((value: 360, canChange: true))
             when(mock.setProperty(propertyName: "Direction", propertyValue: any())).thenDoNothing()
         }
-        let cmd = ChangeVelocityCommand(m: MovableAdapter(m: sut1), r: RotateAdapter(r: sut1))
+        let cmd = ChangeVelocityCommand(m: MovableChangeVelocityAdapter(o: sut1), r: RotableAdapter(o: sut1))
         XCTAssertNoThrow(try cmd.execute())
     }
     
@@ -441,10 +420,37 @@ class SolidCourseFrameworkTests: XCTestCase {
                 XCTAssertEqual(propertyValue.value as? simd_int2, simd_int2(10, 0))
             }
         }
-        let cmd = RotateChangeVelocityCommand(m: MovableAdapter(m: sut1), r: RotateAdapter(r: sut1))
+        let cmd = RotateChangeVelocityCommand(m: MovableChangeVelocityAdapter(o: sut1), r: RotableAdapter(o: sut1))
         XCTAssertNoThrow(try cmd.execute())
         verify(sut1).setProperty(propertyName: "Direction", propertyValue: any())
         verify(sut1).setProperty(propertyName: "Velocity", propertyValue: any())
+    }
+    
+    func testAdapterGenerator() throws {
+        fillUObjectMove(sut: sut1)
+        let adapter = try IoC.resolve("Adapter", Movable.self, sut1!) as Movable
+        let cmd = MoveCommand(m: adapter)
+        XCTAssertNoThrow(try cmd.execute())
+    }
+    
+    func testCommandIoCGenerator() throws {
+        stub(sut1) { mock in
+            when(mock.getProperty(propertyName: "Position")).thenReturn((value: simd_int2(12, 5), canChange: true))
+            when(mock.getProperty(propertyName: "Velocity")).thenReturn((value: simd_int2(-7, 3), canChange: true))
+            when(mock.setProperty(propertyName: "Position", propertyValue: any())).then {
+                _, propertyValue in
+                XCTAssertEqual(propertyValue.value as? simd_int2, simd_int2(5, 8))
+            }
+            when(mock.getProperty(propertyName: "FuelReserve")).thenReturn((value: 10, canChange: true))
+            when(mock.getProperty(propertyName: "FuelConsumptionRate")).thenReturn((value: 3, canChange: true))
+            when(mock.setProperty(propertyName: "FuelReserve", propertyValue: any())).then {
+                _, propertyValue in
+                XCTAssertEqual(propertyValue.value as! Int, 7)
+            }
+        }
+        let cmd: Command = try IoC.resolve("Command.MoveFuel", sut1!)
+        XCTAssertNoThrow(try cmd.execute())
+        verify(sut1).setProperty(propertyName: "FuelReserve", propertyValue: any())
     }
 }
 

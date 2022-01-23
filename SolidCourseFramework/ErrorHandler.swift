@@ -31,12 +31,15 @@ class ErrorCommand: ErrorCommandProtocol {
 
 class ErrorHandleList {
     var table = Dictionary<String, String>()
-    func addHandler(command: Command, errorIoCKey: String) {
-        let commandName = String(describing: command).components(separatedBy: ".")[1]
-        table[commandName] = errorIoCKey
+    func getKey(_ command: Command) -> String {
+        return String(describing: command).components(separatedBy: ".")[1]
     }
-    func getHandler(command: Command) -> String {
-        let commandName = String(describing: command).components(separatedBy: ".")[1]
-        return table[commandName] ?? "Error.Default"
+    subscript(_ command: Command) -> String {
+        get {
+            return table[getKey(command)] ?? "Error.Default"
+        }
+        set {
+            table[getKey(command)] = newValue
+        }
     }
 }

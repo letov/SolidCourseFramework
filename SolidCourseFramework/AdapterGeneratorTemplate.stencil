@@ -1,0 +1,53 @@
+import Foundation
+import simd
+
+{% for type in types.protocols %}
+class {{ type.name }}Adapter: Adapter & {{ type.name }} {
+    var o: UObject
+    required init(o: UObject) {
+        self.o = o
+    }
+    {% for method in type.allMethods %}
+        {% if method.name|hasPrefix:"get" %}
+    func {{ method.name }} throws -> {{ method.returnTypeName }} {
+        return try IoC.resolve("{{ type.name }}:{{ method.selectorName|replace:"get",""|upperFirstLetter }}.get", o) as {{ method.returnTypeName }}
+    }
+        {% endif %}
+        {% if method.name|hasPrefix:"set" %}
+    
+    func {{ method.name }} throws {
+        return try IoC.resolve("{{ type.name }}:{{ method.parameters.first.name|upperFirstLetter }}.set", o, {{ method.parameters.first.name }})
+    }
+        {% endif %}
+    {% endfor %}
+}
+
+{% endfor %}
+class AdapterRegister {
+    static func register() {
+        do {
+            let queue: Queue<Command> = try IoC.resolve("Queue.Command")
+            let adapterList: AdapterList = try IoC.resolve("Adapter.List")
+            {% for type in types.protocols %}
+            adapterList[{{ type.name }}.self] = {{ type.name }}Adapter.self
+                {% for method in type.allMethods %}
+                    {% if method.name|hasPrefix:"get" %}
+            queue.queue(try (IoC.register("{{ type.name }}:{{ method.selectorName|replace:"get",""|upperFirstLetter }}.get") {
+                try ($0[0] as! UObject).getProperty(propertyName: "{{ method.selectorName|replace:"get",""|upperFirstLetter }}")
+            } as Command))
+                    {% endif %}
+                    {% if method.name|hasPrefix:"set" %}
+            queue.queue(try (IoC.register("{{ type.name }}:{{ method.parameters.first.name|upperFirstLetter }}.set") {
+                ($0[0] as! UObject).setProperty(propertyName: "{{ method.parameters.first.name|upperFirstLetter }}", propertyValue: $0[1] as! {{ method.parameters.first.typeName }})
+            } as Command))
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+            while !queue.isEmpty() {
+                try queue.dequeue()!.execute()
+            }
+        } catch {
+            fatalError()
+        }
+    }
+}
