@@ -7,19 +7,29 @@ class {{ type.name }}Adapter: Adapter & {{ type.name }} {
     required init(o: UObject) {
         self.o = o
     }
+    typealias FType = () -> ()
     {% for method in type.allMethods %}
         {% if method.name|hasPrefix:"get" %}
     func {{ method.name }} throws -> {{ method.returnTypeName }} {
         return try IoC.resolve("{{ type.name }}:{{ method.selectorName|replace:"get",""|upperFirstLetter }}.get", o) as {{ method.returnTypeName }}
     }
-        {% endif %}
-        {% if method.name|hasPrefix:"set" %}
-    
+        {% elif method.name|hasPrefix:"set" %}
     func {{ method.name }} throws {
         return try IoC.resolve("{{ type.name }}:{{ method.parameters.first.name|upperFirstLetter }}.set", o, {{ method.parameters.first.name }})
     }
+        {% else %}
+    var {{ method.selectorName }}F: () -> () = {}
+    func {{ method.name }} {
+        {{ method.selectorName }}F()
+    }
         {% endif %}
     {% endfor %}
+    func setAdditionMethods(_ args: [FType]) {
+    {{ i = 0 }}
+    {% for method in type.allMethods where not method.name|hasPrefix:"get" and not method.name|hasPrefix:"set" %}
+        {{ method.selectorName }}F = args[{{ forloop.counter0 }}]
+    {% endfor %}
+    }
 }
 
 {% endfor %}

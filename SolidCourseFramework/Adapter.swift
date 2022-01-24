@@ -9,6 +9,7 @@ class FuelableAdapter: Adapter & Fuelable {
     required init(o: UObject) {
         self.o = o
     }
+    typealias FType = () -> ()
     func getFuelReserve() throws -> PropertyValue<Int> {
         return try IoC.resolve("Fuelable:FuelReserve.get", o) as PropertyValue<Int>
     }
@@ -18,6 +19,8 @@ class FuelableAdapter: Adapter & Fuelable {
     func setFuelReserve(fuelReserve: PropertyValue<Int>) throws {
         return try IoC.resolve("Fuelable:FuelReserve.set", o, fuelReserve)
     }
+    func setAdditionMethods(_ args: [FType]) {
+    }
 }
 
 class MovableAdapter: Adapter & Movable {
@@ -25,6 +28,7 @@ class MovableAdapter: Adapter & Movable {
     required init(o: UObject) {
         self.o = o
     }
+    typealias FType = () -> ()
     func getPosition() throws -> PropertyValue<simd_int2> {
         return try IoC.resolve("Movable:Position.get", o) as PropertyValue<simd_int2>
     }
@@ -34,6 +38,8 @@ class MovableAdapter: Adapter & Movable {
     func setPosition(position: PropertyValue<simd_int2>) throws {
         return try IoC.resolve("Movable:Position.set", o, position)
     }
+    func setAdditionMethods(_ args: [FType]) {
+    }
 }
 
 class MovableChangeVelocityAdapter: Adapter & MovableChangeVelocity {
@@ -41,6 +47,7 @@ class MovableChangeVelocityAdapter: Adapter & MovableChangeVelocity {
     required init(o: UObject) {
         self.o = o
     }
+    typealias FType = () -> ()
     func setVelocity(velocity: PropertyValue<simd_int2>) throws {
         return try IoC.resolve("MovableChangeVelocity:Velocity.set", o, velocity)
     }
@@ -53,6 +60,37 @@ class MovableChangeVelocityAdapter: Adapter & MovableChangeVelocity {
     func setPosition(position: PropertyValue<simd_int2>) throws {
         return try IoC.resolve("MovableChangeVelocity:Position.set", o, position)
     }
+    func setAdditionMethods(_ args: [FType]) {
+    }
+}
+
+class MovableStartFinishAdapter: Adapter & MovableStartFinish {
+    var o: UObject
+    required init(o: UObject) {
+        self.o = o
+    }
+    typealias FType = () -> ()
+    func getPosition() throws -> PropertyValue<simd_int2> {
+        return try IoC.resolve("MovableStartFinish:Position.get", o) as PropertyValue<simd_int2>
+    }
+    func getVelocity() throws -> PropertyValue<simd_int2> {
+        return try IoC.resolve("MovableStartFinish:Velocity.get", o) as PropertyValue<simd_int2>
+    }
+    func setPosition(position: PropertyValue<simd_int2>) throws {
+        return try IoC.resolve("MovableStartFinish:Position.set", o, position)
+    }
+    var startF: () -> () = {}
+    func start() {
+        startF()
+    }
+    var finishF: () -> () = {}
+    func finish() {
+        finishF()
+    }
+    func setAdditionMethods(_ args: [FType]) {
+        startF = args[0]
+        finishF = args[1]
+    }
 }
 
 class RotableAdapter: Adapter & Rotable {
@@ -60,6 +98,7 @@ class RotableAdapter: Adapter & Rotable {
     required init(o: UObject) {
         self.o = o
     }
+    typealias FType = () -> ()
     func getDirection() throws -> PropertyValue<Int> {
         return try IoC.resolve("Rotable:Direction.get", o) as PropertyValue<Int>
     }
@@ -71,6 +110,8 @@ class RotableAdapter: Adapter & Rotable {
     }
     func getMaxDirection() throws -> PropertyValue<Int> {
         return try IoC.resolve("Rotable:MaxDirection.get", o) as PropertyValue<Int>
+    }
+    func setAdditionMethods(_ args: [FType]) {
     }
 }
 
@@ -110,6 +151,16 @@ class AdapterRegister {
                 try ($0[0] as! UObject).getProperty(propertyName: "Velocity")
             } as Command))
             queue.queue(try (IoC.register("MovableChangeVelocity:Position.set") {
+                ($0[0] as! UObject).setProperty(propertyName: "Position", propertyValue: $0[1] as! PropertyValue<simd_int2>)
+            } as Command))
+            adapterList[MovableStartFinish.self] = MovableStartFinishAdapter.self
+            queue.queue(try (IoC.register("MovableStartFinish:Position.get") {
+                try ($0[0] as! UObject).getProperty(propertyName: "Position")
+            } as Command))
+            queue.queue(try (IoC.register("MovableStartFinish:Velocity.get") {
+                try ($0[0] as! UObject).getProperty(propertyName: "Velocity")
+            } as Command))
+            queue.queue(try (IoC.register("MovableStartFinish:Position.set") {
                 ($0[0] as! UObject).setProperty(propertyName: "Position", propertyValue: $0[1] as! PropertyValue<simd_int2>)
             } as Command))
             adapterList[Rotable.self] = RotableAdapter.self

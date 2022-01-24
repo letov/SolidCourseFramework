@@ -18,6 +18,8 @@ protocol UObject {
 protocol Adapter {
     var o: UObject { get set }
     init(o: UObject)
+    typealias FType = () -> ()
+    func setAdditionMethods(_ args: [FType])
 }
 
 enum ErrorList: Error {

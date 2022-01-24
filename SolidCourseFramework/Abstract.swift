@@ -14,6 +14,14 @@ protocol Movable {
     func setPosition(position: PropertyValue<simd_int2>) throws
 }
 
+protocol MovableStartFinish {
+    func getPosition() throws -> PropertyValue<simd_int2>
+    func getVelocity() throws -> PropertyValue<simd_int2>
+    func setPosition(position: PropertyValue<simd_int2>) throws
+    func start()
+    func finish()
+}
+
 protocol Rotable {
     func getDirection() throws -> PropertyValue<Int>
     func setDirection(direction: PropertyValue<Int>) throws

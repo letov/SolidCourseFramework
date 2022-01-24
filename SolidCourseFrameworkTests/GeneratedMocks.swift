@@ -1,4 +1,4 @@
-// MARK: - Mocks generated from file: SolidCourseFramework/SolidCourseFramework.swift at 2022-01-23 22:50:47 +0000
+// MARK: - Mocks generated from file: SolidCourseFramework/SolidCourseFramework.swift at 2022-01-24 09:01:14 +0000
 
 //
 //  SolidCourseFramework.swift
@@ -121,13 +121,9 @@ import simd
     
 
     
-    
-    
      func getProperty(propertyName: String) throws -> PropertyValue<Any>  {
         return DefaultValueRegistry.defaultValue(for: (PropertyValue<Any>).self)
     }
-    
-    
     
      func setProperty(propertyName: String, propertyValue: PropertyValue<Any>)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
@@ -189,6 +185,21 @@ import simd
     
 
     
+    
+    
+     func setAdditionMethods(_ args: [FType])  {
+        
+    return cuckoo_manager.call("setAdditionMethods(_: [FType])",
+            parameters: (args),
+            escapingParameters: (args),
+            superclassCall:
+                
+                Cuckoo.MockManager.crashOnProtocolSuperclassCall()
+                ,
+            defaultCall: __defaultImplStub!.setAdditionMethods(args))
+        
+    }
+    
 
 	 struct __StubbingProxy_Adapter: Cuckoo.StubbingProxy {
 	    private let cuckoo_manager: Cuckoo.MockManager
@@ -202,6 +213,11 @@ import simd
 	        return .init(manager: cuckoo_manager, name: "o")
 	    }
 	    
+	    
+	    func setAdditionMethods<M1: Cuckoo.Matchable>(_ args: M1) -> Cuckoo.ProtocolStubNoReturnFunction<([FType])> where M1.MatchedType == [FType] {
+	        let matchers: [Cuckoo.ParameterMatcher<([FType])>] = [wrap(matchable: args) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockAdapter.self, method: "setAdditionMethods(_: [FType])", parameterMatchers: matchers))
+	    }
 	    
 	}
 
@@ -224,11 +240,16 @@ import simd
 	    
 	
 	    
+	    @discardableResult
+	    func setAdditionMethods<M1: Cuckoo.Matchable>(_ args: M1) -> Cuckoo.__DoNotUse<([FType]), Void> where M1.MatchedType == [FType] {
+	        let matchers: [Cuckoo.ParameterMatcher<([FType])>] = [wrap(matchable: args) { $0 }]
+	        return cuckoo_manager.verify("setAdditionMethods(_: [FType])", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
 	}
 }
 
  class AdapterStub: Adapter {
-        
     
     
      var o: UObject {
@@ -247,6 +268,10 @@ import simd
     }
     
 
+    
+     func setAdditionMethods(_ args: [FType])   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
     
 }
 
@@ -334,8 +359,6 @@ import simd
 
     
 
-    
-    
     
      func execute() throws  {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
@@ -457,7 +480,6 @@ import simd
 }
 
  class MacroCommandStub: MacroCommand {
-        
     
     
      override var commands: Array<Command> {
@@ -472,8 +494,6 @@ import simd
 
     
 
-    
-    
     
      override func execute() throws  {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
@@ -595,7 +615,6 @@ import simd
 }
 
  class AdapterListStub: AdapterList {
-        
     
     
      override var table: Dictionary<String, Adapter.Type> {
@@ -610,8 +629,6 @@ import simd
 
     
 
-    
-    
     
      override func getKey(_ a: Any) -> String  {
         return DefaultValueRegistry.defaultValue(for: (String).self)

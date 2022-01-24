@@ -432,7 +432,7 @@ class SolidCourseFrameworkTests: XCTestCase {
         let cmd = MoveCommand(m: adapter)
         XCTAssertNoThrow(try cmd.execute())
     }
-    
+
     func testCommandIoCGenerator() throws {
         stub(sut1) { mock in
             when(mock.getProperty(propertyName: "Position")).thenReturn((value: simd_int2(12, 5), canChange: true))
@@ -451,6 +451,39 @@ class SolidCourseFrameworkTests: XCTestCase {
         let cmd: Command = try IoC.resolve("Command.MoveFuel", sut1!)
         XCTAssertNoThrow(try cmd.execute())
         verify(sut1).setProperty(propertyName: "FuelReserve", propertyValue: any())
+    }
+    
+    func testAdapterLambda() throws {
+        class MoveCommandStartFinish: Command  {
+            let m: MovableStartFinishAdapter
+            init(m: MovableStartFinishAdapter) {
+                self.m = m
+            }
+            func execute() throws {
+                m.start()
+                let position = try m.getPosition()
+                let velocity = try m.getVelocity()
+                guard position.canChange else {
+                    throw ErrorList.commandException
+                }
+                let propertyValue = (value: position.value &+ velocity.value, canChange: position.canChange)
+                try m.setPosition(position: propertyValue)
+                m.finish()
+            }
+        }
+        fillUObjectMove(sut: sut1)
+        let adapter: MovableStartFinishAdapter = try IoC.resolve("Adapter", MovableStartFinish.self, sut1!)
+        var cnt = 0
+        adapter.setAdditionMethods([{
+            print("Start moving")
+            cnt += 1
+        },{
+            print("Finish moving")
+            cnt += 1
+        }])
+        let cmd = MoveCommandStartFinish(m: adapter)
+        XCTAssertNoThrow(try cmd.execute())
+        XCTAssertEqual(cnt, 2)
     }
 }
 
