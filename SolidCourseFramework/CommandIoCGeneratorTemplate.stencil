@@ -1,0 +1,24 @@
+import Foundation
+import simd
+
+class CommandRegister {
+    static func register() {
+        do {
+            let queue: Queue<Command> = try IoC.resolve("Queue.Command")
+{% for type in types.classes %}
+            queue.queue(try (IoC.register("Command.{{ type.name|replace:"Command","" }}") {
+                {{ type.name }}(
+    {% for parameter in type.initializers.first.parameters %}
+                    {{ parameter.name }}: try IoC.resolve("Adapter", {{ parameter.typeName }}.self, $0[0]) as {{ parameter.typeName }}{% if not forloop.last%}, {% endif %}
+    {% endfor %}
+                )
+            } as Command))
+{% endfor %}
+            while !queue.isEmpty() {
+                try queue.dequeue()!.execute()
+            }
+        } catch {
+            fatalError()
+        }
+    }
+}

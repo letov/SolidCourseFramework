@@ -8,16 +8,6 @@
 import Foundation
 import simd
 
-protocol Command {
-    func execute() throws
-}
-
-protocol Movable {
-    func getPosition() throws -> PropertyValue<simd_int2>
-    func getVelocity() throws -> PropertyValue<simd_int2>
-    func setPosition(position: PropertyValue<simd_int2>)
-}
-
 class MoveCommand: Command  {
     let m: Movable
     init(m: Movable) {
@@ -30,31 +20,8 @@ class MoveCommand: Command  {
             throw ErrorList.commandException
         }
         let propertyValue = (value: position.value &+ velocity.value, canChange: position.canChange)
-        m.setPosition(position: propertyValue)
+        try m.setPosition(position: propertyValue)
     }
-}
-
-class MovableAdapter: Movable {
-    let m: UObject
-    init(m: UObject) {
-        self.m = m
-    }
-    func getPosition() throws -> PropertyValue<simd_int2> {
-        return try m.getProperty(propertyName: "Position") as! PropertyValue<simd_int2>
-    }
-    func getVelocity() throws -> PropertyValue<simd_int2>  {
-        return try m.getProperty(propertyName: "Velocity") as! PropertyValue<simd_int2>
-    }
-    func setPosition(position: PropertyValue<simd_int2>) {
-        m.setProperty(propertyName: "Position", propertyValue: position)
-    }
-}
-
-protocol Rotable {
-    func getDirection() throws -> PropertyValue<Int>
-    func setDirection(direction: PropertyValue<Int>)
-    func getAngularVelocity() throws -> PropertyValue<Int>
-    func getMaxDirection() throws -> PropertyValue<Int>
 }
 
 class RotateCommand: Command {
@@ -70,43 +37,8 @@ class RotateCommand: Command {
             throw ErrorList.commandException
         }
         let propertyValue = (value: (direction.value + angularVelocity.value) % MaxDirection.value, canChange: direction.canChange)
-        r.setDirection(direction: propertyValue)
+        try r.setDirection(direction: propertyValue)
     }
-}
-
-class RotateAdapter: Rotable {
-    let r: UObject
-    init(r: UObject) {
-        self.r = r
-    }
-    func getDirection() throws -> PropertyValue<Int> {
-        return try r.getProperty(propertyName: "Direction") as! PropertyValue<Int>
-    }
-    func getAngularVelocity() throws -> PropertyValue<Int> {
-        return try r.getProperty(propertyName: "AngularVelocity") as! PropertyValue<Int>
-    }
-    func getMaxDirection() throws -> PropertyValue<Int> {
-        return try r.getProperty(propertyName: "MaxDirection") as! PropertyValue<Int>
-    }
-    func setDirection(direction: PropertyValue<Int>) {
-        r.setProperty(propertyName: "Direction", propertyValue: direction)
-    }
-}
-
-class MacroCommand: Command {
-    var commands = Array<Command>()
-    init(commands: Array<Command>) {
-        self.commands = commands
-    }
-    func execute() throws {
-        try _ = commands.map { try $0.execute() }
-    }
-}
-
-protocol Fuelable {
-    func getFuelReserve() throws -> PropertyValue<Int>
-    func getFuelConsumptionRate() throws -> PropertyValue<Int>
-    func setFuelReserve(fuelReserve: PropertyValue<Int>)
 }
 
 class CheckFuelCommand: Command  {
@@ -135,23 +67,7 @@ class BurnFuelCommand: Command  {
             throw ErrorList.commandException
         }
         let propertyValue = (value: fuelReserve.value - fuelConsumptionRate.value , canChange: fuelReserve.canChange)
-        f.setFuelReserve(fuelReserve: propertyValue)
-    }
-}
-
-class FuelableAdapter: Fuelable {
-    let f: UObject
-    init(f: UObject) {
-        self.f = f
-    }
-    func getFuelReserve() throws -> PropertyValue<Int> {
-        return try f.getProperty(propertyName: "FuelReserve") as! PropertyValue<Int>
-    }
-    func getFuelConsumptionRate() throws -> PropertyValue<Int>  {
-        return try f.getProperty(propertyName: "FuelConsumptionRate") as! PropertyValue<Int>
-    }
-    func setFuelReserve(fuelReserve: PropertyValue<Int>) {
-        f.setProperty(propertyName: "FuelReserve", propertyValue: fuelReserve)
+        try f.setFuelReserve(fuelReserve: propertyValue)
     }
 }
 
@@ -162,16 +78,6 @@ class MoveFuelCommand: MacroCommand {
             MoveCommand.init(m: m),
             BurnFuelCommand.init(f: f),
         ])
-    }
-}
-
-protocol MovableChangeVelocity: Movable {
-    func setVelocity(velocity: PropertyValue<simd_int2>)
-}
-
-extension MovableAdapter: MovableChangeVelocity {
-    func setVelocity(velocity: PropertyValue<simd_int2>) {
-        m.setProperty(propertyName: "Velocity", propertyValue: velocity)
     }
 }
 
@@ -196,7 +102,7 @@ class ChangeVelocityCommand: Command {
         let zeroVelocity = simd_int2(0, Int32(lenght))
         let newVelocity = helpers.rotateVector(vector: zeroVelocity, angle: angle)
         let propertyValue = (value: newVelocity, canChange: velocity.canChange)
-        m.setVelocity(velocity: propertyValue)
+        try m.setVelocity(velocity: propertyValue)
     }
 }
 

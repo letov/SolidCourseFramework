@@ -13,10 +13,15 @@
 		B2086370279C80F20000F0C6 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B4F972279C804E001E0F15 /* Queue.swift */; };
 		B2086372279C83800000F0C6 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2086371279C83800000F0C6 /* ErrorHandler.swift */; };
 		B2086374279C86090000F0C6 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2086373279C86090000F0C6 /* Helper.swift */; };
-		B209216E27736CCE007C0AA2 /* GeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209216D27736CCE007C0AA2 /* GeneratedMocks.swift */; };
+		B24FBA7D279D8E19004B6E09 /* Abstract.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24FBA7C279D8E19004B6E09 /* Abstract.swift */; };
+		B24FBA7F279D9138004B6E09 /* AdapterGeneratorTemplate.stencil in Resources */ = {isa = PBXBuildFile; fileRef = B24FBA7E279D9138004B6E09 /* AdapterGeneratorTemplate.stencil */; };
+		B24FBA81279D9621004B6E09 /* Adapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24FBA80279D9621004B6E09 /* Adapter.swift */; };
 		B27EC7072773689E00BD3E4D /* SolidCourseFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B27EC6FE2773689E00BD3E4D /* SolidCourseFramework.framework */; };
 		B27EC70C2773689E00BD3E4D /* SolidCourseFrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27EC70B2773689E00BD3E4D /* SolidCourseFrameworkTests.swift */; };
 		B27EC717277368F600BD3E4D /* SolidCourseFramework.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27EC716277368F600BD3E4D /* SolidCourseFramework.swift */; };
+		B2A797A1279DA9D000F713D8 /* GeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A797A0279DA9D000F713D8 /* GeneratedMocks.swift */; };
+		B2BC59E5279E069300AC56B6 /* CommandIoCGeneratorTemplate.stencil in Resources */ = {isa = PBXBuildFile; fileRef = B2BC59E4279E069300AC56B6 /* CommandIoCGeneratorTemplate.stencil */; };
+		B2BC59E8279E077A00AC56B6 /* CommandIoCRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BC59E7279E077900AC56B6 /* CommandIoCRegister.swift */; };
 		CA6C9408D98E2239F9E5F9E5 /* Pods_SolidCourseFramework_SolidCourseFrameworkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F67A5748D34A3A9E65EED6B7 /* Pods_SolidCourseFramework_SolidCourseFrameworkTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,14 +41,19 @@
 		84A085C7E87CD83189ACFFF1 /* Pods-SolidCourseFramework-SolidCourseFrameworkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidCourseFramework-SolidCourseFrameworkTests.release.xcconfig"; path = "Target Support Files/Pods-SolidCourseFramework-SolidCourseFrameworkTests/Pods-SolidCourseFramework-SolidCourseFrameworkTests.release.xcconfig"; sourceTree = "<group>"; };
 		B2086371279C83800000F0C6 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		B2086373279C86090000F0C6 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
-		B209216D27736CCE007C0AA2 /* GeneratedMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedMocks.swift; sourceTree = "<group>"; };
+		B24FBA7C279D8E19004B6E09 /* Abstract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Abstract.swift; sourceTree = "<group>"; };
+		B24FBA7E279D9138004B6E09 /* AdapterGeneratorTemplate.stencil */ = {isa = PBXFileReference; lastKnownFileType = text; path = AdapterGeneratorTemplate.stencil; sourceTree = "<group>"; };
+		B24FBA80279D9621004B6E09 /* Adapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Adapter.swift; sourceTree = "<group>"; };
 		B27EC6FE2773689E00BD3E4D /* SolidCourseFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SolidCourseFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B27EC7062773689E00BD3E4D /* SolidCourseFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SolidCourseFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B27EC70B2773689E00BD3E4D /* SolidCourseFrameworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolidCourseFrameworkTests.swift; sourceTree = "<group>"; };
 		B27EC716277368F600BD3E4D /* SolidCourseFramework.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolidCourseFramework.swift; sourceTree = "<group>"; };
+		B2A797A0279DA9D000F713D8 /* GeneratedMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedMocks.swift; sourceTree = "<group>"; };
 		B2B4F96E279C801B001E0F15 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 		B2B4F970279C8033001E0F15 /* IoC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IoC.swift; sourceTree = "<group>"; };
 		B2B4F972279C804E001E0F15 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		B2BC59E4279E069300AC56B6 /* CommandIoCGeneratorTemplate.stencil */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CommandIoCGeneratorTemplate.stencil; sourceTree = "<group>"; };
+		B2BC59E7279E077900AC56B6 /* CommandIoCRegister.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandIoCRegister.swift; sourceTree = "<group>"; };
 		CE33FB66BC7F1FD7CCA75088 /* Pods-SolidCourseFramework-SolidCourseFrameworkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidCourseFramework-SolidCourseFrameworkTests.debug.xcconfig"; path = "Target Support Files/Pods-SolidCourseFramework-SolidCourseFrameworkTests/Pods-SolidCourseFramework-SolidCourseFrameworkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D136A083976A7D8374FF553F /* Pods-SolidCourseFramework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidCourseFramework.debug.xcconfig"; path = "Target Support Files/Pods-SolidCourseFramework/Pods-SolidCourseFramework.debug.xcconfig"; sourceTree = "<group>"; };
 		F67A5748D34A3A9E65EED6B7 /* Pods_SolidCourseFramework_SolidCourseFrameworkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SolidCourseFramework_SolidCourseFrameworkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,10 +114,15 @@
 		B27EC7002773689E00BD3E4D /* SolidCourseFramework */ = {
 			isa = PBXGroup;
 			children = (
-				B2B4F972279C804E001E0F15 /* Queue.swift */,
-				B2B4F96E279C801B001E0F15 /* Command.swift */,
-				B2B4F970279C8033001E0F15 /* IoC.swift */,
 				B27EC716277368F600BD3E4D /* SolidCourseFramework.swift */,
+				B24FBA7C279D8E19004B6E09 /* Abstract.swift */,
+				B24FBA80279D9621004B6E09 /* Adapter.swift */,
+				B24FBA7E279D9138004B6E09 /* AdapterGeneratorTemplate.stencil */,
+				B2B4F96E279C801B001E0F15 /* Command.swift */,
+				B2BC59E7279E077900AC56B6 /* CommandIoCRegister.swift */,
+				B2BC59E4279E069300AC56B6 /* CommandIoCGeneratorTemplate.stencil */,
+				B2B4F972279C804E001E0F15 /* Queue.swift */,
+				B2B4F970279C8033001E0F15 /* IoC.swift */,
 				B2086371279C83800000F0C6 /* ErrorHandler.swift */,
 				B2086373279C86090000F0C6 /* Helper.swift */,
 			);
@@ -117,7 +132,7 @@
 		B27EC70A2773689E00BD3E4D /* SolidCourseFrameworkTests */ = {
 			isa = PBXGroup;
 			children = (
-				B209216D27736CCE007C0AA2 /* GeneratedMocks.swift */,
+				B2A797A0279DA9D000F713D8 /* GeneratedMocks.swift */,
 				B27EC70B2773689E00BD3E4D /* SolidCourseFrameworkTests.swift */,
 			);
 			path = SolidCourseFrameworkTests;
@@ -151,6 +166,8 @@
 			buildPhases = (
 				B12C3A18AA5AA51C61A662B3 /* [CP] Check Pods Manifest.lock */,
 				B27EC6F92773689E00BD3E4D /* Headers */,
+				B2A797A4279DB22600F713D8 /* ShellScript */,
+				B2BC59E6279E06F000AC56B6 /* ShellScript */,
 				B27EC6FA2773689E00BD3E4D /* Sources */,
 				B27EC6FB2773689E00BD3E4D /* Frameworks */,
 				B27EC6FC2773689E00BD3E4D /* Resources */,
@@ -228,6 +245,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2BC59E5279E069300AC56B6 /* CommandIoCGeneratorTemplate.stencil in Resources */,
+				B24FBA7F279D9138004B6E09 /* AdapterGeneratorTemplate.stencil in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +316,40 @@
 			shellPath = /bin/sh;
 			shellScript = "if [ $ACTION == \"indexbuild\" ]; then\n  echo \"Not running Cuckoo generator during indexing.\"\n  exit 0 \nfi\n\n# Skip for preview builds\nif [ \"${ENABLE_PREVIEWS}\" = \"YES\" ]; then\n  echo \"Not running Cuckoo generator during preview builds.\"\n  exit 0\nfi\n\n# Define output file. Change \"${PROJECT_DIR}/${PROJECT_NAME}Tests\" to your test's root source folder, if it's not the default name.\nOUTPUT_FILE=\"${PROJECT_DIR}/${PROJECT_NAME}Tests/GeneratedMocks.swift\"\necho \"Generated Mocks File = ${OUTPUT_FILE}\"\n\n# Define input directory. Change \"${PROJECT_DIR}/${PROJECT_NAME}\" to your project's root source folder, if it's not the default name.\nINPUT_DIR=\"${PROJECT_DIR}/${PROJECT_NAME}\"\necho \"Mocks Input Directory = ${INPUT_DIR}\"\n\n# Generate mock files, include as many input files as you'd like to create mocks for.\n\"${PODS_ROOT}/Cuckoo/run\" generate --testable \"${PROJECT_NAME}\" \\\n--output \"${OUTPUT_FILE}\" \\\n\"${INPUT_DIR}/SolidCourseFramework.swift\" \n# ... and so forth, the last line should never end with a backslash\n\n# After running once, locate `GeneratedMocks.swift` and drag it into your Xcode test target group.\n";
 		};
+		B2A797A4279DB22600F713D8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "INPUT_DIR=\"${PROJECT_DIR}/${PROJECT_NAME}\"\n\"${PODS_ROOT}/Sourcery/bin/sourcery\" --sources \"${INPUT_DIR}/Abstract.swift\" --templates \"${INPUT_DIR}/AdapterGeneratorTemplate.stencil\" --output \"SolidCourseFramework/Adapter.swift\"\n";
+		};
+		B2BC59E6279E06F000AC56B6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "INPUT_DIR=\"${PROJECT_DIR}/${PROJECT_NAME}\"\n\"${PODS_ROOT}/Sourcery/bin/sourcery\" --sources \"${INPUT_DIR}/Command.swift\" --templates \"${INPUT_DIR}/CommandIoCGeneratorTemplate.stencil\" --output \"SolidCourseFramework/CommandIoCRegister.swift\"\n";
+		};
 		CBD9D29445B937A2D94C9A28 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -327,9 +380,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B27EC717277368F600BD3E4D /* SolidCourseFramework.swift in Sources */,
+				B24FBA81279D9621004B6E09 /* Adapter.swift in Sources */,
+				B24FBA7D279D8E19004B6E09 /* Abstract.swift in Sources */,
 				B208636E279C80EE0000F0C6 /* IoC.swift in Sources */,
 				B2086372279C83800000F0C6 /* ErrorHandler.swift in Sources */,
 				B208636F279C80F00000F0C6 /* Command.swift in Sources */,
+				B2BC59E8279E077A00AC56B6 /* CommandIoCRegister.swift in Sources */,
 				B2086370279C80F20000F0C6 /* Queue.swift in Sources */,
 				B2086374279C86090000F0C6 /* Helper.swift in Sources */,
 			);
@@ -340,7 +396,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B27EC70C2773689E00BD3E4D /* SolidCourseFrameworkTests.swift in Sources */,
-				B209216E27736CCE007C0AA2 /* GeneratedMocks.swift in Sources */,
+				B2A797A1279DA9D000F713D8 /* GeneratedMocks.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +414,7 @@
 		B27EC70E2773689E00BD3E4D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -422,6 +479,7 @@
 		B27EC70F2773689E00BD3E4D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -480,6 +538,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D136A083976A7D8374FF553F /* Pods-SolidCourseFramework.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -510,6 +569,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 193357DC726D8959DA39F61F /* Pods-SolidCourseFramework.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -539,7 +599,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CE33FB66BC7F1FD7CCA75088 /* Pods-SolidCourseFramework-SolidCourseFrameworkTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -555,7 +615,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 84A085C7E87CD83189ACFFF1 /* Pods-SolidCourseFramework-SolidCourseFrameworkTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;

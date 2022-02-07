@@ -16,10 +16,6 @@ private extension Array {
 }
 #endif
 
-extension String: LocalizedError {
-    public var errorDescription: String? { return self }
-}
-
 public class MockManager {
     public static var fail: ((message: String, sourceLocation: SourceLocation)) -> () = { (arg) in let (message, sourceLocation) = arg; XCTFail(message, file: sourceLocation.file, line: sourceLocation.line) }
     private var stubs: [Stub] = []
@@ -113,8 +109,7 @@ public class MockManager {
         } else if isDefaultImplementationEnabled {
             return try defaultCall()
         } else {
-            throw "No stub for method `\(method)` using parameters \(parameters)."
-            //failAndCrash("No stub for method `\(method)` using parameters \(parameters).")
+            failAndCrash("No stub for method `\(method)` using parameters \(parameters).")
         }
     }
     
