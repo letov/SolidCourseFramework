@@ -189,5 +189,122 @@ class SolidCourseFrameworkTests: XCTestCase {
         verify(sut1, times(5)).setProperty(propertyName: "Position", propertyValue: any())
         verify(sut2, times(3)).setProperty(propertyName: "Position", propertyValue: any())
     }
+    
+    // Exception
+    
+    func testExceptionLogErrorHandler() throws {
+        fillFailUObjectMove(sut: sut1)
+
+        try (IoC.register("Command.Move") {
+            MoveCommand(m: MovableAdapter(m: $0[0] as! UObject))
+        } as Command).execute()
+        let command: Command = try IoC.resolve("Command.Move", sut1!)
+        
+        try (IoC.resolve("Error.Handle.List") as ErrorHandleList).addHandler(command: command, errorIoCKey: "Error.Log")
+
+        let queue: Queue<Command> = try IoC.resolve("Queue.Command")
+        queue.queue(command)
+        while !queue.isEmpty() {
+            let cmd = queue.dequeue()!
+            do {
+                try cmd.execute()
+            } catch {
+                queue.queue(try (IoC.resolve("Error.Handle", cmd, error) as Command))
+            }
+        }
+        print()
+        XCTAssertEqual(String(describing: queue.historyReversed(1)!).components(separatedBy: ".")[1], "MoveCommand")
+        XCTAssertEqual(String(describing: queue.historyReversed(0)!).components(separatedBy: ".")[1], "ErrorCommand")
+    }
+    
+    func testExceptionRepeatAndLogErrorHandler() throws {
+        fillFailUObjectMove(sut: sut1)
+
+        try (IoC.register("Command.Move") {
+            MoveCommand(m: MovableAdapter(m: $0[0] as! UObject))
+        } as Command).execute()
+        let command: Command = try IoC.resolve("Command.Move", sut1!)
+        
+        try (IoC.register("Error.Repeat") {
+            ErrorCommand(command: $0[0] as! Command, error: $0[1] as! Error) { (command, _) in
+                (try! IoC.resolve("Queue.Command") as Queue<Command>).queue(command)
+                let errorHandleList = try! (IoC.resolve("Error.Handle.List") as ErrorHandleList)
+                errorHandleList.addHandler(command: command, errorIoCKey: "Error.Log")
+            }
+        } as Command).execute()
+
+        let errorHandleList = try (IoC.resolve("Error.Handle.List") as ErrorHandleList)
+        errorHandleList.addHandler(command: command, errorIoCKey: "Error.Repeat")
+        
+        try (IoC.register("Error.Handle") {
+            let errorHandleList = try (IoC.resolve("Error.Handle.List") as ErrorHandleList)
+            return try (IoC.resolve(errorHandleList.getHandler(command: $0[0] as! Command), $0[0], $0[1]) as Command)
+        } as Command).execute()
+
+        let queue: Queue<Command> = try IoC.resolve("Queue.Command")
+        queue.queue(command)
+        while !queue.isEmpty() {
+            let cmd = queue.dequeue()!
+            do {
+                try cmd.execute()
+            } catch {
+                queue.queue(try (IoC.resolve("Error.Handle", cmd, error) as Command))
+            }
+        }
+        XCTAssertEqual(String(describing: queue.historyReversed(3)!).components(separatedBy: ".")[1], "MoveCommand")
+        XCTAssertEqual(String(describing: queue.historyReversed(2)!).components(separatedBy: ".")[1], "ErrorCommand")
+        XCTAssertEqual(String(describing: queue.historyReversed(1)!).components(separatedBy: ".")[1], "MoveCommand")
+        XCTAssertEqual(String(describing: queue.historyReversed(0)!).components(separatedBy: ".")[1], "ErrorCommand")
+    }
+
+    func testExceptionRepeatTwiceAndLogErrorHandler() throws {
+        fillFailUObjectMove(sut: sut1)
+
+        try (IoC.register("Command.Move") {
+            MoveCommand(m: MovableAdapter(m: $0[0] as! UObject))
+        } as Command).execute()
+        let command: Command = try IoC.resolve("Command.Move", sut1!)
+        
+        try (IoC.register("Error.Repeat") {
+            ErrorCommand(command: $0[0] as! Command, error: $0[1] as! Error) { (command, _) in
+                (try! IoC.resolve("Queue.Command") as Queue<Command>).queue(command)
+                let errorHandleList = try! (IoC.resolve("Error.Handle.List") as ErrorHandleList)
+                errorHandleList.addHandler(command: command, errorIoCKey: "Error.Log")
+            }
+        } as Command).execute()
+        
+        try (IoC.register("Error.RepeatTwice") {
+            ErrorCommand(command: $0[0] as! Command, error: $0[1] as! Error) { (command, _) in
+                (try! IoC.resolve("Queue.Command") as Queue<Command>).queue(command)
+                let errorHandleList = try! (IoC.resolve("Error.Handle.List") as ErrorHandleList)
+                errorHandleList.addHandler(command: command, errorIoCKey: "Error.Repeat")
+            }
+        } as Command).execute()
+
+        let errorHandleList = try (IoC.resolve("Error.Handle.List") as ErrorHandleList)
+        errorHandleList.addHandler(command: command, errorIoCKey: "Error.RepeatTwice")
+        
+        try (IoC.register("Error.Handle") {
+            let errorHandleList = try (IoC.resolve("Error.Handle.List") as ErrorHandleList)
+            return try (IoC.resolve(errorHandleList.getHandler(command: $0[0] as! Command), $0[0], $0[1]) as Command)
+        } as Command).execute()
+
+        let queue: Queue<Command> = try IoC.resolve("Queue.Command")
+        queue.queue(command)
+        while !queue.isEmpty() {
+            let cmd = queue.dequeue()!
+            do {
+                try cmd.execute()
+            } catch {
+                queue.queue(try (IoC.resolve("Error.Handle", cmd, error) as Command))
+            }
+        }
+        XCTAssertEqual(String(describing: queue.historyReversed(5)!).components(separatedBy: ".")[1], "MoveCommand")
+        XCTAssertEqual(String(describing: queue.historyReversed(4)!).components(separatedBy: ".")[1], "ErrorCommand")
+        XCTAssertEqual(String(describing: queue.historyReversed(3)!).components(separatedBy: ".")[1], "MoveCommand")
+        XCTAssertEqual(String(describing: queue.historyReversed(2)!).components(separatedBy: ".")[1], "ErrorCommand")
+        XCTAssertEqual(String(describing: queue.historyReversed(1)!).components(separatedBy: ".")[1], "MoveCommand")
+        XCTAssertEqual(String(describing: queue.historyReversed(0)!).components(separatedBy: ".")[1], "ErrorCommand")
+    }
 }
 
