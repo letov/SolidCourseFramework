@@ -306,5 +306,145 @@ class SolidCourseFrameworkTests: XCTestCase {
         XCTAssertEqual(String(describing: queue.historyReversed(1)!).components(separatedBy: ".")[1], "MoveCommand")
         XCTAssertEqual(String(describing: queue.historyReversed(0)!).components(separatedBy: ".")[1], "ErrorCommand")
     }
+    
+    // macrocommand
+    
+    func testCheckFuelCommand() throws {
+        stub(sut1) { mock in
+            when(mock.getProperty(propertyName: "FuelReserve")).thenReturn((value: 10, canChange: false))
+            when(mock.getProperty(propertyName: "FuelConsumptionRate")).thenReturn((value: 1, canChange: false))
+        }
+        let adapter = FuelableAdapter(f: sut1)
+        let cmd = CheckFuelCommand(f: adapter)
+        XCTAssertNoThrow(try cmd.execute())
+        verify(sut1).getProperty(propertyName: "FuelReserve")
+        verify(sut1).getProperty(propertyName: "FuelConsumptionRate")
+    }
+    
+    func testFailCheckFuelCommand() throws {
+        stub(sut1) { mock in
+            when(mock.getProperty(propertyName: "FuelReserve")).thenReturn((value: 1, canChange: false))
+            when(mock.getProperty(propertyName: "FuelConsumptionRate")).thenReturn((value: 100, canChange: false))
+        }
+        let adapter = FuelableAdapter(f: sut1)
+        let cmd = CheckFuelCommand(f: adapter)
+        var error: Error?
+        XCTAssertThrowsError(try cmd.execute()) {
+            error = $0
+        }
+        XCTAssertEqual(error as! ErrorList, ErrorList.commandException)
+        verify(sut1).getProperty(propertyName: "FuelReserve")
+        verify(sut1).getProperty(propertyName: "FuelConsumptionRate")
+    }
+    
+    func testBurnFuelCommand() throws {
+        stub(sut1) { mock in
+            when(mock.getProperty(propertyName: "FuelReserve")).thenReturn((value: 10, canChange: true))
+            when(mock.getProperty(propertyName: "FuelConsumptionRate")).thenReturn((value: 3, canChange: false))
+            when(mock.setProperty(propertyName: "FuelReserve", propertyValue: any())).then {
+                _, propertyValue in
+                XCTAssertEqual(propertyValue.value as! Int, 7)
+            }
+        }
+        let adapter = FuelableAdapter(f: sut1)
+        let cmd = BurnFuelCommand(f: adapter)
+        XCTAssertNoThrow(try cmd.execute())
+        verify(sut1).getProperty(propertyName: "FuelReserve")
+        verify(sut1).getProperty(propertyName: "FuelConsumptionRate")
+        verify(sut1).setProperty(propertyName: "FuelReserve", propertyValue: any())
+    }
+    
+    func testMoveFuelCommand() throws {
+        stub(sut1) { mock in
+            when(mock.getProperty(propertyName: "Position")).thenReturn((value: simd_int2(12, 5), canChange: true))
+            when(mock.getProperty(propertyName: "Velocity")).thenReturn((value: simd_int2(-7, 3), canChange: true))
+            when(mock.setProperty(propertyName: "Position", propertyValue: any())).then {
+                _, propertyValue in
+                XCTAssertEqual(propertyValue.value as? simd_int2, simd_int2(5, 8))
+            }
+            when(mock.getProperty(propertyName: "FuelReserve")).thenReturn((value: 10, canChange: true))
+            when(mock.getProperty(propertyName: "FuelConsumptionRate")).thenReturn((value: 3, canChange: true))
+            when(mock.setProperty(propertyName: "FuelReserve", propertyValue: any())).then {
+                _, propertyValue in
+                XCTAssertEqual(propertyValue.value as! Int, 7)
+            }
+        }
+        let cmd = MoveFuelCommand(m: MovableAdapter(m: sut1), f: FuelableAdapter(f: sut1))
+        XCTAssertNoThrow(try cmd.execute())
+    }
+    
+    func testFailMoveFuelCommand() throws {
+        stub(sut1) { mock in
+            when(mock.getProperty(propertyName: "Position")).thenReturn((value: simd_int2(12, 5), canChange: true))
+            when(mock.getProperty(propertyName: "Velocity")).thenReturn((value: simd_int2(-7, 3), canChange: true))
+            when(mock.setProperty(propertyName: "Position", propertyValue: any())).then {
+                _, propertyValue in
+                XCTAssertEqual(propertyValue.value as? simd_int2, simd_int2(5, 8))
+            }
+            when(mock.getProperty(propertyName: "FuelReserve")).thenReturn((value: 2, canChange: true))
+            when(mock.getProperty(propertyName: "FuelConsumptionRate")).thenReturn((value: 3, canChange: true))
+            when(mock.setProperty(propertyName: "FuelReserve", propertyValue: any())).then {
+                _, propertyValue in
+                XCTAssertEqual(propertyValue.value as! Int, 7)
+            }
+        }
+        let cmd = MoveFuelCommand(m: MovableAdapter(m: sut1), f: FuelableAdapter(f: sut1))
+        XCTAssertThrowsError(try cmd.execute())
+    }
+    
+    func testRotateVector() throws {
+        let helper = (try! IoC.resolve("Helper") as Helper)
+        XCTAssertEqual(helper.rotateVector(vector: simd_int2(-7, 0), angle: 90), simd_int2(0, 7))
+        XCTAssertEqual(helper.rotateVector(vector: simd_int2(-7, 3), angle: -90), simd_int2(-3, -7))
+        XCTAssertEqual(helper.rotateVector(vector: simd_int2(5, 5), angle: 180), simd_int2(-5, -5))
+    }
+    
+    func testVectorLenght() throws {
+        let helper = (try! IoC.resolve("Helper") as Helper)
+        XCTAssertEqual(helper.vectorLenght(vector: simd_int2(3, 4)), 5)
+        XCTAssertEqual(helper.vectorLenght(vector: simd_int2(5, 12)), 13)
+    }
+    
+    func testChangeVelocityCommand() throws {
+        stub(sut1) { mock in
+            when(mock.getProperty(propertyName: "Position")).thenReturn((value: simd_int2(0, 0), canChange: true))
+            when(mock.getProperty(propertyName: "Velocity")).thenReturn((value: simd_int2(-7, 0), canChange: true))
+            when(mock.setProperty(propertyName: "Position", propertyValue: any())).thenDoNothing()
+            when(mock.setProperty(propertyName: "Velocity", propertyValue: any())).then {
+                _, propertyValue in
+                XCTAssertEqual(propertyValue.value as? simd_int2, simd_int2(0, 7))
+            }
+            when(mock.getProperty(propertyName: "Direction")).thenReturn((value: 0, canChange: true))
+            when(mock.getProperty(propertyName: "AngularVelocity")).thenReturn((value: 90, canChange: true))
+            when(mock.getProperty(propertyName: "MaxDirection")).thenReturn((value: 360, canChange: true))
+            when(mock.setProperty(propertyName: "Direction", propertyValue: any())).thenDoNothing()
+        }
+        let cmd = ChangeVelocityCommand(m: MovableAdapter(m: sut1), r: RotateAdapter(r: sut1))
+        XCTAssertNoThrow(try cmd.execute())
+    }
+    
+    func testRotateChangeVelocityCommand() throws {
+        stub(sut1) { mock in
+            when(mock.getProperty(propertyName: "Direction")).thenReturn((value: 180, canChange: true))
+            when(mock.getProperty(propertyName: "AngularVelocity")).thenReturn((value: -90, canChange: true))
+            when(mock.getProperty(propertyName: "MaxDirection")).thenReturn((value: 360, canChange: true))
+            when(mock.setProperty(propertyName: "Direction", propertyValue: any())).then {
+                _, propertyValue in
+                XCTAssertEqual(propertyValue.value as? Int, 90)
+                when(mock.getProperty(propertyName: "Direction")).thenReturn((value: propertyValue.value, canChange: true))
+            }
+            when(mock.getProperty(propertyName: "Position")).thenReturn((value: simd_int2(0, 0), canChange: true))
+            when(mock.getProperty(propertyName: "Velocity")).thenReturn((value: simd_int2(0, -10), canChange: true))
+            when(mock.setProperty(propertyName: "Position", propertyValue: any())).thenDoNothing()
+            when(mock.setProperty(propertyName: "Velocity", propertyValue: any())).then {
+                _, propertyValue in
+                XCTAssertEqual(propertyValue.value as? simd_int2, simd_int2(10, 0))
+            }
+        }
+        let cmd = RotateChangeVelocityCommand(m: MovableAdapter(m: sut1), r: RotateAdapter(r: sut1))
+        XCTAssertNoThrow(try cmd.execute())
+        verify(sut1).setProperty(propertyName: "Direction", propertyValue: any())
+        verify(sut1).setProperty(propertyName: "Velocity", propertyValue: any())
+    }
 }
 
