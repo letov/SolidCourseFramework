@@ -497,7 +497,7 @@ class SolidCourseFrameworkTests: XCTestCase {
         while cnt < ttlCnt {
             
         }
-        XCTAssertLessThanOrEqual(threadQueue.queue.operationCount, 1)
+        XCTAssertLessThan(threadQueue.queue.operationCount, 10)
     }
     
     func testMultithreadHardStop() throws {
@@ -536,7 +536,7 @@ class SolidCourseFrameworkTests: XCTestCase {
                 threadQueue.add(command: SoftStopQueue())
             }
         }
-        XCTAssertLessThanOrEqual(threadQueue.queue.operationCount, 1)
+        XCTAssertLessThan(threadQueue.queue.operationCount, 10)
     }
 }
 
