@@ -92,6 +92,9 @@ class GlobalRegister {
                 let adapterList: AdapterList = try IoC.resolve("Adapter.List")
                 return (adapterList[$0[0]]!).init(o: $0[1] as! UObject)
             } as Command))
+            queue.queue(try (IoC.register("ThreadQueue") {_ in
+                ThreadQueue()
+            } as Command))
             while !queue.isEmpty() {
                 try queue.dequeue()!.execute()
             }

@@ -115,3 +115,20 @@ class RotateChangeVelocityCommand: MacroCommand {
     }
 }
 
+class MoveCommandStartFinish: Command  {
+    let m: MovableStartFinishAdapter
+    init(m: MovableStartFinishAdapter) {
+        self.m = m
+    }
+    func execute() throws {
+        m.start()
+        let position = try m.getPosition()
+        let velocity = try m.getVelocity()
+        guard position.canChange else {
+            throw ErrorList.commandException
+        }
+        let propertyValue = (value: position.value &+ velocity.value, canChange: position.canChange)
+        try m.setPosition(position: propertyValue)
+        m.finish()
+    }
+}

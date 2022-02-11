@@ -454,23 +454,6 @@ class SolidCourseFrameworkTests: XCTestCase {
     }
     
     func testAdapterLambda() throws {
-        class MoveCommandStartFinish: Command  {
-            let m: MovableStartFinishAdapter
-            init(m: MovableStartFinishAdapter) {
-                self.m = m
-            }
-            func execute() throws {
-                m.start()
-                let position = try m.getPosition()
-                let velocity = try m.getVelocity()
-                guard position.canChange else {
-                    throw ErrorList.commandException
-                }
-                let propertyValue = (value: position.value &+ velocity.value, canChange: position.canChange)
-                try m.setPosition(position: propertyValue)
-                m.finish()
-            }
-        }
         fillUObjectMove(sut: sut1)
         let adapter: MovableStartFinishAdapter = try IoC.resolve("Adapter", MovableStartFinish.self, sut1!)
         var cnt = 0
@@ -484,6 +467,76 @@ class SolidCourseFrameworkTests: XCTestCase {
         let cmd = MoveCommandStartFinish(m: adapter)
         XCTAssertNoThrow(try cmd.execute())
         XCTAssertEqual(cnt, 2)
+    }
+    
+    func fillThreadQueue(command: Command, count: Int) -> ThreadQueue {
+        let commandQueue = Queue<Command>()
+        let threadQueue = ThreadQueue()
+        for _ in 0..<count {
+            commandQueue.queue(command)
+        }
+        while !commandQueue.isEmpty() {
+            threadQueue.add(command: commandQueue.dequeue()!)
+        }
+        return threadQueue
+    }
+    
+    func testMultithreadStart() throws {
+        var cnt = 0
+        let ttlCnt = 1000
+        fillUObjectMove(sut: sut1)
+        let adapter: MovableStartFinishAdapter = try! IoC.resolve("Adapter", MovableStartFinish.self, sut1!)
+        adapter.setAdditionMethods([{
+            cnt += 1
+        },{ }])
+        let command = MoveCommandStartFinish(m: adapter)
+        let threadQueue = fillThreadQueue(command: command, count: ttlCnt)
+        XCTAssertEqual(threadQueue.queue.operationCount, ttlCnt)
+        threadQueue.add(command: StartQueue())
+        XCTAssertGreaterThan(threadQueue.queue.operationCount, 0)
+        while cnt < ttlCnt {
+            
+        }
+        XCTAssertLessThanOrEqual(threadQueue.queue.operationCount, 1)
+    }
+    
+    func testMultithreadHardStop() throws {
+        var cnt = 0
+        let ttlCnt = 1000
+        fillUObjectMove(sut: sut1)
+        let adapter: MovableStartFinishAdapter = try! IoC.resolve("Adapter", MovableStartFinish.self, sut1!)
+        adapter.setAdditionMethods([{
+            cnt += 1
+        },{ }])
+        let command = MoveCommandStartFinish(m: adapter)
+        let threadQueue = fillThreadQueue(command: command, count: ttlCnt)
+        threadQueue.add(command: StartQueue())
+        while cnt < ttlCnt / 2 {
+            
+        }
+        threadQueue.add(command: HardStopQueue())
+        let eps = Int(Double(ttlCnt) * 0.3)
+        XCTAssertLessThan(cnt, (ttlCnt / 2) + eps)
+        XCTAssertGreaterThan(cnt, (ttlCnt / 2) - eps)
+    }
+    
+    func testMultithreadSoftStop() throws {
+        var cnt = 0
+        let ttlCnt = 1000
+        fillUObjectMove(sut: sut1)
+        let adapter: MovableStartFinishAdapter = try! IoC.resolve("Adapter", MovableStartFinish.self, sut1!)
+        adapter.setAdditionMethods([{
+            cnt += 1
+        },{ }])
+        let command = MoveCommandStartFinish(m: adapter)
+        let threadQueue = fillThreadQueue(command: command, count: ttlCnt)
+        threadQueue.add(command: StartQueue())
+        while cnt < ttlCnt {
+            if cnt == ttlCnt / 2 {
+                threadQueue.add(command: SoftStopQueue())
+            }
+        }
+        XCTAssertLessThanOrEqual(threadQueue.queue.operationCount, 1)
     }
 }
 

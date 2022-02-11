@@ -29,6 +29,11 @@ class CommandRegister {
                     m: try IoC.resolve("Adapter", Movable.self, $0[0]) as Movable
                 )
             } as Command))
+            queue.queue(try (IoC.register("Command.MoveStartFinish") {
+                MoveCommandStartFinish(
+                    m: try IoC.resolve("Adapter", MovableStartFinishAdapter.self, $0[0]) as MovableStartFinishAdapter
+                )
+            } as Command))
             queue.queue(try (IoC.register("Command.MoveFuel") {
                 MoveFuelCommand(
                     m: try IoC.resolve("Adapter", Movable.self, $0[0]) as Movable, 

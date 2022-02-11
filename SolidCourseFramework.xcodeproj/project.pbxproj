@@ -22,6 +22,7 @@
 		B2A797A1279DA9D000F713D8 /* GeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A797A0279DA9D000F713D8 /* GeneratedMocks.swift */; };
 		B2BC59E5279E069300AC56B6 /* CommandIoCGeneratorTemplate.stencil in Resources */ = {isa = PBXBuildFile; fileRef = B2BC59E4279E069300AC56B6 /* CommandIoCGeneratorTemplate.stencil */; };
 		B2BC59E8279E077A00AC56B6 /* CommandIoCRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BC59E7279E077900AC56B6 /* CommandIoCRegister.swift */; };
+		B2C12CDB27B6DB3400D33098 /* ThreadQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C12CDA27B6DB3400D33098 /* ThreadQueue.swift */; };
 		CA6C9408D98E2239F9E5F9E5 /* Pods_SolidCourseFramework_SolidCourseFrameworkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F67A5748D34A3A9E65EED6B7 /* Pods_SolidCourseFramework_SolidCourseFrameworkTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,7 @@
 		B2B4F972279C804E001E0F15 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		B2BC59E4279E069300AC56B6 /* CommandIoCGeneratorTemplate.stencil */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CommandIoCGeneratorTemplate.stencil; sourceTree = "<group>"; };
 		B2BC59E7279E077900AC56B6 /* CommandIoCRegister.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandIoCRegister.swift; sourceTree = "<group>"; };
+		B2C12CDA27B6DB3400D33098 /* ThreadQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadQueue.swift; sourceTree = "<group>"; };
 		CE33FB66BC7F1FD7CCA75088 /* Pods-SolidCourseFramework-SolidCourseFrameworkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidCourseFramework-SolidCourseFrameworkTests.debug.xcconfig"; path = "Target Support Files/Pods-SolidCourseFramework-SolidCourseFrameworkTests/Pods-SolidCourseFramework-SolidCourseFrameworkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D136A083976A7D8374FF553F /* Pods-SolidCourseFramework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidCourseFramework.debug.xcconfig"; path = "Target Support Files/Pods-SolidCourseFramework/Pods-SolidCourseFramework.debug.xcconfig"; sourceTree = "<group>"; };
 		F67A5748D34A3A9E65EED6B7 /* Pods_SolidCourseFramework_SolidCourseFrameworkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SolidCourseFramework_SolidCourseFrameworkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,6 +127,7 @@
 				B2B4F970279C8033001E0F15 /* IoC.swift */,
 				B2086371279C83800000F0C6 /* ErrorHandler.swift */,
 				B2086373279C86090000F0C6 /* Helper.swift */,
+				B2C12CDA27B6DB3400D33098 /* ThreadQueue.swift */,
 			);
 			path = SolidCourseFramework;
 			sourceTree = "<group>";
@@ -386,6 +389,7 @@
 				B2086372279C83800000F0C6 /* ErrorHandler.swift in Sources */,
 				B208636F279C80F00000F0C6 /* Command.swift in Sources */,
 				B2BC59E8279E077A00AC56B6 /* CommandIoCRegister.swift in Sources */,
+				B2C12CDB27B6DB3400D33098 /* ThreadQueue.swift in Sources */,
 				B2086370279C80F20000F0C6 /* Queue.swift in Sources */,
 				B2086374279C86090000F0C6 /* Helper.swift in Sources */,
 			);
