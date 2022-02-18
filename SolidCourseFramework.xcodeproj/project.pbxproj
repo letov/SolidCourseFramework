@@ -599,7 +599,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CE33FB66BC7F1FD7CCA75088 /* Pods-SolidCourseFramework-SolidCourseFrameworkTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -615,7 +615,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 84A085C7E87CD83189ACFFF1 /* Pods-SolidCourseFramework-SolidCourseFrameworkTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
