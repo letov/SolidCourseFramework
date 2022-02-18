@@ -12,4 +12,4 @@ jobs:
     - name: Build
       run: xcodebuild -workspace SolidCourseFramework.xcworkspace -scheme SolidCourseFramework
     - name: Run tests
-      run: xcodebuild -workspace SolidCourseFramework.xcworkspace -scheme SolidCourseFramework test
+      run: xcodebuild -workspace SolidCourseFramework.xcworkspace -scheme SolidCourseFrameworkTests test
