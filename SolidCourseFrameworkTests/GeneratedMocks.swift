@@ -1,4 +1,4 @@
-// MARK: - Mocks generated from file: SolidCourseFramework/SolidCourseFramework.swift at 2022-01-24 09:01:14 +0000
+// MARK: - Mocks generated from file: SolidCourseFramework/SolidCourseFramework.swift at 2022-02-18 22:45:08 +0000
 
 //
 //  SolidCourseFramework.swift
@@ -121,9 +121,13 @@ import simd
     
 
     
+    
+    
      func getProperty(propertyName: String) throws -> PropertyValue<Any>  {
         return DefaultValueRegistry.defaultValue(for: (PropertyValue<Any>).self)
     }
+    
+    
     
      func setProperty(propertyName: String, propertyValue: PropertyValue<Any>)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
@@ -250,6 +254,7 @@ import simd
 }
 
  class AdapterStub: Adapter {
+        
     
     
      var o: UObject {
@@ -268,6 +273,8 @@ import simd
     }
     
 
+    
+    
     
      func setAdditionMethods(_ args: [FType])   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
@@ -359,6 +366,8 @@ import simd
 
     
 
+    
+    
     
      func execute() throws  {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
@@ -480,6 +489,7 @@ import simd
 }
 
  class MacroCommandStub: MacroCommand {
+        
     
     
      override var commands: Array<Command> {
@@ -494,6 +504,8 @@ import simd
 
     
 
+    
+    
     
      override func execute() throws  {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
@@ -615,6 +627,7 @@ import simd
 }
 
  class AdapterListStub: AdapterList {
+        
     
     
      override var table: Dictionary<String, Adapter.Type> {
@@ -629,6 +642,8 @@ import simd
 
     
 
+    
+    
     
      override func getKey(_ a: Any) -> String  {
         return DefaultValueRegistry.defaultValue(for: (String).self)

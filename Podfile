@@ -8,7 +8,7 @@ target 'SolidCourseFramework' do
   # Pods for SolidCourseFramework
 
   target 'SolidCourseFrameworkTests' do
-    pod "Cuckoo", "~>  1.5.2"
+    pod "Cuckoo"
     pod "Sourcery"
   end
 

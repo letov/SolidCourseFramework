@@ -15,6 +15,7 @@
 			dependencies = (
 			);
 			name = Sourcery;
+			productName = Sourcery;
 		};
 /* End PBXAggregateTarget section */
 
@@ -91,7 +92,7 @@
 
 /* Begin PBXFileReference section */
 		0243ACAAA4FB16B3AAF0D75FCC96D2FB /* Dictionary+matchers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Dictionary+matchers.swift"; path = "Source/Matching/Dictionary+matchers.swift"; sourceTree = "<group>"; };
-		06BBD3298EFC08D95EEFE526BDDCDBD1 /* Cuckoo */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Cuckoo; path = Cuckoo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		06BBD3298EFC08D95EEFE526BDDCDBD1 /* Cuckoo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Cuckoo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		08179ED813CF22E46D68481D3DE3B76E /* ParameterMatcherFunctions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterMatcherFunctions.swift; path = Source/Matching/ParameterMatcherFunctions.swift; sourceTree = "<group>"; };
 		097D8D7BE57F4A700F95F80D23203877 /* StubFunctionThenTrait.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StubFunctionThenTrait.swift; path = Source/Stubbing/StubFunction/Trait/StubFunctionThenTrait.swift; sourceTree = "<group>"; };
 		0AE934126B5A93AD69A7007EF088FCB9 /* Cuckoo-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Cuckoo-prefix.pch"; sourceTree = "<group>"; };
@@ -129,7 +130,7 @@
 		672E287DB1DAB3A46471A1AA0DECD9A2 /* Pods-SolidCourseFramework-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SolidCourseFramework-umbrella.h"; sourceTree = "<group>"; };
 		683AB583C182AD57E8F10509BC916146 /* Mocked.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Mocked.swift; path = Source/Mock/Mocked.swift; sourceTree = "<group>"; };
 		68778962386E862F1AE8DC558193072A /* ParameterMatcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterMatcher.swift; path = Source/Matching/ParameterMatcher.swift; sourceTree = "<group>"; };
-		6DA8E763A3E644707EA4FB9ABF7A07AD /* Pods-SolidCourseFramework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-SolidCourseFramework"; path = Pods_SolidCourseFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DA8E763A3E644707EA4FB9ABF7A07AD /* Pods_SolidCourseFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SolidCourseFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7581EC2CAF6F9DCDC355495D84511B8B /* Array+matchers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Array+matchers.swift"; path = "Source/Matching/Array+matchers.swift"; sourceTree = "<group>"; };
 		77FAE07B3B917CDB8274A67A1B59ADC9 /* Matchable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Matchable.swift; path = Source/Matching/Matchable.swift; sourceTree = "<group>"; };
 		78156283A3D9B67191AC5BEF94EC3FF1 /* Pods-SolidCourseFramework.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SolidCourseFramework.modulemap"; sourceTree = "<group>"; };
@@ -138,9 +139,9 @@
 		8FFCF731BFFC82DBD6C38E3C26EAC61E /* Cuckoo-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Cuckoo-Info.plist"; sourceTree = "<group>"; };
 		915A38B2FFDDACEA4F660578343DA9D9 /* Cuckoo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Cuckoo-dummy.m"; sourceTree = "<group>"; };
 		9674477B5D813D4382AFC6769236CF2F /* Pods-SolidCourseFramework-SolidCourseFrameworkTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SolidCourseFramework-SolidCourseFrameworkTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		98A6D4EDDEB5106B1B24430D6FDD1ACA /* Pods-SolidCourseFramework-SolidCourseFrameworkTests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-SolidCourseFramework-SolidCourseFrameworkTests"; path = Pods_SolidCourseFramework_SolidCourseFrameworkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		98A6D4EDDEB5106B1B24430D6FDD1ACA /* Pods_SolidCourseFramework_SolidCourseFrameworkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SolidCourseFramework_SolidCourseFrameworkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A8DD46FBCF086EB7CB89224887681AD /* VerificationProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VerificationProxy.swift; path = Source/Mock/VerificationProxy.swift; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A2CD7F2E20445F94C952F56C7A247098 /* Stub.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Stub.swift; path = Source/Stubbing/Stub.swift; sourceTree = "<group>"; };
 		AB87E0704C467DFDF9B557D3FB26B15B /* Cuckoo.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Cuckoo.modulemap; sourceTree = "<group>"; };
 		AFED53AB6E4A003D24B2991138B0E73B /* BaseStubFunctionTrait.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BaseStubFunctionTrait.swift; path = Source/Stubbing/StubFunction/Trait/BaseStubFunctionTrait.swift; sourceTree = "<group>"; };
@@ -208,9 +209,9 @@
 		21FD87E2C2A849A5337B8D789ACCA9E5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				06BBD3298EFC08D95EEFE526BDDCDBD1 /* Cuckoo */,
-				6DA8E763A3E644707EA4FB9ABF7A07AD /* Pods-SolidCourseFramework */,
-				98A6D4EDDEB5106B1B24430D6FDD1ACA /* Pods-SolidCourseFramework-SolidCourseFrameworkTests */,
+				06BBD3298EFC08D95EEFE526BDDCDBD1 /* Cuckoo.framework */,
+				6DA8E763A3E644707EA4FB9ABF7A07AD /* Pods_SolidCourseFramework.framework */,
+				98A6D4EDDEB5106B1B24430D6FDD1ACA /* Pods_SolidCourseFramework_SolidCourseFrameworkTests.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -236,7 +237,6 @@
 				237C41A06ED009238F049D93D64F3440 /* Support Files */,
 				53F0EB6033B50D4882647FE36DCD5BDB /* Swift */,
 			);
-			name = Cuckoo;
 			path = Cuckoo;
 			sourceTree = "<group>";
 		};
@@ -328,7 +328,6 @@
 			children = (
 				1AADA65CB8AF5FCFFA2BB4360427327E /* Support Files */,
 			);
-			name = Sourcery;
 			path = Sourcery;
 			sourceTree = "<group>";
 		};
@@ -423,7 +422,7 @@
 			);
 			name = "Pods-SolidCourseFramework-SolidCourseFrameworkTests";
 			productName = Pods_SolidCourseFramework_SolidCourseFrameworkTests;
-			productReference = 98A6D4EDDEB5106B1B24430D6FDD1ACA /* Pods-SolidCourseFramework-SolidCourseFrameworkTests */;
+			productReference = 98A6D4EDDEB5106B1B24430D6FDD1ACA /* Pods_SolidCourseFramework_SolidCourseFrameworkTests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		631511BD739BCCBCC6FF8FE2ABBA84B0 /* Pods-SolidCourseFramework */ = {
@@ -441,7 +440,7 @@
 			);
 			name = "Pods-SolidCourseFramework";
 			productName = Pods_SolidCourseFramework;
-			productReference = 6DA8E763A3E644707EA4FB9ABF7A07AD /* Pods-SolidCourseFramework */;
+			productReference = 6DA8E763A3E644707EA4FB9ABF7A07AD /* Pods_SolidCourseFramework.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		CFCA8CA494372A14108299CE150648B8 /* Cuckoo */ = {
@@ -459,7 +458,7 @@
 			);
 			name = Cuckoo;
 			productName = Cuckoo;
-			productReference = 06BBD3298EFC08D95EEFE526BDDCDBD1 /* Cuckoo */;
+			productReference = 06BBD3298EFC08D95EEFE526BDDCDBD1 /* Cuckoo.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -469,7 +468,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1320;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 13.0";
@@ -604,7 +603,6 @@
 			baseConfigurationReference = 60A5F794F1065A78F101DBF5C9F9278E /* Pods-SolidCourseFramework.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -702,7 +700,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F0F9862B7021ED49B1039CD631575903 /* Sourcery.release.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -711,7 +708,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 12.2;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -721,7 +718,6 @@
 			baseConfigurationReference = E4A9B8A03961CA92C62A128661E96BC1 /* Pods-SolidCourseFramework-SolidCourseFrameworkTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -757,7 +753,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1FB9119DB28E4D5F6D081F7130A48E30 /* Sourcery.debug.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -766,7 +761,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 12.2;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -842,7 +837,6 @@
 			baseConfigurationReference = 2D5CA81577E4364BD310B3385D79A49E /* Pods-SolidCourseFramework-SolidCourseFrameworkTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -878,7 +872,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D0466BCF0B78255D81A699CEE1B49180 /* Cuckoo.release.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -913,7 +906,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 18028DDABB4D102AFAE92955A5E3C192 /* Cuckoo.debug.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -949,7 +941,6 @@
 			baseConfigurationReference = 51C9188C6294024688B67BBDE49554AA /* Pods-SolidCourseFramework.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
