@@ -13,6 +13,8 @@
 		B2086370279C80F20000F0C6 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B4F972279C804E001E0F15 /* Queue.swift */; };
 		B2086372279C83800000F0C6 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2086371279C83800000F0C6 /* ErrorHandler.swift */; };
 		B2086374279C86090000F0C6 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2086373279C86090000F0C6 /* Helper.swift */; };
+		B22A8E2A27C05BE400EA3AF9 /* Vapor in Frameworks */ = {isa = PBXBuildFile; productRef = B22A8E2927C05BE400EA3AF9 /* Vapor */; };
+		B22A8E2C27C05BE400EA3AF9 /* XCTVapor in Frameworks */ = {isa = PBXBuildFile; productRef = B22A8E2B27C05BE400EA3AF9 /* XCTVapor */; };
 		B24FBA7D279D8E19004B6E09 /* Abstract.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24FBA7C279D8E19004B6E09 /* Abstract.swift */; };
 		B24FBA7F279D9138004B6E09 /* AdapterGeneratorTemplate.stencil in Resources */ = {isa = PBXBuildFile; fileRef = B24FBA7E279D9138004B6E09 /* AdapterGeneratorTemplate.stencil */; };
 		B24FBA81279D9621004B6E09 /* Adapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24FBA80279D9621004B6E09 /* Adapter.swift */; };
@@ -65,6 +67,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A9A9BA408CB917765D681C8 /* Pods_SolidCourseFramework.framework in Frameworks */,
+				B22A8E2A27C05BE400EA3AF9 /* Vapor in Frameworks */,
+				B22A8E2C27C05BE400EA3AF9 /* XCTVapor in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,6 +181,10 @@
 			dependencies = (
 			);
 			name = SolidCourseFramework;
+			packageProductDependencies = (
+				B22A8E2927C05BE400EA3AF9 /* Vapor */,
+				B22A8E2B27C05BE400EA3AF9 /* XCTVapor */,
+			);
 			productName = SolidCourseFramework;
 			productReference = B27EC6FE2773689E00BD3E4D /* SolidCourseFramework.framework */;
 			productType = "com.apple.product-type.framework";
@@ -230,6 +238,9 @@
 				Base,
 			);
 			mainGroup = B27EC6F42773689E00BD3E4D;
+			packageReferences = (
+				B22A8E2827C05BE400EA3AF9 /* XCRemoteSwiftPackageReference "vapor" */,
+			);
 			productRefGroup = B27EC6FF2773689E00BD3E4D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -547,6 +558,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -578,6 +590,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -658,6 +671,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B22A8E2827C05BE400EA3AF9 /* XCRemoteSwiftPackageReference "vapor" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/vapor/vapor";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B22A8E2927C05BE400EA3AF9 /* Vapor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B22A8E2827C05BE400EA3AF9 /* XCRemoteSwiftPackageReference "vapor" */;
+			productName = Vapor;
+		};
+		B22A8E2B27C05BE400EA3AF9 /* XCTVapor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B22A8E2827C05BE400EA3AF9 /* XCRemoteSwiftPackageReference "vapor" */;
+			productName = XCTVapor;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B27EC6F52773689E00BD3E4D /* Project object */;
 }
