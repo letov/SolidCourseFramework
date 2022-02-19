@@ -1,4 +1,4 @@
-// MARK: - Mocks generated from file: SolidCourseFramework/SolidCourseFramework.swift at 2022-02-19 00:41:47 +0000
+// MARK: - Mocks generated from file: SolidCourseFramework/SolidCourseFramework.swift at 2022-02-19 00:47:18 +0000
 
 //
 //  SolidCourseFramework.swift

@@ -15,8 +15,6 @@
 		B2086374279C86090000F0C6 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2086373279C86090000F0C6 /* Helper.swift */; };
 		B22A8E2A27C05BE400EA3AF9 /* Vapor in Frameworks */ = {isa = PBXBuildFile; productRef = B22A8E2927C05BE400EA3AF9 /* Vapor */; };
 		B22A8E2C27C05BE400EA3AF9 /* XCTVapor in Frameworks */ = {isa = PBXBuildFile; productRef = B22A8E2B27C05BE400EA3AF9 /* XCTVapor */; };
-		B22A8E3B27C0633B00EA3AF9 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22A8E3A27C0633B00EA3AF9 /* Server.swift */; };
-		B22A8E3D27C0656C00EA3AF9 /* ServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22A8E3C27C0656C00EA3AF9 /* ServerTests.swift */; };
 		B24FBA7D279D8E19004B6E09 /* Abstract.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24FBA7C279D8E19004B6E09 /* Abstract.swift */; };
 		B24FBA7F279D9138004B6E09 /* AdapterGeneratorTemplate.stencil in Resources */ = {isa = PBXBuildFile; fileRef = B24FBA7E279D9138004B6E09 /* AdapterGeneratorTemplate.stencil */; };
 		B24FBA81279D9621004B6E09 /* Adapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24FBA80279D9621004B6E09 /* Adapter.swift */; };
@@ -45,8 +43,6 @@
 		84A085C7E87CD83189ACFFF1 /* Pods-SolidCourseFramework-SolidCourseFrameworkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidCourseFramework-SolidCourseFrameworkTests.release.xcconfig"; path = "Target Support Files/Pods-SolidCourseFramework-SolidCourseFrameworkTests/Pods-SolidCourseFramework-SolidCourseFrameworkTests.release.xcconfig"; sourceTree = "<group>"; };
 		B2086371279C83800000F0C6 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		B2086373279C86090000F0C6 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
-		B22A8E3A27C0633B00EA3AF9 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
-		B22A8E3C27C0656C00EA3AF9 /* ServerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerTests.swift; sourceTree = "<group>"; };
 		B24FBA7C279D8E19004B6E09 /* Abstract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Abstract.swift; sourceTree = "<group>"; };
 		B24FBA7E279D9138004B6E09 /* AdapterGeneratorTemplate.stencil */ = {isa = PBXFileReference; lastKnownFileType = text; path = AdapterGeneratorTemplate.stencil; sourceTree = "<group>"; };
 		B24FBA80279D9621004B6E09 /* Adapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Adapter.swift; sourceTree = "<group>"; };
@@ -133,7 +129,6 @@
 				B2B4F970279C8033001E0F15 /* IoC.swift */,
 				B2086371279C83800000F0C6 /* ErrorHandler.swift */,
 				B2086373279C86090000F0C6 /* Helper.swift */,
-				B22A8E3A27C0633B00EA3AF9 /* Server.swift */,
 			);
 			path = SolidCourseFramework;
 			sourceTree = "<group>";
@@ -143,7 +138,6 @@
 			children = (
 				B2A797A0279DA9D000F713D8 /* GeneratedMocks.swift */,
 				B27EC70B2773689E00BD3E4D /* SolidCourseFrameworkTests.swift */,
-				B22A8E3C27C0656C00EA3AF9 /* ServerTests.swift */,
 			);
 			path = SolidCourseFrameworkTests;
 			sourceTree = "<group>";
@@ -396,7 +390,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B22A8E3B27C0633B00EA3AF9 /* Server.swift in Sources */,
 				B27EC717277368F600BD3E4D /* SolidCourseFramework.swift in Sources */,
 				B24FBA81279D9621004B6E09 /* Adapter.swift in Sources */,
 				B24FBA7D279D8E19004B6E09 /* Abstract.swift in Sources */,
@@ -414,7 +407,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B27EC70C2773689E00BD3E4D /* SolidCourseFrameworkTests.swift in Sources */,
-				B22A8E3D27C0656C00EA3AF9 /* ServerTests.swift in Sources */,
 				B2A797A1279DA9D000F713D8 /* GeneratedMocks.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
