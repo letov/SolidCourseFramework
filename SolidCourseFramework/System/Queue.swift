@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+ 
 protocol QueueStorageProtocol {
     associatedtype T
     func isEmpty() -> Bool
