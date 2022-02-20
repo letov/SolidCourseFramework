@@ -20,7 +20,7 @@
 		B24FBA81279D9621004B6E09 /* Adapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24FBA80279D9621004B6E09 /* Adapter.swift */; };
 		B27EC7072773689E00BD3E4D /* SolidCourseFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B27EC6FE2773689E00BD3E4D /* SolidCourseFramework.framework */; };
 		B27EC70C2773689E00BD3E4D /* SolidCourseFrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27EC70B2773689E00BD3E4D /* SolidCourseFrameworkTests.swift */; };
-		B27EC717277368F600BD3E4D /* SolidCourseFramework.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27EC716277368F600BD3E4D /* SolidCourseFramework.swift */; };
+		B27EC717277368F600BD3E4D /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27EC716277368F600BD3E4D /* Common.swift */; };
 		B2A797A1279DA9D000F713D8 /* GeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A797A0279DA9D000F713D8 /* GeneratedMocks.swift */; };
 		B2BC59E5279E069300AC56B6 /* CommandIoCGeneratorTemplate.stencil in Resources */ = {isa = PBXBuildFile; fileRef = B2BC59E4279E069300AC56B6 /* CommandIoCGeneratorTemplate.stencil */; };
 		B2BC59E8279E077A00AC56B6 /* CommandIoCRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BC59E7279E077900AC56B6 /* CommandIoCRegister.swift */; };
@@ -49,7 +49,7 @@
 		B27EC6FE2773689E00BD3E4D /* SolidCourseFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SolidCourseFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B27EC7062773689E00BD3E4D /* SolidCourseFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SolidCourseFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B27EC70B2773689E00BD3E4D /* SolidCourseFrameworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolidCourseFrameworkTests.swift; sourceTree = "<group>"; };
-		B27EC716277368F600BD3E4D /* SolidCourseFramework.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolidCourseFramework.swift; sourceTree = "<group>"; };
+		B27EC716277368F600BD3E4D /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		B2A797A0279DA9D000F713D8 /* GeneratedMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedMocks.swift; sourceTree = "<group>"; };
 		B2B4F96E279C801B001E0F15 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 		B2B4F970279C8033001E0F15 /* IoC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IoC.swift; sourceTree = "<group>"; };
@@ -95,6 +95,55 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		B227B1F127C2F20600BB4F58 /* System */ = {
+			isa = PBXGroup;
+			children = (
+				B2B4F972279C804E001E0F15 /* Queue.swift */,
+				B2B4F970279C8033001E0F15 /* IoC.swift */,
+				B2086371279C83800000F0C6 /* ErrorHandler.swift */,
+				B2086373279C86090000F0C6 /* Helper.swift */,
+				B27EC716277368F600BD3E4D /* Common.swift */,
+			);
+			path = System;
+			sourceTree = "<group>";
+		};
+		B242BFE127C2EA70007A2F71 /* CodeGeneration */ = {
+			isa = PBXGroup;
+			children = (
+				B242BFE927C2EE94007A2F71 /* Templates */,
+				B242BFE527C2EBC6007A2F71 /* Output */,
+			);
+			path = CodeGeneration;
+			sourceTree = "<group>";
+		};
+		B242BFE327C2EB40007A2F71 /* GameLogic */ = {
+			isa = PBXGroup;
+			children = (
+				B24FBA7C279D8E19004B6E09 /* Abstract.swift */,
+				B2B4F96E279C801B001E0F15 /* Command.swift */,
+				B242BFE127C2EA70007A2F71 /* CodeGeneration */,
+			);
+			path = GameLogic;
+			sourceTree = "<group>";
+		};
+		B242BFE527C2EBC6007A2F71 /* Output */ = {
+			isa = PBXGroup;
+			children = (
+				B24FBA80279D9621004B6E09 /* Adapter.swift */,
+				B2BC59E7279E077900AC56B6 /* CommandIoCRegister.swift */,
+			);
+			path = Output;
+			sourceTree = "<group>";
+		};
+		B242BFE927C2EE94007A2F71 /* Templates */ = {
+			isa = PBXGroup;
+			children = (
+				B24FBA7E279D9138004B6E09 /* AdapterGeneratorTemplate.stencil */,
+				B2BC59E4279E069300AC56B6 /* CommandIoCGeneratorTemplate.stencil */,
+			);
+			path = Templates;
+			sourceTree = "<group>";
+		};
 		B27EC6F42773689E00BD3E4D = {
 			isa = PBXGroup;
 			children = (
@@ -118,17 +167,8 @@
 		B27EC7002773689E00BD3E4D /* SolidCourseFramework */ = {
 			isa = PBXGroup;
 			children = (
-				B27EC716277368F600BD3E4D /* SolidCourseFramework.swift */,
-				B24FBA7C279D8E19004B6E09 /* Abstract.swift */,
-				B24FBA80279D9621004B6E09 /* Adapter.swift */,
-				B24FBA7E279D9138004B6E09 /* AdapterGeneratorTemplate.stencil */,
-				B2B4F96E279C801B001E0F15 /* Command.swift */,
-				B2BC59E7279E077900AC56B6 /* CommandIoCRegister.swift */,
-				B2BC59E4279E069300AC56B6 /* CommandIoCGeneratorTemplate.stencil */,
-				B2B4F972279C804E001E0F15 /* Queue.swift */,
-				B2B4F970279C8033001E0F15 /* IoC.swift */,
-				B2086371279C83800000F0C6 /* ErrorHandler.swift */,
-				B2086373279C86090000F0C6 /* Helper.swift */,
+				B227B1F127C2F20600BB4F58 /* System */,
+				B242BFE327C2EB40007A2F71 /* GameLogic */,
 			);
 			path = SolidCourseFramework;
 			sourceTree = "<group>";
@@ -325,7 +365,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ $ACTION == \"indexbuild\" ]; then\n  echo \"Not running Cuckoo generator during indexing.\"\n  exit 0 \nfi\n\n# Skip for preview builds\nif [ \"${ENABLE_PREVIEWS}\" = \"YES\" ]; then\n  echo \"Not running Cuckoo generator during preview builds.\"\n  exit 0\nfi\n\n# Define output file. Change \"${PROJECT_DIR}/${PROJECT_NAME}Tests\" to your test's root source folder, if it's not the default name.\nOUTPUT_FILE=\"${PROJECT_DIR}/${PROJECT_NAME}Tests/GeneratedMocks.swift\"\necho \"Generated Mocks File = ${OUTPUT_FILE}\"\n\n# Define input directory. Change \"${PROJECT_DIR}/${PROJECT_NAME}\" to your project's root source folder, if it's not the default name.\nINPUT_DIR=\"${PROJECT_DIR}/${PROJECT_NAME}\"\necho \"Mocks Input Directory = ${INPUT_DIR}\"\n\n# Generate mock files, include as many input files as you'd like to create mocks for.\n\"${PODS_ROOT}/Cuckoo/run\" generate --testable \"${PROJECT_NAME}\" \\\n--output \"${OUTPUT_FILE}\" \\\n\"${INPUT_DIR}/SolidCourseFramework.swift\" \n# ... and so forth, the last line should never end with a backslash\n\n# After running once, locate `GeneratedMocks.swift` and drag it into your Xcode test target group.\n";
+			shellScript = "if [ $ACTION == \"indexbuild\" ]; then\n  echo \"Not running Cuckoo generator during indexing.\"\n  exit 0 \nfi\n\n# Skip for preview builds\nif [ \"${ENABLE_PREVIEWS}\" = \"YES\" ]; then\n  echo \"Not running Cuckoo generator during preview builds.\"\n  exit 0\nfi\n\n# Define output file. Change \"${PROJECT_DIR}/${PROJECT_NAME}Tests\" to your test's root source folder, if it's not the default name.\nOUTPUT_FILE=\"${PROJECT_DIR}/${PROJECT_NAME}Tests/GeneratedMocks.swift\"\necho \"Generated Mocks File = ${OUTPUT_FILE}\"\n\n# Define input directory. Change \"${PROJECT_DIR}/${PROJECT_NAME}\" to your project's root source folder, if it's not the default name.\nINPUT_DIR=\"${PROJECT_DIR}/${PROJECT_NAME}\"\necho \"Mocks Input Directory = ${INPUT_DIR}\"\n\n# Generate mock files, include as many input files as you'd like to create mocks for.\n\"${PODS_ROOT}/Cuckoo/run\" generate --testable \"${PROJECT_NAME}\" \\\n--output \"${OUTPUT_FILE}\" \\\n\"${INPUT_DIR}/System/Common.swift\" \n# ... and so forth, the last line should never end with a backslash\n\n# After running once, locate `GeneratedMocks.swift` and drag it into your Xcode test target group.\n";
 		};
 		B2A797A4279DB22600F713D8 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -342,7 +382,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "INPUT_DIR=\"${PROJECT_DIR}/${PROJECT_NAME}\"\n\"${PODS_ROOT}/Sourcery/bin/sourcery\" --sources \"${INPUT_DIR}/Abstract.swift\" --templates \"${INPUT_DIR}/AdapterGeneratorTemplate.stencil\" --output \"SolidCourseFramework/Adapter.swift\"\n";
+			shellScript = "INPUT_DIR=\"${PROJECT_DIR}/${PROJECT_NAME}\"\n\"${PODS_ROOT}/Sourcery/bin/sourcery\" --sources \"${INPUT_DIR}/GameLogic/Abstract.swift\" --templates \"${INPUT_DIR}/GameLogic/CodeGeneration/Templates/AdapterGeneratorTemplate.stencil\" --output \"${INPUT_DIR}/GameLogic/CodeGeneration/Output/Adapter.swift\"\n";
 		};
 		B2BC59E6279E06F000AC56B6 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -359,7 +399,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "INPUT_DIR=\"${PROJECT_DIR}/${PROJECT_NAME}\"\n\"${PODS_ROOT}/Sourcery/bin/sourcery\" --sources \"${INPUT_DIR}/Command.swift\" --templates \"${INPUT_DIR}/CommandIoCGeneratorTemplate.stencil\" --output \"SolidCourseFramework/CommandIoCRegister.swift\"\n";
+			shellScript = "INPUT_DIR=\"${PROJECT_DIR}/${PROJECT_NAME}\"\n\"${PODS_ROOT}/Sourcery/bin/sourcery\" --sources \"${INPUT_DIR}/GameLogic/Command.swift\" --templates \"${INPUT_DIR}/GameLogic/CodeGeneration/Templates/CommandIoCGeneratorTemplate.stencil\" --output \"${INPUT_DIR}/GameLogic/CodeGeneration/Output/CommandIoCRegister.swift\"\n";
 		};
 		CBD9D29445B937A2D94C9A28 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -390,7 +430,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B27EC717277368F600BD3E4D /* SolidCourseFramework.swift in Sources */,
+				B27EC717277368F600BD3E4D /* Common.swift in Sources */,
 				B24FBA81279D9621004B6E09 /* Adapter.swift in Sources */,
 				B24FBA7D279D8E19004B6E09 /* Abstract.swift in Sources */,
 				B208636E279C80EE0000F0C6 /* IoC.swift in Sources */,
