@@ -25,6 +25,7 @@ protocol Adapter {
 enum ErrorList: Error {
     case commandException
     case ioCException
+    case dbError
 }
 
 protocol Command {
@@ -56,7 +57,6 @@ class AdapterList {
     }
 }
 
-
 class GlobalRegister {
     static func register() {
         do {
@@ -64,6 +64,7 @@ class GlobalRegister {
             let helper = Helper()
             let errorHandleList = ErrorHandleList()
             let adapterList = AdapterList()
+            let db = try DB()
             try (IoC.register("Queue.Command") { _ in
                 queue
             } as Command).execute()
@@ -92,6 +93,9 @@ class GlobalRegister {
                 let adapterList: AdapterList = try IoC.resolve("Adapter.List")
                 return (adapterList[$0[0]]!).init(o: $0[1] as! UObject)
             } as Command))
+            try (IoC.register("DB") { _ in
+                db
+            } as Command).execute()
             while !queue.isEmpty() {
                 try queue.dequeue()!.execute()
             }

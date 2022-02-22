@@ -485,5 +485,17 @@ class SolidCourseFrameworkTests: XCTestCase {
         XCTAssertNoThrow(try cmd.execute())
         XCTAssertEqual(cnt, 2)
     }
+    
+    func testDBConnection() throws {
+        let db: DB = try IoC.resolve("DB")
+        var users = [[Any]]()
+        do {
+            try db.write("DELETE FROM users WHERE username = 'test' AND password = 'test'")
+            try db.write("INSERT INTO users  (username, password) VALUES ('test','test'), ('test','test')")
+            users = try db.read("SELECT * FROM users WHERE username = 'test' AND password = 'test'")
+            try db.write("DELETE FROM users WHERE username = 'test' AND password = 'test'")
+        }
+        XCTAssertEqual(users.count, 2)
+    }
 }
 
