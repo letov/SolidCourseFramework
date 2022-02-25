@@ -1,0 +1,11 @@
+configurations:
+    - sources:
+        - ../GameLogic/Abstract.swift
+      templates:
+        - Templates/AdapterGeneratorTemplate.stencil
+      output: Output
+    - sources:
+        - ../GameLogic/Command.swift
+      templates:
+        - Templates/CommandIoCGeneratorTemplate.stencil
+      output: Output
