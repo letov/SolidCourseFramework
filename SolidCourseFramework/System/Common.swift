@@ -99,7 +99,8 @@ class GlobalRegister {
             while !queue.isEmpty() {
                 try queue.dequeue()!.execute()
             }
-            AdapterRegister.register()
+            APIModelRegister.register()
+            CommandRegister.register()
             CommandRegister.register()
         } catch {
             fatalError()

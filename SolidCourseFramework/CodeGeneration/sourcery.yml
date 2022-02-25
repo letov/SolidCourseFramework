@@ -2,10 +2,15 @@ configurations:
     - sources:
         - ../GameLogic/Abstract.swift
       templates:
-        - Templates/AdapterGeneratorTemplate.stencil
+        - Templates/adapter_generator.stencil
       output: Output
     - sources:
         - ../GameLogic/Command.swift
       templates:
-        - Templates/CommandIoCGeneratorTemplate.stencil
+        - Templates/command_to_IoC.stencil
+      output: Output
+    - sources:
+        - ../System/Server/API/Models
+      templates:
+        - Templates/api_model_to_IoC.stencil
       output: Output
