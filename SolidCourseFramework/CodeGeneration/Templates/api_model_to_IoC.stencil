@@ -9,7 +9,7 @@ class APIModelRegister {
             queue.queue(try (IoC.register("APIModel.{{ type.name }}") {
                 {{ type.name }}(
     {% for parameter in type.initializers.first.parameters %}
-                    {{ parameter.name }}: $0[{{ forloop.counter0 }}] as! {{ parameter.typeName }}{% if not forloop.last%}, {% endif %}
+                    {{ parameter.name|replace:"`","" }}: $0[{{ forloop.counter0 }}]{% if parameter.typeName|hasPrefix:"Int" %} as! NSNumber{% endif %} as! {{ parameter.typeName }}{% if not forloop.last%}, {% endif %}
     {% endfor %}
                 )
             } as Command))

@@ -8,13 +8,26 @@
 import Foundation
 import SQLite3
 
-class DB {
-    var db: OpaquePointer?
-    
-    init() throws {
-        guard let dbFile = Bundle(for: type(of: self)).path(forResource: "db", ofType: "sqlite")else {
-            throw ErrorList.dbError
+protocol DBConnection {
+    func read(_ args: String...) throws -> [[Any]]
+    func write(_ args: String...) throws -> Int
+}
+
+extension String {
+    public func replaceFirst(of pattern: String, with replacement: String) -> String {
+        if let range = self.range(of: pattern){
+            return self.replacingCharacters(in: range, with: replacement)
+        } else {
+            return self
         }
+    }
+}
+
+class DB: DBConnection {
+    var db: OpaquePointer?
+    let valueMask = "??"
+    
+    init(dbFile: String) throws {
         var db: OpaquePointer?
         if sqlite3_open_v2(dbFile, &db, SQLITE_OPEN_READWRITE, nil) == SQLITE_OK && db != nil {
             self.db = db
@@ -22,7 +35,7 @@ class DB {
             throw ErrorList.dbError
         }
     }
-    
+
     func getColumnValue(index: Int32, colType: String, query: OpaquePointer) -> Any? {
         switch colType {
         case "INTEGER":
@@ -47,7 +60,16 @@ class DB {
         }
     }
     
-    func read(_ queryString: String) throws -> [[Any]] {
+    func read(_ args: String...) throws -> [[Any]] {
+        guard !args.isEmpty else {
+            return []
+        }
+        var queryString = args[0]
+        if args.count > 1 {
+            for i in 1..<args.count {
+                queryString = queryString.replaceFirst(of: valueMask, with: escape(args[i]))
+            }
+        }
         var query: OpaquePointer? = nil
         defer {
             sqlite3_finalize(query)
@@ -78,7 +100,16 @@ class DB {
         return result
     }
     
-    func write(_ queryString: String) throws {
+    func write(_ args: String...) throws -> Int {
+        guard !args.isEmpty else {
+            throw ErrorList.dbError
+        }
+        var queryString = args[0]
+        if args.count > 1 {
+            for i in 1..<args.count {
+                queryString = queryString.replaceFirst(of: valueMask, with: escape(args[i]))
+            }
+        }
         var query: OpaquePointer? = nil
         defer {
             sqlite3_finalize(query)
@@ -89,5 +120,37 @@ class DB {
         guard sqlite3_step(query) == SQLITE_DONE else {
             throw ErrorList.dbError
         }
+        let result = Int(sqlite3_last_insert_rowid(query))
+        return result
+    }
+    
+    func escape(_ string: String) -> String {
+        var out = "'"
+        for c in string.unicodeScalars {
+            switch c {
+            case "\0":
+                out += "\\0"
+            case "\n":
+                out += "\\n"
+            case "\r":
+                out += "\\r"
+            case "\u{8}":
+                out += "\\b"
+            case "\t":
+                out += "\\t"
+            case "\\":
+                out += "\\\\"
+            case "'":
+                out += "\\'"
+            case "\"":
+                out += "\\\""
+            case "\u{1A}":
+                out += "\\Z"
+            default:
+                out.append(Character(c))
+            }
+        }
+        out.append("'")
+        return out
     }
 }

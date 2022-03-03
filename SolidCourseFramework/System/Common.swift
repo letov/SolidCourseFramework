@@ -26,6 +26,7 @@ enum ErrorList: Error {
     case commandException
     case ioCException
     case dbError
+    case serverError
 }
 
 protocol Command {
@@ -44,6 +45,11 @@ class MacroCommand: Command {
 
 class AdapterList {
     var table = Dictionary<String, Adapter.Type>()
+    func getAll() -> [String] {
+        return table.reduce(into: [String]()) {
+            $0.append($1.key)
+        }
+    }
     func getKey(_ a: Any) -> String {
         return String(describing: a)
     }
@@ -57,14 +63,44 @@ class AdapterList {
     }
 }
 
+class ObjectList {
+    var table = [UObject]()
+    subscript(_ objectId: Int) -> UObject? {
+        get {
+            return table[objectId]
+        }
+    }
+    func append(_ o: UObject) {
+        table.append(o)
+    }
+}
+
+class CommandList {
+    var table = [Command.Type]()
+    subscript(_ commandId: Int) -> Command.Type? {
+        get {
+            return table[commandId]
+        }
+    }
+    func append(_ command: Command.Type) {
+        table.append(command)
+    }
+}
+
 class GlobalRegister {
-    static func register() {
+    static func register(dbFile: String) {
         do {
+            let db = try DB(dbFile: dbFile)
+            try (IoC.register("DB") { _ in
+                db
+            } as Command).execute()
             let queue = Queue<Command>()
             let helper = Helper()
             let errorHandleList = ErrorHandleList()
             let adapterList = AdapterList()
-            let db = try DB()
+            let userManager = try UserManager()
+            let objectList = ObjectList()
+            let commandList = CommandList()
             try (IoC.register("Queue.Command") { _ in
                 queue
             } as Command).execute()
@@ -86,22 +122,29 @@ class GlobalRegister {
                 let errorHandleList = try (IoC.resolve("Error.Handle.List") as ErrorHandleList)
                 return try (IoC.resolve(errorHandleList[$0[0] as! Command], $0[0], $0[1]) as Command)
             } as Command))
-            queue.queue(try (IoC.register("Adapter.List") {_ in
+            queue.queue(try (IoC.register("Adapter.List") { _ in
                 adapterList
+            } as Command))
+            queue.queue(try (IoC.register("Command.List") { _ in
+                commandList
+            } as Command))
+            queue.queue(try (IoC.register("Object.List") { _ in
+                objectList
             } as Command))
             queue.queue(try (IoC.register("Adapter") {
                 let adapterList: AdapterList = try IoC.resolve("Adapter.List")
                 return (adapterList[$0[0]]!).init(o: $0[1] as! UObject)
             } as Command))
-            try (IoC.register("DB") { _ in
-                db
-            } as Command).execute()
+            queue.queue(try (IoC.register("UserManager") { _ in
+                userManager
+            } as Command))
             while !queue.isEmpty() {
                 try queue.dequeue()!.execute()
             }
             APIModelRegister.register()
+            AdapterRegister.register()
             CommandRegister.register()
-            CommandRegister.register()
+            CommandJSONArgsRegister.register()
         } catch {
             fatalError()
         }

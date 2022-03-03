@@ -5,11 +5,17 @@ class CommandRegister {
     static func register() {
         do {
             let queue: Queue<Command> = try IoC.resolve("Queue.Command")
+            let commandList: CommandList = try IoC.resolve("Command.List")
 {% for type in types.classes %}
+            commandList.append({{ type.name }}.self)
             queue.queue(try (IoC.register("Command.{{ type.name|replace:"Command","" }}") {
                 {{ type.name }}(
     {% for parameter in type.initializers.first.parameters %}
-                    {{ parameter.name }}: try IoC.resolve("Adapter", {{ parameter.typeName }}.self, $0[0]) as {{ parameter.typeName }}{% if not forloop.last%}, {% endif %}
+        {% if parameter.name.count == 1 %}
+                    {{ parameter.name }}: try IoC.resolve("Adapter", {{ parameter.typeName }}.self, $0[{{ forloop.counter0 }}]) as {{ parameter.typeName }}{% if not forloop.last%}, {% endif %}
+        {% else %}
+                    {{ parameter.name }}: $0[{{ forloop.counter0 }}] as! {{ parameter.typeName }}{% if not forloop.last%}, {% endif %}
+        {% endif %}
     {% endfor %}
                 )
             } as Command))

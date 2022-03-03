@@ -1,0 +1,232 @@
+openapi: 3.0.1
+info:
+  title: Game Server API
+  version: 1.0.0
+servers:
+- url: http://127.0.0.1:8080/
+tags:
+- name: hello
+- name: user
+- name: game
+paths:
+  /hello: 
+    get:
+      tags:
+      - hello
+      summary: Check server availability
+      responses:
+        200:
+          description: OK
+        400:
+          description: Bad Request
+  /user/register:
+    post:
+      tags:
+      - user
+      summary: Register new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserAPIModel' 
+      responses:
+        200:
+          description: OK
+          content: 
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/UserAPIModel' 
+        400:
+          description: Bad Request
+  /user/login:
+    post:
+      tags:
+        - user
+      summary: Logs user into the system
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserAPIModel' 
+      responses:
+        200:
+          description: OK
+          content: 
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/JwtTokenAPIModel' 
+        400:
+          description: Bad Request
+  /user/logout:
+    get:
+      tags:
+        - user
+      summary: Logs out current logged in user session
+      responses:
+        200:
+          description: OK
+        400:
+          description: Bad Request
+  /user/delete/{id}:
+    delete:
+      tags:
+      - user
+      summary: Delete user
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          description: OK
+        400:
+          description: Bad Request
+      security:
+        - bearerAuth: []
+  /user/get/{id}:
+    get:
+      tags:
+      - user
+      summary: Get user
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          description: OK
+          content: 
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/UserAPIModel' 
+        400:
+          description: Bad Request
+      security:
+       - bearerAuth: []
+  /game/capabilities: 
+    get:
+      tags:
+      - game
+      summary: Object capabilities
+      responses:
+        200:
+          description: OK
+          content: 
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/CapabilitiesAPIModel' 
+        400:
+          description: Bad Request
+      security:
+        - bearerAuth: []
+  /game/new:
+    get:
+      tags:
+      - game
+      summary: Create new game
+      responses:
+        200:
+          description: OK
+          content: 
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/GameAPIModel' 
+        400:
+          description: Bad Request
+      security:
+        - bearerAuth: []
+  /game/command:
+    put:
+      tags:
+      - game
+      summary: Send game command
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InterpretCommandAPIModel' 
+      responses:
+        200:
+          description: OK
+        400:
+          description: Bad Request
+      security:
+        - bearerAuth: []
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    CapabilityAPIModel:
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+    CapabilitiesAPIModel:
+      type: array
+      items:
+        $ref: '#/components/schemas/CapabilityAPIModel' 
+    ObjectAPIModel: 
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        capabilities:
+          $ref: '#/components/schemas/CapabilitiesAPIModel' 
+    ObjectsAPIModel:
+        type: array
+        items:
+          $ref: '#/components/schemas/ObjectAPIModel' 
+    UserAPIModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        username:
+          type: string
+        password:
+          type: string
+    UsersAPIModel:
+        type: array
+        items:
+          $ref: '#/components/schemas/UserAPIModel' 
+    GameAPIModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        gameObjects:
+          $ref: '#/components/schemas/ObjectsAPIModel' 
+    InterpretCommandAPIModel:
+      type: object
+      properties:
+        ObjectId:
+          type: integer
+          format: int64
+        CommandId:
+          type: integer
+          format: int64
+        Args:
+          type: string
+    JwtTokenAPIModel:
+      type: object
+      properties:
+        token:
+          type: string

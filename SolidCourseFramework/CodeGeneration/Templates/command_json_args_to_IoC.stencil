@@ -1,0 +1,47 @@
+import Foundation
+import simd
+
+protocol CommandJSONArgs: Decodable & Encodable {}
+
+{% for type in types.classes %}
+    {% for parameter in type.initializers.first.parameters where parameter.name.count > 1 %}
+        {% if forloop.first %}
+class {{ type.name }}ParamModel: CommandJSONArgs {
+    {% for parameter in type.initializers.first.parameters where parameter.name.count > 1 %}
+    var {{ parameter.name }}: {{ parameter.typeName }}?
+    {% endfor %}
+}
+
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+class CommandJSONArgsRegister {
+    static func register() {
+        do {
+            let queue: Queue<Command> = try IoC.resolve("Queue.Command")
+            let decoder = JSONDecoder()
+{% for type in types.classes %}
+            queue.queue(try (IoC.register("Command.JSONArgs.{{ type.name|replace:"Command","" }}") {
+    {% for parameter in type.initializers.first.parameters where parameter.name.count > 1 %}
+        {% if forloop.first %}
+                let json = $0[1] as! String
+                let args = try decoder.decode({{ type.name }}ParamModel.self, from: json.data(using: .utf8)!)
+                return try IoC.resolve("Command.{{ type.name|replace:"Command","" }}", $0[0],
+            {% for parameter in type.initializers.first.parameters where parameter.name.count > 1 %}
+                        args.{{ parameter.name }}!{% if not forloop.last%}, {% endif %}
+            {% endfor %}
+                ) as Command
+        {% endif %}
+    {% empty %}
+                try IoC.resolve("Command.{{ type.name|replace:"Command","" }}", $0[0])
+    {% endfor %}
+            } as Command))
+{% endfor %}
+            while !queue.isEmpty() {
+                try queue.dequeue()!.execute()
+            }
+        } catch {
+            fatalError()
+        }
+    }
+}

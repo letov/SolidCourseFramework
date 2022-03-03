@@ -58,7 +58,7 @@ class UserApi: UserApiDelegate {
         }
     }
     
-    func userRegisterPost(with req: Request, body: UserAPI) throws -> EventLoopFuture<userRegisterPostResponse> {
+    func userRegisterPost(with req: Request, body: UserAPIModel) throws -> EventLoopFuture<userRegisterPostResponse> {
         let userManager: UserManager = try IoC.resolve("UserManager")
         if let user = try userManager.register(username: body.username!, password: body.password!) {
             return req.eventLoop.makeSucceededFuture(userRegisterPostResponse.http200(user))
@@ -67,7 +67,7 @@ class UserApi: UserApiDelegate {
         }
     }
     
-    func userLoginPost(with req: Request, body: UserAPI) throws -> EventLoopFuture<userLoginPostResponse> {
+    func userLoginPost(with req: Request, body: UserAPIModel) throws -> EventLoopFuture<userLoginPostResponse> {
         let userManager: UserManager = try IoC.resolve("UserManager")
         guard let username = body.username, let password = body.password else {
             return req.eventLoop.makeFailedFuture(Abort(.unauthorized))
@@ -80,7 +80,7 @@ class UserApi: UserApiDelegate {
         }
         let payload = JWTToken(userId: user.id!)
         let token = try req.jwt.sign(payload)
-        return req.eventLoop.makeSucceededFuture(userLoginPostResponse.http200(JwtTokenAPI(token: token)))
+        return req.eventLoop.makeSucceededFuture(userLoginPostResponse.http200(JwtTokenAPIModel(token: token)))
     }
     
     func userLogoutGet(with req: Request) throws -> EventLoopFuture<userLogoutGetResponse> {
@@ -93,23 +93,28 @@ class GameApi: GameApiDelegate {
     
     func gameCapabilitiesGet(with req: Request, asAuthenticated user: AuthType) throws -> EventLoopFuture<gameCapabilitiesGetResponse> {
         let adapterList: AdapterList = try IoC.resolve("Adapter.List")
-        let capabilitiesAPI = adapterList
+        let capabilities = adapterList
             .getAll()
             .enumerated()
-            .reduce(into: CapabilitiesAPI()) {
-                $0.append(CapabilityAPI(id: Int64($1.offset), name: $1.element))
+            .reduce(into: CapabilitiesAPIModel()) {
+                $0.append(CapabilityAPIModel(id: Int64($1.offset), name: $1.element))
             }
-        return req.eventLoop.makeSucceededFuture(gameCapabilitiesGetResponse.http200(capabilitiesAPI))
+        return req.eventLoop.makeSucceededFuture(gameCapabilitiesGetResponse.http200(capabilities))
     }
     
     func gameNewGet(with req: Request, asAuthenticated user: AuthType) throws -> EventLoopFuture<gameNewGetResponse> {
         return req.eventLoop.makeSucceededFuture(gameNewGetResponse.http400)
     }
     
-    func gameCommandPut(with req: Request, asAuthenticated user: AuthType, body: GameCommandAPI) throws -> EventLoopFuture<gameCommandPutResponse> {
-        //let decoded = try JSONDecoder().decode([String: Any].self, from: body.args!.data(using: .utf8)!)
-        //body.args
-        return req.eventLoop.makeSucceededFuture(gameCommandPutResponse.http400)
+    func gameCommandPut(with req: Request, asAuthenticated user: AuthType, body: InterpretCommandAPIModel) throws -> EventLoopFuture<gameCommandPutResponse> {
+        do {
+            let command = InterpretCommand(objectId: Int(body.objectId!), commandId: Int(body.commandId!), args: body.args!)
+            let queue: Queue<Command> = try IoC.resolve("Queue.Command")
+            queue.queue(command)
+        } catch {
+            return req.eventLoop.makeSucceededFuture(gameCommandPutResponse.http400)
+        }
+        return req.eventLoop.makeSucceededFuture(gameCommandPutResponse.http200)
     }
 }
 
@@ -120,3 +125,4 @@ class HelloApi: HelloApiDelegate {
         return req.eventLoop.makeSucceededFuture(helloGetResponse.http200)
     }
 }
+
