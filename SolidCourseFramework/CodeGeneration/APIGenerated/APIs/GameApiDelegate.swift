@@ -6,26 +6,6 @@ import Vapor
 // Template Input: /APIs.Game
 
 
-public enum gameCapabilitiesGetResponse: ResponseEncodable {
-  case http200(CapabilitiesAPIModel)
-  case http400
-
-  public func encodeResponse(for request: Request) -> EventLoopFuture<Response> {
-    switch self {
-    case .http200(let content):
-      return content.encodeResponse(for: request).map { (response: Response) -> (Response) in
-        response.status = HTTPStatus(statusCode: 200)
-        return response
-      }
-    case .http400:
-      let response = Response()
-      response.status = HTTPStatus(statusCode: 400)
-      return request.eventLoop.makeSucceededFuture(response)
-    }
-  }
-}
-
-
 public enum gameCommandPutResponse: ResponseEncodable {
   case http200
   case http400
@@ -45,8 +25,28 @@ public enum gameCommandPutResponse: ResponseEncodable {
 }
 
 
-public enum gameNewGetResponse: ResponseEncodable {
+public enum gameNewPostResponse: ResponseEncodable {
   case http200(GameAPIModel)
+  case http400
+
+  public func encodeResponse(for request: Request) -> EventLoopFuture<Response> {
+    switch self {
+    case .http200(let content):
+      return content.encodeResponse(for: request).map { (response: Response) -> (Response) in
+        response.status = HTTPStatus(statusCode: 200)
+        return response
+      }
+    case .http400:
+      let response = Response()
+      response.status = HTTPStatus(statusCode: 400)
+      return request.eventLoop.makeSucceededFuture(response)
+    }
+  }
+}
+
+
+public enum gameTokenIdGetResponse: ResponseEncodable {
+  case http200(JwtTokenAPIModel)
   case http400
 
   public func encodeResponse(for request: Request) -> EventLoopFuture<Response> {
@@ -67,12 +67,12 @@ public enum gameNewGetResponse: ResponseEncodable {
 public protocol GameApiDelegate {
   associatedtype AuthType
   /**
-  GET /game/capabilities */
-  func gameCapabilitiesGet(with req: Request, asAuthenticated user: AuthType) throws -> EventLoopFuture<gameCapabilitiesGetResponse>
-  /**
   PUT /game/command */
   func gameCommandPut(with req: Request, asAuthenticated user: AuthType, body: InterpretCommandAPIModel) throws -> EventLoopFuture<gameCommandPutResponse>
   /**
-  GET /game/new */
-  func gameNewGet(with req: Request, asAuthenticated user: AuthType) throws -> EventLoopFuture<gameNewGetResponse>
+  POST /game/new */
+  func gameNewPost(with req: Request, asAuthenticated user: AuthType, body: [Int64]) throws -> EventLoopFuture<gameNewPostResponse>
+  /**
+  GET /game/token/{id} */
+  func gameTokenIdGet(with req: Request, asAuthenticated user: AuthType, id: Int64) throws -> EventLoopFuture<gameTokenIdGetResponse>
 }

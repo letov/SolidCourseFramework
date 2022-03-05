@@ -7,16 +7,9 @@ class APIModelRegister {
     static func register() {
         do {
             let queue: Queue<Command> = try IoC.resolve("Queue.Command")
-            queue.queue(try (IoC.register("APIModel.CapabilityAPIModel") {
-                CapabilityAPIModel(
-                    id: $0[0] as! NSNumber as! Int64?, 
-                    name: $0[1] as! String?
-                )
-            } as Command))
             queue.queue(try (IoC.register("APIModel.GameAPIModel") {
                 GameAPIModel(
-                    id: $0[0] as! NSNumber as! Int64?, 
-                    gameObjects: $0[1] as! ObjectsAPIModel?
+                    id: $0[0] as! NSNumber as! Int64?
                 )
             } as Command))
             queue.queue(try (IoC.register("APIModel.InterpretCommandAPIModel") {
@@ -29,13 +22,6 @@ class APIModelRegister {
             queue.queue(try (IoC.register("APIModel.JwtTokenAPIModel") {
                 JwtTokenAPIModel(
                     token: $0[0] as! String?
-                )
-            } as Command))
-            queue.queue(try (IoC.register("APIModel.ObjectAPIModel") {
-                ObjectAPIModel(
-                    id: $0[0] as! NSNumber as! Int64?, 
-                    name: $0[1] as! String?, 
-                    capabilities: $0[2] as! CapabilitiesAPIModel?
                 )
             } as Command))
             queue.queue(try (IoC.register("APIModel.UserAPIModel") {

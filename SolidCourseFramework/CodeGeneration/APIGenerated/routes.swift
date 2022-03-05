@@ -36,15 +36,19 @@ public func routes<authForbearerAuth: AuthenticationMiddleware, game: GameApiDel
   {
   let groupForbearerAuth = app.grouped([authForbearerAuth])
   //for game
-  groupForbearerAuth.on(.GET, "/game/capabilities".asPathComponents) { (request: Request) -> EventLoopFuture<gameCapabilitiesGetResponse> in
-    return try game.gameCapabilitiesGet(with: request, asAuthenticated: request.auth.require(authForbearerAuth.authType()))
-  }
   groupForbearerAuth.on(.PUT, "/game/command".asPathComponents) { (request: Request) -> EventLoopFuture<gameCommandPutResponse> in
     let body = try request.content.decode(InterpretCommandAPIModel.self)
     return try game.gameCommandPut(with: request, asAuthenticated: request.auth.require(authForbearerAuth.authType()), body: body)
   }
-  groupForbearerAuth.on(.GET, "/game/new".asPathComponents) { (request: Request) -> EventLoopFuture<gameNewGetResponse> in
-    return try game.gameNewGet(with: request, asAuthenticated: request.auth.require(authForbearerAuth.authType()))
+  groupForbearerAuth.on(.POST, "/game/new".asPathComponents) { (request: Request) -> EventLoopFuture<gameNewPostResponse> in
+    let body = try request.content.decode([Int64].self)
+    return try game.gameNewPost(with: request, asAuthenticated: request.auth.require(authForbearerAuth.authType()), body: body)
+  }
+  groupForbearerAuth.on(.GET, "/game/token/{id}".asPathComponents) { (request: Request) -> EventLoopFuture<gameTokenIdGetResponse> in
+    guard let id = request.parameters.get("id", as: Int64.self) else {
+      throw Abort(HTTPResponseStatus.badRequest, reason: "Missing parameter id")
+    }
+    return try game.gameTokenIdGet(with: request, asAuthenticated: request.auth.require(authForbearerAuth.authType()), id: id)
   }
   //for hello
   app.on(.GET, "/hello".asPathComponents) { (request: Request) -> EventLoopFuture<helloGetResponse> in

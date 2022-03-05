@@ -111,27 +111,17 @@ paths:
           description: Bad Request
       security:
        - bearerAuth: []
-  /game/capabilities: 
-    get:
-      tags:
-      - game
-      summary: Object capabilities
-      responses:
-        200:
-          description: OK
-          content: 
-            application/json:
-              schema:
-                  $ref: '#/components/schemas/CapabilitiesAPIModel' 
-        400:
-          description: Bad Request
-      security:
-        - bearerAuth: []
   /game/new:
-    get:
+    post:
       tags:
       - game
       summary: Create new game
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserIdsAPIModel'   
       responses:
         200:
           description: OK
@@ -139,6 +129,29 @@ paths:
             application/json:
               schema:
                   $ref: '#/components/schemas/GameAPIModel' 
+        400:
+          description: Bad Request
+      security:
+        - bearerAuth: []
+  /game/token/{id}:
+    get:
+      tags:
+      - game
+      summary: Get game token
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64 
+      responses:
+        200:
+          description: OK
+          content: 
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/JwtTokenAPIModel' 
         400:
           description: Bad Request
       security:
@@ -167,31 +180,6 @@ components:
       type: http
       scheme: bearer
   schemas:
-    CapabilityAPIModel:
-      properties:
-        id:
-          type: integer
-          format: int64
-        name:
-          type: string
-    CapabilitiesAPIModel:
-      type: array
-      items:
-        $ref: '#/components/schemas/CapabilityAPIModel' 
-    ObjectAPIModel: 
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        name:
-          type: string
-        capabilities:
-          $ref: '#/components/schemas/CapabilitiesAPIModel' 
-    ObjectsAPIModel:
-        type: array
-        items:
-          $ref: '#/components/schemas/ObjectAPIModel' 
     UserAPIModel:
       type: object
       properties:
@@ -202,18 +190,21 @@ components:
           type: string
         password:
           type: string
+    UserIdsAPIModel:
+      type: array
+      items:
+        type: integer
+        format: int64
     UsersAPIModel:
-        type: array
-        items:
-          $ref: '#/components/schemas/UserAPIModel' 
+      type: array
+      items:
+        $ref: '#/components/schemas/UserAPIModel' 
     GameAPIModel:
       type: object
       properties:
         id:
           type: integer
           format: int64
-        gameObjects:
-          $ref: '#/components/schemas/ObjectsAPIModel' 
     InterpretCommandAPIModel:
       type: object
       properties:

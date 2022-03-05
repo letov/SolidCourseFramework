@@ -11,10 +11,8 @@ import Vapor
 public final class GameAPIModel: Content {
 
     public var id: Int64?
-    public var gameObjects: ObjectsAPIModel?
 
-    public init(id: Int64?, gameObjects: ObjectsAPIModel?) { 
+    public init(id: Int64?) { 
         self.id = id
-        self.gameObjects = gameObjects
     }
 }

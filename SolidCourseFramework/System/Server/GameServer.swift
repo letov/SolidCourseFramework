@@ -8,9 +8,23 @@
 import Foundation
 import Vapor
 
-class GameServerRoutes {
+class GameServerConfig {
+    static let hsSecret = "secret"
+
     static public func routes(_ app: Application) throws {
         try SolidCourseFramework.routes(app, game: GameApi(), hello: HelloApi(), user: UserApi(), authForbearerAuth: SecurityMiddleware())
+    }
+
+    static public func signerHS(_ app: Application) throws {
+        app.jwt.signers.use(.hs256(key: hsSecret))
+    }
+    
+    static public func signerPublicRSA(_ app: Application, _ rsaPublicKey: String) throws {
+        app.jwt.signers.use(.rs256(key: try .public(pem: rsaPublicKey)))
+    }
+    
+    static public func signerPrivatePSA(_ app: Application, _ rsaPrivateKey: String) throws {
+        app.jwt.signers.use(.rs256(key: try .private(pem: rsaPrivateKey)))
     }
 }
 
@@ -26,11 +40,7 @@ class GameServer {
         app = Application(env)
         try configure(app)
     }
-    
-    public func routes(_ app: Application) throws {
-        try GameServerRoutes.routes(app)
-    }
-    
+
     public func configure(_ app: Application) throws {
         app.http.server.configuration.address = BindAddress.hostname(hostname, port: port)
         let corsConfiguration = CORSMiddleware.Configuration(
@@ -40,8 +50,8 @@ class GameServer {
         )
         let cors = CORSMiddleware(configuration: corsConfiguration)
         app.middleware.use(cors, at: .beginning)
-        try routes(app)
-        app.jwt.signers.use(.hs256(key: "secret"))
+        try GameServerConfig.routes(app)
+        try GameServerConfig.signerHS(app)
     }
 
     func run() throws {
