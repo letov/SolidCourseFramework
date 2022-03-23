@@ -1,4 +1,4 @@
-// MARK: - Mocks generated from file: SolidCourseFramework/System/Common.swift at 2022-02-22 17:08:59 +0000
+// MARK: - Mocks generated from file: SolidCourseFramework/System/Common.swift at 2022-03-03 18:18:01 +0000
 
 //
 //  SolidCourseFramework.swift
@@ -564,6 +564,21 @@ import simd
     
     
     
+     override func getAll() -> [String] {
+        
+    return cuckoo_manager.call("getAll() -> [String]",
+            parameters: (),
+            escapingParameters: (),
+            superclassCall:
+                
+                super.getAll()
+                ,
+            defaultCall: __defaultImplStub!.getAll())
+        
+    }
+    
+    
+    
      override func getKey(_ a: Any) -> String {
         
     return cuckoo_manager.call("getKey(_: Any) -> String",
@@ -591,6 +606,11 @@ import simd
 	    }
 	    
 	    
+	    func getAll() -> Cuckoo.ClassStubFunction<(), [String]> {
+	        let matchers: [Cuckoo.ParameterMatcher<Void>] = []
+	        return .init(stub: cuckoo_manager.createStub(for: MockAdapterList.self, method: "getAll() -> [String]", parameterMatchers: matchers))
+	    }
+	    
 	    func getKey<M1: Cuckoo.Matchable>(_ a: M1) -> Cuckoo.ClassStubFunction<(Any), String> where M1.MatchedType == Any {
 	        let matchers: [Cuckoo.ParameterMatcher<(Any)>] = [wrap(matchable: a) { $0 }]
 	        return .init(stub: cuckoo_manager.createStub(for: MockAdapterList.self, method: "getKey(_: Any) -> String", parameterMatchers: matchers))
@@ -616,6 +636,12 @@ import simd
 	    }
 	    
 	
+	    
+	    @discardableResult
+	    func getAll() -> Cuckoo.__DoNotUse<(), [String]> {
+	        let matchers: [Cuckoo.ParameterMatcher<Void>] = []
+	        return cuckoo_manager.verify("getAll() -> [String]", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
 	    
 	    @discardableResult
 	    func getKey<M1: Cuckoo.Matchable>(_ a: M1) -> Cuckoo.__DoNotUse<(Any), String> where M1.MatchedType == Any {
@@ -645,8 +671,290 @@ import simd
     
     
     
+     override func getAll() -> [String]  {
+        return DefaultValueRegistry.defaultValue(for: ([String]).self)
+    }
+    
+    
+    
      override func getKey(_ a: Any) -> String  {
         return DefaultValueRegistry.defaultValue(for: (String).self)
+    }
+    
+}
+
+
+
+ class MockObjectList: ObjectList, Cuckoo.ClassMock {
+    
+     typealias MocksType = ObjectList
+    
+     typealias Stubbing = __StubbingProxy_ObjectList
+     typealias Verification = __VerificationProxy_ObjectList
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: ObjectList?
+
+     func enableDefaultImplementation(_ stub: ObjectList) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+    
+    
+     override var table: [UObject] {
+        get {
+            return cuckoo_manager.getter("table",
+                superclassCall:
+                    
+                    super.table
+                    ,
+                defaultCall: __defaultImplStub!.table)
+        }
+        
+        set {
+            cuckoo_manager.setter("table",
+                value: newValue,
+                superclassCall:
+                    
+                    super.table = newValue
+                    ,
+                defaultCall: __defaultImplStub!.table = newValue)
+        }
+        
+    }
+    
+
+    
+
+    
+    
+    
+     override func append(_ o: UObject)  {
+        
+    return cuckoo_manager.call("append(_: UObject)",
+            parameters: (o),
+            escapingParameters: (o),
+            superclassCall:
+                
+                super.append(o)
+                ,
+            defaultCall: __defaultImplStub!.append(o))
+        
+    }
+    
+
+	 struct __StubbingProxy_ObjectList: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    var table: Cuckoo.ClassToBeStubbedProperty<MockObjectList, [UObject]> {
+	        return .init(manager: cuckoo_manager, name: "table")
+	    }
+	    
+	    
+	    func append<M1: Cuckoo.Matchable>(_ o: M1) -> Cuckoo.ClassStubNoReturnFunction<(UObject)> where M1.MatchedType == UObject {
+	        let matchers: [Cuckoo.ParameterMatcher<(UObject)>] = [wrap(matchable: o) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockObjectList.self, method: "append(_: UObject)", parameterMatchers: matchers))
+	    }
+	    
+	}
+
+	 struct __VerificationProxy_ObjectList: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	    
+	    var table: Cuckoo.VerifyProperty<[UObject]> {
+	        return .init(manager: cuckoo_manager, name: "table", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	
+	    
+	    @discardableResult
+	    func append<M1: Cuckoo.Matchable>(_ o: M1) -> Cuckoo.__DoNotUse<(UObject), Void> where M1.MatchedType == UObject {
+	        let matchers: [Cuckoo.ParameterMatcher<(UObject)>] = [wrap(matchable: o) { $0 }]
+	        return cuckoo_manager.verify("append(_: UObject)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	}
+}
+
+ class ObjectListStub: ObjectList {
+        
+    
+    
+     override var table: [UObject] {
+        get {
+            return DefaultValueRegistry.defaultValue(for: ([UObject]).self)
+        }
+        
+        set { }
+        
+    }
+    
+
+    
+
+    
+    
+    
+     override func append(_ o: UObject)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+}
+
+
+
+ class MockCommandList: CommandList, Cuckoo.ClassMock {
+    
+     typealias MocksType = CommandList
+    
+     typealias Stubbing = __StubbingProxy_CommandList
+     typealias Verification = __VerificationProxy_CommandList
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: CommandList?
+
+     func enableDefaultImplementation(_ stub: CommandList) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+    
+    
+     override var table: [Command.Type] {
+        get {
+            return cuckoo_manager.getter("table",
+                superclassCall:
+                    
+                    super.table
+                    ,
+                defaultCall: __defaultImplStub!.table)
+        }
+        
+        set {
+            cuckoo_manager.setter("table",
+                value: newValue,
+                superclassCall:
+                    
+                    super.table = newValue
+                    ,
+                defaultCall: __defaultImplStub!.table = newValue)
+        }
+        
+    }
+    
+
+    
+
+    
+    
+    
+     override func append(_ command: Command.Type)  {
+        
+    return cuckoo_manager.call("append(_: Command.Type)",
+            parameters: (command),
+            escapingParameters: (command),
+            superclassCall:
+                
+                super.append(command)
+                ,
+            defaultCall: __defaultImplStub!.append(command))
+        
+    }
+    
+
+	 struct __StubbingProxy_CommandList: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    var table: Cuckoo.ClassToBeStubbedProperty<MockCommandList, [Command.Type]> {
+	        return .init(manager: cuckoo_manager, name: "table")
+	    }
+	    
+	    
+	    func append<M1: Cuckoo.Matchable>(_ command: M1) -> Cuckoo.ClassStubNoReturnFunction<(Command.Type)> where M1.MatchedType == Command.Type {
+	        let matchers: [Cuckoo.ParameterMatcher<(Command.Type)>] = [wrap(matchable: command) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockCommandList.self, method: "append(_: Command.Type)", parameterMatchers: matchers))
+	    }
+	    
+	}
+
+	 struct __VerificationProxy_CommandList: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	    
+	    var table: Cuckoo.VerifyProperty<[Command.Type]> {
+	        return .init(manager: cuckoo_manager, name: "table", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	
+	    
+	    @discardableResult
+	    func append<M1: Cuckoo.Matchable>(_ command: M1) -> Cuckoo.__DoNotUse<(Command.Type), Void> where M1.MatchedType == Command.Type {
+	        let matchers: [Cuckoo.ParameterMatcher<(Command.Type)>] = [wrap(matchable: command) { $0 }]
+	        return cuckoo_manager.verify("append(_: Command.Type)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	}
+}
+
+ class CommandListStub: CommandList {
+        
+    
+    
+     override var table: [Command.Type] {
+        get {
+            return DefaultValueRegistry.defaultValue(for: ([Command.Type]).self)
+        }
+        
+        set { }
+        
+    }
+    
+
+    
+
+    
+    
+    
+     override func append(_ command: Command.Type)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
 }
