@@ -18,17 +18,37 @@ class SolidCourseFrameworkTests: XCTestCase {
     
     var sut1: MockUObject!
     var sut2: MockUObject!
+    var dbFileRandFile = String()
+    
+    func generateRandomString(size: Int = 20) -> String {
+        let base = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        return String((0..<size).map { _ in base.randomElement()!})
+    }
 
     override func setUpWithError() throws {
         try super.setUpWithError()
         sut1 = MockUObject()
         sut2 = MockUObject()
-        GlobalRegister.register()
+        // new db file for every test
+        guard let dbFile = Bundle(for: type(of: self)).path(forResource: "db", ofType: "sqlite") else {
+            throw ErrorList.dbError
+        }
+        dbFileRandFile = dbFile.replacingOccurrences(of: "db.sqlite", with: "db\(generateRandomString()).sqlite")
+        if FileManager.default.fileExists(atPath: dbFileRandFile) {
+            try FileManager.default.removeItem(atPath: dbFileRandFile)
+        }
+        try FileManager.default.copyItem(atPath: dbFile, toPath: dbFileRandFile)
+        GlobalRegister.register(dbFile: dbFileRandFile)
+        let db: DBConnection = try IoC.resolve("DB")
+        _ = try db.write("DELETE FROM users WHERE 1")
     }
 
     override func tearDownWithError() throws {
         sut1 = nil
         sut2 = nil
+        if FileManager.default.fileExists(atPath: dbFileRandFile) {
+            try FileManager.default.removeItem(atPath: dbFileRandFile)
+        }
         try super.tearDownWithError()
     }
     
@@ -448,7 +468,7 @@ class SolidCourseFrameworkTests: XCTestCase {
                 XCTAssertEqual(propertyValue.value as! Int, 7)
             }
         }
-        let cmd: Command = try IoC.resolve("Command.MoveFuel", sut1!)
+        let cmd: Command = try IoC.resolve("Command.MoveFuel", sut1!, sut1!)
         XCTAssertNoThrow(try cmd.execute())
         verify(sut1).setProperty(propertyName: "FuelReserve", propertyValue: any())
     }
@@ -549,6 +569,66 @@ class SolidCourseFrameworkTests: XCTestCase {
             }
         }
         XCTAssertLessThan(threadQueue.queue.operationCount, 10)
+
+    func testDBConnection() throws {
+        let db: DBConnection = try IoC.resolve("DB")
+        var users = [[Any]]()
+        do {
+            _ = try db.write("DELETE FROM users WHERE username = ?? AND password = ??", "test", "test")
+            _ = try db.write("INSERT INTO users  (username, password) VALUES (??,??), (??,??)", "test", "test", "test", "test")
+            users = try db.read("SELECT * FROM users WHERE username = ?? AND password = ??", "test", "test")
+            _ = try db.write("DELETE FROM users WHERE username = ?? AND password = ??", "test", "test")
+        }
+        XCTAssertEqual(users.count, 2)
+    }
+    
+    func testUserManager() throws {
+        let origUser = UserAPIModel(id: 1, username: "test", password: "test")
+        let userManager: UserManager = try IoC.resolve("UserManager")
+        _ = try userManager.register(username: origUser.username!, password: origUser.password!)
+        guard let user = try userManager.get(id: Int(origUser.id!)) else {
+            XCTFail()
+            return
+        }
+        XCTAssertEqual(origUser.username, user.username)
+        XCTAssertEqual(origUser.password, user.password)
+    }
+
+    func testSetStartVelocityAndMove() throws {
+        stub(sut1) { mock in
+            when(mock.getProperty(propertyName: "Position")).thenReturn((value: simd_int2(5, 5), canChange: true))
+            when(mock.getProperty(propertyName: "Velocity")).thenReturn((value: simd_int2(0, 0), canChange: true))
+            when(mock.setProperty(propertyName: "Position", propertyValue: any())).then {
+                _, propertyValue in
+                XCTAssertEqual(propertyValue.value as? simd_int2, simd_int2(7, 5))
+            }
+            when(mock.setProperty(propertyName: "Velocity", propertyValue: any())).then {
+                when(mock.getProperty(propertyName: "Velocity")).thenReturn($1)
+            }
+        }
+        let cmd: Command = try IoC.resolve("Command.SetStartVelocityAndMove", sut1!, simd_int2(2, 0))
+        try cmd.execute()
+    }
+
+    func testInterpretCommand() throws {
+        stub(sut1) { mock in
+            when(mock.getProperty(propertyName: "Position")).thenReturn((value: simd_int2(2, 2), canChange: true))
+            when(mock.getProperty(propertyName: "Velocity")).thenReturn((value: simd_int2(0, 0), canChange: true))
+            when(mock.setProperty(propertyName: "Position", propertyValue: any())).then {
+                _, propertyValue in
+                XCTAssertEqual(propertyValue.value as? simd_int2, simd_int2(7, 7))
+            }
+            when(mock.setProperty(propertyName: "Velocity", propertyValue: any())).then {
+                _, propertyValue in
+                XCTAssertEqual(propertyValue.value as? simd_int2, simd_int2(5, 5))
+                when(mock.getProperty(propertyName: "Velocity")).thenReturn(propertyValue)
+            }
+        }
+        let objectList = try! (IoC.resolve("Object.List") as ObjectList)
+        objectList.append(sut1)
+        try InterpretCommand(objectId: 0, commandId: 7, args: "{\"startVelocity\":[5,5]}").execute()
+        verify(sut1).setProperty(propertyName: "Position", propertyValue: any())
+        verify(sut1).setProperty(propertyName: "Velocity", propertyValue: any())
     }
 }
 

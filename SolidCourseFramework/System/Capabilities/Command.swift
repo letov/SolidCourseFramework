@@ -115,3 +115,26 @@ class RotateChangeVelocityCommand: MacroCommand {
     }
 }
 
+class SetStartVelocityCommand: Command {
+    let m: MovableChangeVelocity
+    let startVelocity: simd_int2
+
+    init(m: MovableChangeVelocity, startVelocity: simd_int2) {
+        self.m = m
+        self.startVelocity = startVelocity
+    }
+    func execute() throws {
+        let velocity = try m.getVelocity()
+        let propertyValue = (value: startVelocity, canChange: velocity.canChange)
+        try m.setVelocity(velocity: propertyValue)
+    }
+}
+
+class SetStartVelocityAndMoveCommand: MacroCommand { 
+    init(m: MovableChangeVelocity, startVelocity: simd_int2) {
+        super.init(commands: [
+            SetStartVelocityCommand.init(m: m, startVelocity: startVelocity),
+            MoveCommand.init(m: m)
+        ])
+    }
+}

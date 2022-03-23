@@ -1,15 +1,15 @@
 import Foundation
 import simd
 
-class CommandRegister {
+class APIModelRegister {
     static func register() {
         do {
             let queue: Queue<Command> = try IoC.resolve("Queue.Command")
 {% for type in types.classes %}
-            queue.queue(try (IoC.register("Command.{{ type.name|replace:"Command","" }}") {
+            queue.queue(try (IoC.register("APIModel.{{ type.name }}") {
                 {{ type.name }}(
     {% for parameter in type.initializers.first.parameters %}
-                    {{ parameter.name }}: try IoC.resolve("Adapter", {{ parameter.typeName }}.self, $0[0]) as {{ parameter.typeName }}{% if not forloop.last%}, {% endif %}
+                    {{ parameter.name|replace:"`","" }}: $0[{{ forloop.counter0 }}]{% if parameter.typeName|hasPrefix:"Int" %} as! NSNumber{% endif %} as! {{ parameter.typeName }}{% if not forloop.last%}, {% endif %}
     {% endfor %}
                 )
             } as Command))
