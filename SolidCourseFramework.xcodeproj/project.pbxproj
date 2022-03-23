@@ -25,15 +25,16 @@
 		B270091F27D12DB40003960A /* GameApiDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270091C27D12DB40003960A /* GameApiDelegate.swift */; };
 		B270092027D12DB40003960A /* HelloApiDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270091D27D12DB40003960A /* HelloApiDelegate.swift */; };
 		B270092127D12DB40003960A /* UserApiDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270091E27D12DB40003960A /* UserApiDelegate.swift */; };
-		B270095127D12F6A0003960A /* UsersAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270094827D12F690003960A /* UsersAPIModel.swift */; };
-		B270095227D12F6A0003960A /* GameAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270094927D12F690003960A /* GameAPIModel.swift */; };
-		B270095327D12F6A0003960A /* InterpretCommandAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270094A27D12F690003960A /* InterpretCommandAPIModel.swift */; };
-		B270095427D12F6A0003960A /* UserAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270094B27D12F690003960A /* UserAPIModel.swift */; };
-		B270095527D12F6A0003960A /* CapabilitiesAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270094C27D12F690003960A /* CapabilitiesAPIModel.swift */; };
-		B270095627D12F6A0003960A /* JwtTokenAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270094D27D12F690003960A /* JwtTokenAPIModel.swift */; };
-		B270095727D12F6A0003960A /* ObjectsAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270094E27D12F690003960A /* ObjectsAPIModel.swift */; };
-		B270095827D12F6A0003960A /* CapabilityAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270094F27D12F690003960A /* CapabilityAPIModel.swift */; };
-		B270095927D12F6A0003960A /* ObjectAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270095027D12F6A0003960A /* ObjectAPIModel.swift */; };
+		B270098227D376880003960A /* key.pem in Resources */ = {isa = PBXBuildFile; fileRef = B270098027D376880003960A /* key.pem */; };
+		B270098327D376880003960A /* public.pem in Resources */ = {isa = PBXBuildFile; fileRef = B270098127D376880003960A /* public.pem */; };
+		B270098427D379890003960A /* key.pem in Resources */ = {isa = PBXBuildFile; fileRef = B270098027D376880003960A /* key.pem */; };
+		B270098527D379890003960A /* public.pem in Resources */ = {isa = PBXBuildFile; fileRef = B270098127D376880003960A /* public.pem */; };
+		B270099A27D39BD60003960A /* JwtTokenAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270099427D39BD50003960A /* JwtTokenAPIModel.swift */; };
+		B270099B27D39BD60003960A /* InterpretCommandAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270099527D39BD50003960A /* InterpretCommandAPIModel.swift */; };
+		B270099C27D39BD60003960A /* UsersAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270099627D39BD60003960A /* UsersAPIModel.swift */; };
+		B270099D27D39BD60003960A /* GameAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270099727D39BD60003960A /* GameAPIModel.swift */; };
+		B270099E27D39BD60003960A /* UserAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270099827D39BD60003960A /* UserAPIModel.swift */; };
+		B270099F27D39BD60003960A /* UserIdsAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270099927D39BD60003960A /* UserIdsAPIModel.swift */; };
 		B27EC7072773689E00BD3E4D /* SolidCourseFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B27EC6FE2773689E00BD3E4D /* SolidCourseFramework.framework */; };
 		B27EC70C2773689E00BD3E4D /* SolidCourseFrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27EC70B2773689E00BD3E4D /* SolidCourseFrameworkTests.swift */; };
 		B27EC717277368F600BD3E4D /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27EC716277368F600BD3E4D /* Common.swift */; };
@@ -80,15 +81,14 @@
 		B270091C27D12DB40003960A /* GameApiDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameApiDelegate.swift; sourceTree = "<group>"; };
 		B270091D27D12DB40003960A /* HelloApiDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelloApiDelegate.swift; sourceTree = "<group>"; };
 		B270091E27D12DB40003960A /* UserApiDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserApiDelegate.swift; sourceTree = "<group>"; };
-		B270094827D12F690003960A /* UsersAPIModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersAPIModel.swift; sourceTree = "<group>"; };
-		B270094927D12F690003960A /* GameAPIModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameAPIModel.swift; sourceTree = "<group>"; };
-		B270094A27D12F690003960A /* InterpretCommandAPIModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterpretCommandAPIModel.swift; sourceTree = "<group>"; };
-		B270094B27D12F690003960A /* UserAPIModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAPIModel.swift; sourceTree = "<group>"; };
-		B270094C27D12F690003960A /* CapabilitiesAPIModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapabilitiesAPIModel.swift; sourceTree = "<group>"; };
-		B270094D27D12F690003960A /* JwtTokenAPIModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JwtTokenAPIModel.swift; sourceTree = "<group>"; };
-		B270094E27D12F690003960A /* ObjectsAPIModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectsAPIModel.swift; sourceTree = "<group>"; };
-		B270094F27D12F690003960A /* CapabilityAPIModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapabilityAPIModel.swift; sourceTree = "<group>"; };
-		B270095027D12F6A0003960A /* ObjectAPIModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectAPIModel.swift; sourceTree = "<group>"; };
+		B270098027D376880003960A /* key.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = key.pem; sourceTree = "<group>"; };
+		B270098127D376880003960A /* public.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = public.pem; sourceTree = "<group>"; };
+		B270099427D39BD50003960A /* JwtTokenAPIModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JwtTokenAPIModel.swift; sourceTree = "<group>"; };
+		B270099527D39BD50003960A /* InterpretCommandAPIModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterpretCommandAPIModel.swift; sourceTree = "<group>"; };
+		B270099627D39BD60003960A /* UsersAPIModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersAPIModel.swift; sourceTree = "<group>"; };
+		B270099727D39BD60003960A /* GameAPIModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameAPIModel.swift; sourceTree = "<group>"; };
+		B270099827D39BD60003960A /* UserAPIModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAPIModel.swift; sourceTree = "<group>"; };
+		B270099927D39BD60003960A /* UserIdsAPIModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserIdsAPIModel.swift; sourceTree = "<group>"; };
 		B27EC6FE2773689E00BD3E4D /* SolidCourseFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SolidCourseFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B27EC7062773689E00BD3E4D /* SolidCourseFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SolidCourseFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B27EC70B2773689E00BD3E4D /* SolidCourseFrameworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolidCourseFrameworkTests.swift; sourceTree = "<group>"; };
@@ -170,6 +170,8 @@
 		B2332E3527C545D9006E0439 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				B270098027D376880003960A /* key.pem */,
+				B270098127D376880003960A /* public.pem */,
 				B2332E3627C545D9006E0439 /* db.sqlite */,
 			);
 			path = Data;
@@ -281,15 +283,12 @@
 		B2A3220127C93CC80051144F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B270094C27D12F690003960A /* CapabilitiesAPIModel.swift */,
-				B270094F27D12F690003960A /* CapabilityAPIModel.swift */,
-				B270094927D12F690003960A /* GameAPIModel.swift */,
-				B270094A27D12F690003960A /* InterpretCommandAPIModel.swift */,
-				B270094D27D12F690003960A /* JwtTokenAPIModel.swift */,
-				B270095027D12F6A0003960A /* ObjectAPIModel.swift */,
-				B270094E27D12F690003960A /* ObjectsAPIModel.swift */,
-				B270094B27D12F690003960A /* UserAPIModel.swift */,
-				B270094827D12F690003960A /* UsersAPIModel.swift */,
+				B270099727D39BD60003960A /* GameAPIModel.swift */,
+				B270099527D39BD50003960A /* InterpretCommandAPIModel.swift */,
+				B270099427D39BD50003960A /* JwtTokenAPIModel.swift */,
+				B270099827D39BD60003960A /* UserAPIModel.swift */,
+				B270099927D39BD60003960A /* UserIdsAPIModel.swift */,
+				B270099627D39BD60003960A /* UsersAPIModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -418,6 +417,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B270098327D376880003960A /* public.pem in Resources */,
+				B270098227D376880003960A /* key.pem in Resources */,
 				B2BA785327C91B5B003763F2 /* sourcery.yml in Resources */,
 				B2BA785927C91E9F003763F2 /* adapter_generator.stencil in Resources */,
 				B2A321A527C9200A0051144F /* api_model_to_IoC.stencil in Resources */,
@@ -432,6 +433,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B270098427D379890003960A /* key.pem in Resources */,
+				B270098527D379890003960A /* public.pem in Resources */,
 				B2332E3A27C545E5006E0439 /* db.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -541,31 +544,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B270095327D12F6A0003960A /* InterpretCommandAPIModel.swift in Sources */,
 				B2A3221927C93D6E0051144F /* UserManager.swift in Sources */,
+				B270099A27D39BD60003960A /* JwtTokenAPIModel.swift in Sources */,
+				B270099E27D39BD60003960A /* UserAPIModel.swift in Sources */,
 				B2A321A927C9206B0051144F /* adapter_generator.generated.swift in Sources */,
 				B270091527CFCF9A0003960A /* InterpretCommand.swift in Sources */,
 				B270091F27D12DB40003960A /* GameApiDelegate.swift in Sources */,
-				B270095727D12F6A0003960A /* ObjectsAPIModel.swift in Sources */,
-				B270095527D12F6A0003960A /* CapabilitiesAPIModel.swift in Sources */,
+				B270099C27D39BD60003960A /* UsersAPIModel.swift in Sources */,
 				B2A321AC27C921C60051144F /* api_model_to_IoC.generated.swift in Sources */,
+				B270099F27D39BD60003960A /* UserIdsAPIModel.swift in Sources */,
 				B27EC717277368F600BD3E4D /* Common.swift in Sources */,
 				B270091B27D122840003960A /* command_json_args_to_IoC.generated.swift in Sources */,
 				B24FBA7D279D8E19004B6E09 /* Abstract.swift in Sources */,
 				B2A321AA27C9206B0051144F /* command_to_IoC.generated.swift in Sources */,
-				B270095827D12F6A0003960A /* CapabilityAPIModel.swift in Sources */,
 				B2332E3927C545DA006E0439 /* DB.swift in Sources */,
-				B270095227D12F6A0003960A /* GameAPIModel.swift in Sources */,
 				B208636E279C80EE0000F0C6 /* IoC.swift in Sources */,
-				B270095627D12F6A0003960A /* JwtTokenAPIModel.swift in Sources */,
-				B270095127D12F6A0003960A /* UsersAPIModel.swift in Sources */,
 				B2086372279C83800000F0C6 /* ErrorHandler.swift in Sources */,
-				B270095427D12F6A0003960A /* UserAPIModel.swift in Sources */,
 				B208636F279C80F00000F0C6 /* Command.swift in Sources */,
+				B270099B27D39BD60003960A /* InterpretCommandAPIModel.swift in Sources */,
 				B270092027D12DB40003960A /* HelloApiDelegate.swift in Sources */,
 				B2A3221727C93CC80051144F /* routes.swift in Sources */,
+				B270099D27D39BD60003960A /* GameAPIModel.swift in Sources */,
 				B2A321EA27C92AEA0051144F /* APIController.swift in Sources */,
-				B270095927D12F6A0003960A /* ObjectAPIModel.swift in Sources */,
 				B270092127D12DB40003960A /* UserApiDelegate.swift in Sources */,
 				B2086370279C80F20000F0C6 /* Queue.swift in Sources */,
 				B2086374279C86090000F0C6 /* Helper.swift in Sources */,

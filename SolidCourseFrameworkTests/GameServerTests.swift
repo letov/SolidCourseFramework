@@ -11,6 +11,7 @@ import XCTVapor
 import XCTest
 import Cuckoo
 import simd
+import JWT
 
 final class GameServerTests: XCTestCase {
     
@@ -25,8 +26,8 @@ final class GameServerTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         sut = Application(.testing)
-        sut.jwt.signers.use(.hs256(key: "secret"))
-        try GameServerRoutes.routes(sut)
+        try GameServerConfig.routes(sut)
+        try GameServerConfig.signerHS(sut)
         // new db file for every test
         guard let dbFile = Bundle(for: type(of: self)).path(forResource: "db", ofType: "sqlite") else {
             throw ErrorList.dbError
@@ -42,7 +43,9 @@ final class GameServerTests: XCTestCase {
     }
 
     override func tearDownWithError() throws {
-        sut.shutdown()
+        if sut != nil {
+            sut.shutdown()
+        }
         sut = nil
         if FileManager.default.fileExists(atPath: dbFileRandFile) {
             try FileManager.default.removeItem(atPath: dbFileRandFile)
@@ -51,11 +54,11 @@ final class GameServerTests: XCTestCase {
     }
     
     /*func testServerBySwagger() throws {
-        let gameServer = try GameServer()
+        let realGameServer = try GameServer()
         defer {
-            gameServer.shutdown()
+     realGameServer.shutdown()
         }
-        try gameServer.run()
+        try realGameServer.run()
         while true {
             
         }
@@ -63,11 +66,11 @@ final class GameServerTests: XCTestCase {
     
     func testRealServer() throws {
         Thread{
-            let gameServer = try! GameServer()
+            let realGameServer = try! GameServer()
             defer {
-                gameServer.shutdown()
+                realGameServer.shutdown()
             }
-            try! gameServer.run()
+            try! realGameServer.run()
         }.start()
         var request = URLRequest(url: URL(string: "http://127.0.0.1:8080/hello")!);
         request.httpMethod = "GET"
@@ -89,7 +92,7 @@ final class GameServerTests: XCTestCase {
     }
 
     func testUserAPIModel() throws {
-        let origUser = UserAPIModel(id: 0, username: "test", password: "test")
+        let origUser = UserAPIModel(id: 1, username: "test", password: "test")
         try sut.test(.POST, "/user/register", beforeRequest: { req in
             try req.content.encode(origUser)
         }, afterResponse: { res in
@@ -100,7 +103,9 @@ final class GameServerTests: XCTestCase {
             }, afterResponse: { res in
                 XCTAssertEqual(res.status, .ok)
                 let token = try res.content.decode(JwtTokenAPIModel.self)
-                XCTAssertNotEqual(token.token, "")
+                let signer = JWTSigner.hs256(key: GameServerConfig.hsSecret)
+                let payload = try signer.verify(token.token!, as: JWTToken.self) as JWTToken
+                XCTAssertEqual(payload.userId, 1)
             })
         })
     }
@@ -146,6 +151,89 @@ final class GameServerTests: XCTestCase {
             verify(obj, never()).setProperty(propertyName: "Position", propertyValue: any())
             try queue.dequeue()?.execute()
             verify(obj).setProperty(propertyName: "Position", propertyValue: any())
+        })
+    }
+    
+    // openssl genrsa -out key.pem ; openssl rsa -in key.pem -outform PEM -pubout -out public.pem
+    func getRSAKeys() -> (String, String, String) {
+        let privateKeyFile = Bundle(for: type(of: self)).path(forResource: "key", ofType: "pem")
+        let publicKeyFile = Bundle(for: type(of: self)).path(forResource: "public", ofType: "pem")
+        let rsaPrivateKey = try! String(contentsOfFile: privateKeyFile!)
+        let rsaPublicKey = try! String(contentsOfFile: publicKeyFile!)
+        let fakeRsaPublicKey = """
+        -----BEGIN PUBLIC KEY-----
+        MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC0cOtPjzABybjzm3fCg1aCYwnx
+        PmjXpbCkecAWLj/CcDWEcuTZkYDiSG0zgglbbbhcV0vJQDWSv60tnlA3cjSYutAv
+        7FPo5Cq8FkvrdDzeacwRSxYuIq1LtYnd6I30qNaNthntjvbqyMmBulJ1mzLI+Xg/
+        aX4rbSL49Z3dAQn8vQIDAQAB
+        -----END PUBLIC KEY-----
+        """
+        return (rsaPrivateKey, rsaPublicKey, fakeRsaPublicKey)
+    }
+    
+    func testRSA() throws {
+        let (rsaPrivateKey, rsaPublicKey, _) = getRSAKeys()
+        let privateSigner = try JWTSigner.rs256(key: .private(pem: rsaPrivateKey))
+        let publicSigner = try JWTSigner.rs256(key: .public(pem: rsaPublicKey))
+        let payload = JWTToken(userId: 1)
+        let privateSigned = try privateSigner.sign(payload)
+        let userId1 = (try privateSigner.verify(privateSigned, as: JWTToken.self) as JWTToken).userId
+        let userId2 = (try publicSigner.verify(privateSigned, as: JWTToken.self) as JWTToken).userId
+        XCTAssertEqual(userId1, 1)
+        XCTAssertEqual(userId2, 1)
+    }
+
+    func testAuthMicroservice() throws {
+        let (rsaPrivateKey, rsaPublicKey, fakeRsaPublicKey) = getRSAKeys()
+        sut.shutdown()
+        sut = nil
+        sut = Application(.testing)
+        try GameServerConfig.routes(sut)
+        try GameServerConfig.signerPrivatePSA(sut, rsaPrivateKey)
+        let (_, tokenFromAuthMicroservice) = getUserAndToken()
+        sut.shutdown()
+        sut = nil
+        sut = Application(.testing)
+        try GameServerConfig.routes(sut)
+        try GameServerConfig.signerPublicRSA(sut, rsaPublicKey)
+        try sut.test(.GET, "/user/get/1", beforeRequest: { req in
+            req.headers.bearerAuthorization = BearerAuthorization(token: tokenFromAuthMicroservice)
+        }, afterResponse: { res in
+            XCTAssertEqual(res.status, .ok)
+        })
+        sut.shutdown()
+        sut = nil
+        sut = Application(.testing)
+        try GameServerConfig.routes(sut)
+        try GameServerConfig.signerPublicRSA(sut, fakeRsaPublicKey)
+        try sut.test(.GET, "/user/get/1", beforeRequest: { req in
+            req.headers.bearerAuthorization = BearerAuthorization(token: tokenFromAuthMicroservice)
+        }, afterResponse: { res in
+            XCTAssertEqual(res.status, .unauthorized)
+        })
+    }
+    
+    func testNewGame() throws {
+        let db: DBConnection = try IoC.resolve("DB")
+        _ = try db.write("INSERT INTO users  (username, password) VALUES (??,??), (??,??), (??,??)", "t", "t", "t", "t", "t", "t")
+        let (_, token) = getUserAndToken()
+        try sut.test(.POST, "/game/new", beforeRequest: { req in
+            req.headers.bearerAuthorization = BearerAuthorization(token: token)
+            let userIds = [1,2]
+            try req.content.encode(userIds)
+        }, afterResponse: { res in
+            XCTAssertEqual(res.status, .ok)
+            let gameId = try res.content.decode(GameAPIModel.self).id!
+            XCTAssertEqual(gameId, 0)
+            try sut.test(.GET, "/game/token/\(gameId)", beforeRequest: { req in
+                req.headers.bearerAuthorization = BearerAuthorization(token: token)
+            }, afterResponse: { res in
+                XCTAssertEqual(res.status, .ok)
+                let gameToken = try res.content.decode(JwtTokenAPIModel.self).token
+                let signer = JWTSigner.hs256(key: GameServerConfig.hsSecret)
+                let payload = try signer.verify(gameToken!, as: JWTToken.self) as JWTToken
+                XCTAssertEqual(payload.gameId, 0)
+            })
         })
     }
 }

@@ -87,6 +87,37 @@ class CommandList {
     }
 }
 
+class Game {
+    var userIds: Set<Int>
+    func hasUser(userId: Int) -> Bool {
+        return userIds.contains(userId)
+    }
+    init(userIds: [Int]) {
+        self.userIds = Set<Int>(userIds)
+    }
+}
+
+class GameList {
+    var table = [Int: Game]()
+    subscript(_ gameId: Int) -> Game? {
+        get {
+            return table[gameId]
+        }
+    }
+    var freeGameId: Int {
+        var i = 0
+        while table[i] != nil {
+            i += 1
+        }
+        return i
+    }
+    func add(_ game: Game) -> Int {
+        let id = freeGameId
+        table[id] = game
+        return id
+    }
+}
+
 class GlobalRegister {
     static func register(dbFile: String) {
         do {
@@ -101,6 +132,7 @@ class GlobalRegister {
             let userManager = try UserManager()
             let objectList = ObjectList()
             let commandList = CommandList()
+            let gameList = GameList()
             try (IoC.register("Queue.Command") { _ in
                 queue
             } as Command).execute()
@@ -130,6 +162,9 @@ class GlobalRegister {
             } as Command))
             queue.queue(try (IoC.register("Object.List") { _ in
                 objectList
+            } as Command))
+            queue.queue(try (IoC.register("Game.List") { _ in
+                gameList
             } as Command))
             queue.queue(try (IoC.register("Adapter") {
                 let adapterList: AdapterList = try IoC.resolve("Adapter.List")

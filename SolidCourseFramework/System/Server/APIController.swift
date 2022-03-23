@@ -19,7 +19,7 @@ class SecurityMiddleware: AuthenticationMiddleware {
     func respond(to request: Request, chainingTo next: Responder) -> EventLoopFuture<Response> {
         do {
             let token = try request.jwt.verify(as: authType())
-            request.auth.login(JWTToken(userId: token.userId))
+            request.auth.login(JWTToken(userId: token.userId, gameId: token.gameId))
         } catch {
             return request.eventLoop.makeFailedFuture(Abort(.unauthorized))
         }
@@ -31,8 +31,10 @@ struct JWTToken: Authenticatable, JWTPayload {
     var expirationTime: TimeInterval = 60 * 15 * 100
     var expiration: ExpirationClaim
     var userId: Int64
-    init(userId: Int64) {
+    var gameId: Int64
+    init(userId: Int64, gameId: Int64 = -1) {
         self.userId = userId
+        self.gameId = gameId
         self.expiration = ExpirationClaim(value: Date().addingTimeInterval(expirationTime))
     }
     func verify(using signer: JWTSigner) throws {
@@ -91,19 +93,32 @@ class UserApi: UserApiDelegate {
 class GameApi: GameApiDelegate {
     typealias AuthType = JWTToken
     
-    func gameCapabilitiesGet(with req: Request, asAuthenticated user: AuthType) throws -> EventLoopFuture<gameCapabilitiesGetResponse> {
-        let adapterList: AdapterList = try IoC.resolve("Adapter.List")
-        let capabilities = adapterList
-            .getAll()
-            .enumerated()
-            .reduce(into: CapabilitiesAPIModel()) {
-                $0.append(CapabilityAPIModel(id: Int64($1.offset), name: $1.element))
+    func gameNewPost(with req: Request, asAuthenticated user: AuthType, body: [Int64]) throws -> EventLoopFuture<gameNewPostResponse> {
+        let userManager: UserManager = try IoC.resolve("UserManager")
+        for userId in body {
+            if try userManager.get(id: Int(userId)) == nil {
+                return req.eventLoop.makeSucceededFuture(gameNewPostResponse.http400)
             }
-        return req.eventLoop.makeSucceededFuture(gameCapabilitiesGetResponse.http200(capabilities))
+        }
+        var userIds = body
+        userIds.append(user.userId)
+        let game = Game(userIds: userIds.map { Int($0) } )
+        let gameList: GameList = try IoC.resolve("Game.List")
+        let gameId = gameList.add(game)
+        return req.eventLoop.makeSucceededFuture(gameNewPostResponse.http200(GameAPIModel(id: Int64(gameId))))
     }
     
-    func gameNewGet(with req: Request, asAuthenticated user: AuthType) throws -> EventLoopFuture<gameNewGetResponse> {
-        return req.eventLoop.makeSucceededFuture(gameNewGetResponse.http400)
+    func gameTokenIdGet(with req: Request, asAuthenticated user: AuthType, id: Int64) throws -> EventLoopFuture<gameTokenIdGetResponse> {
+        let gameList: GameList = try IoC.resolve("Game.List")
+        guard let game = gameList[Int(id)] else {
+            return req.eventLoop.makeSucceededFuture(gameTokenIdGetResponse.http400)
+        }
+        guard game.hasUser(userId: Int(user.userId)) else {
+            return req.eventLoop.makeSucceededFuture(gameTokenIdGetResponse.http400)
+        }
+        let payload = JWTToken(userId: user.userId, gameId: id)
+        let token = try req.jwt.sign(payload)
+        return req.eventLoop.makeSucceededFuture(gameTokenIdGetResponse.http200(JwtTokenAPIModel(token: token)))
     }
     
     func gameCommandPut(with req: Request, asAuthenticated user: AuthType, body: InterpretCommandAPIModel) throws -> EventLoopFuture<gameCommandPutResponse> {
