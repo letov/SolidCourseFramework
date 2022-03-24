@@ -51,6 +51,7 @@
 		B2A3221927C93D6E0051144F /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A3221827C93D6E0051144F /* UserManager.swift */; };
 		B2A3223827CCF4310051144F /* JWT in Frameworks */ = {isa = PBXBuildFile; productRef = B2A3223727CCF4310051144F /* JWT */; };
 		B2A797A1279DA9D000F713D8 /* GeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A797A0279DA9D000F713D8 /* GeneratedMocks.swift */; };
+		B2AFC13727EC619C00D0F1CB /* ThreadQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2AFC13627EC619C00D0F1CB /* ThreadQueue.swift */; };
 		B2BA785327C91B5B003763F2 /* sourcery.yml in Resources */ = {isa = PBXBuildFile; fileRef = B2BA785227C91B5B003763F2 /* sourcery.yml */; };
 		B2BA785927C91E9F003763F2 /* adapter_generator.stencil in Resources */ = {isa = PBXBuildFile; fileRef = B2BA785627C91E9F003763F2 /* adapter_generator.stencil */; };
 		CA6C9408D98E2239F9E5F9E5 /* Pods_SolidCourseFramework_SolidCourseFrameworkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F67A5748D34A3A9E65EED6B7 /* Pods_SolidCourseFramework_SolidCourseFrameworkTests.framework */; };
@@ -105,6 +106,7 @@
 		B2A3220A27C93CC80051144F /* routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = routes.swift; sourceTree = "<group>"; };
 		B2A3221827C93D6E0051144F /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		B2A797A0279DA9D000F713D8 /* GeneratedMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedMocks.swift; sourceTree = "<group>"; };
+		B2AFC13627EC619C00D0F1CB /* ThreadQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadQueue.swift; sourceTree = "<group>"; };
 		B2B4F96E279C801B001E0F15 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 		B2B4F970279C8033001E0F15 /* IoC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IoC.swift; sourceTree = "<group>"; };
 		B2B4F972279C804E001E0F15 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				B27EC716277368F600BD3E4D /* Common.swift */,
 				B2A3221827C93D6E0051144F /* UserManager.swift */,
 				B270091427CFCF9A0003960A /* InterpretCommand.swift */,
+				B2AFC13627EC619C00D0F1CB /* ThreadQueue.swift */,
 			);
 			path = System;
 			sourceTree = "<group>";
@@ -570,6 +573,7 @@
 				B2086370279C80F20000F0C6 /* Queue.swift in Sources */,
 				B2086374279C86090000F0C6 /* Helper.swift in Sources */,
 				B2A321AE27C922D70051144F /* GameServer.swift in Sources */,
+				B2AFC13727EC619C00D0F1CB /* ThreadQueue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

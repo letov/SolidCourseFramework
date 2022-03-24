@@ -566,5 +566,79 @@ class SolidCourseFrameworkTests: XCTestCase {
         verify(sut1).setProperty(propertyName: "Position", propertyValue: any())
         verify(sut1).setProperty(propertyName: "Velocity", propertyValue: any())
     }
+    
+    func fillStartCommand(start: @escaping () -> ()) -> Command {
+        class MoveCommandStart: Command  {
+            let m: MovableStartFinishAdapter
+            init(m: MovableStartFinishAdapter) {
+                self.m = m
+            }
+            func execute() throws {
+                m.start()
+            }
+        }
+        let adapter: MovableStartFinishAdapter = try! IoC.resolve("Adapter", MovableStartFinish.self, sut1!)
+        adapter.setAdditionMethods([start, { }])
+        return MoveCommandStart(m: adapter)
+    }
+    
+    func fillThreadQueue(command: Command, count: Int) -> ThreadQueue {
+        let commandQueue = Queue<Command>()
+        let threadQueue = ThreadQueue()
+        for _ in 0..<count {
+            commandQueue.queue(command)
+        }
+        while !commandQueue.isEmpty() {
+            threadQueue.add(command: commandQueue.dequeue()!)
+        }
+        return threadQueue
+    }
+    
+    func testMultithreadStart() throws {
+        var cnt = 0
+        let ttlCnt = 1000
+        let command = fillStartCommand(start: {
+            cnt += 1
+        })
+        let threadQueue = fillThreadQueue(command: command, count: ttlCnt)
+        XCTAssertEqual(threadQueue.queue.operationCount, ttlCnt)
+        threadQueue.add(command: StartQueue())
+        XCTAssertGreaterThan(threadQueue.queue.operationCount, 0)
+        while cnt < ttlCnt {
+        }
+        XCTAssertLessThan(threadQueue.queue.operationCount, 10)
+    }
+    
+    /*func testMultithreadHardStop() throws {
+        var cnt = 0
+        let ttlCnt = 1000
+        let command = fillStartCommand(start: {
+            cnt += 1
+        })
+        let threadQueue = fillThreadQueue(command: command, count: ttlCnt)
+        threadQueue.add(command: StartQueue())
+        while cnt < ttlCnt / 2 {
+        }
+        threadQueue.add(command: HardStopQueue())
+        let eps = Int(Double(ttlCnt) * 0.3)
+        XCTAssertLessThan(cnt, (ttlCnt / 2) + eps)
+        XCTAssertGreaterThan(cnt, (ttlCnt / 2) - eps)
+    }*/
+    
+    func testMultithreadSoftStop() throws {
+        var cnt = 0
+        let ttlCnt = 1000
+        let command = fillStartCommand(start: {
+            cnt += 1
+        })
+        let threadQueue = fillThreadQueue(command: command, count: ttlCnt)
+        threadQueue.add(command: StartQueue())
+        while cnt < ttlCnt {
+            if cnt == ttlCnt / 2 {
+                threadQueue.add(command: SoftStopQueue())
+            }
+        }
+        XCTAssertLessThan(threadQueue.queue.operationCount, 10)
+    }
 }
 

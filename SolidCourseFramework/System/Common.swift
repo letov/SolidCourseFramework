@@ -173,6 +173,9 @@ class GlobalRegister {
             queue.queue(try (IoC.register("UserManager") { _ in
                 userManager
             } as Command))
+            queue.queue(try (IoC.register("ThreadQueue") {_ in
+                ThreadQueue()
+            } as Command))
             while !queue.isEmpty() {
                 try queue.dequeue()!.execute()
             }
