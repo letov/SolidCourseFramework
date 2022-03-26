@@ -640,5 +640,29 @@ class SolidCourseFrameworkTests: XCTestCase {
         }
         XCTAssertLessThan(threadQueue.queue.operationCount, 10)
     }
+    
+    func fillThreadQueueContext(command: Command, count: Int) -> ThreadQueueContext {
+        let commandQueue = Queue<Command>()
+        let threadQueue = ThreadQueueContext()
+        for _ in 0..<count {
+            commandQueue.queue(command) 
+        }
+        while !commandQueue.isEmpty() {
+            threadQueue.add(command: commandQueue.dequeue()!)
+        }
+        return threadQueue
+    }
+    
+    func testThreadQueueContext() throws {
+        var cnt = 0
+        let ttlCnt = 1000
+        let command = fillStartCommand(start: {
+            cnt += 1
+        })
+        let threadQueueContext = fillThreadQueueContext(command: command, count: ttlCnt)
+        XCTAssertTrue(threadQueueContext.state is ThreadQueueStateReady)
+        threadQueueContext.add(command: MoveToQueue(toQueue: "ThreadQueueContextDummy"))
+        XCTAssertTrue(threadQueueContext.state is ThreadQueueMoveToState)
+    }
 }
 
