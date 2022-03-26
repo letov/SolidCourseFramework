@@ -176,6 +176,33 @@ class GlobalRegister {
             queue.queue(try (IoC.register("ThreadQueue") {_ in
                 ThreadQueue()
             } as Command))
+            queue.queue(try (IoC.register("ThreadQueue.isHardStopQueue") {
+                $0[0] is HardStopQueue
+            } as Command))
+            queue.queue(try (IoC.register("ThreadQueue.isSoftStopQueue") {
+                $0[0] is SoftStopQueue
+            } as Command))
+            queue.queue(try (IoC.register("ThreadQueue.isStartQueue") {
+                $0[0] is StartQueue
+            } as Command))
+            queue.queue(try (IoC.register("ThreadQueue.isPauseQueue") {
+                $0[0] is PauseQueue
+            } as Command))
+            queue.queue(try (IoC.register("ThreadQueue.isMoveToQueue") {
+                $0[0] is MoveToQueue
+            } as Command))
+            queue.queue(try (IoC.register("ThreadQueue.isRunQueue") {
+                $0[0] is RunQueue
+            } as Command))
+            queue.queue(try (IoC.register("ThreadQueueState.Ready") {
+                ThreadQueueStateReady(context: $0[0] as! ThreadQueueContext)
+            } as Command))
+            queue.queue(try (IoC.register("ThreadQueueState.MoveTo") {
+                ThreadQueueMoveToState(context: $0[0] as! ThreadQueueContext)
+            } as Command))
+            queue.queue(try (IoC.register("ThreadQueueContextDummy") {_ in
+                ThreadQueueContext()
+            } as Command))
             while !queue.isEmpty() {
                 try queue.dequeue()!.execute()
             }
