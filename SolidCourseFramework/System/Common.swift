@@ -75,6 +75,23 @@ class ObjectList {
     }
 }
 
+class UserObjectList {
+    var table = Dictionary<Int, [Int]>()
+    subscript(_ userId: Int) -> [Int]? {
+        get {
+            return table[userId]
+        }
+    }
+    func append(userId: Int, oid: Int) {
+        if nil != table[userId] {
+            table[userId]?.append(oid)
+        } else {
+            table[userId] = [oid]
+        }
+        
+    }
+}
+
 class CommandList {
     var table = [Command.Type]()
     subscript(_ commandId: Int) -> Command.Type? {
@@ -131,8 +148,11 @@ class GlobalRegister {
             let adapterList = AdapterList()
             let userManager = try UserManager()
             let objectList = ObjectList()
+            let userObjectList = UserObjectList()
             let commandList = CommandList()
             let gameList = GameList()
+            let area10 = Area(width: 100, height: 100, xCount: 10, yCount: 10)
+            let area5 = Area(width: 100, height: 100, xCount: 5, yCount: 5)
             try (IoC.register("Queue.Command") { _ in
                 queue
             } as Command).execute()
@@ -163,6 +183,9 @@ class GlobalRegister {
             queue.queue(try (IoC.register("Object.List") { _ in
                 objectList
             } as Command))
+            queue.queue(try (IoC.register("User.Object.List") { _ in
+                userObjectList
+            } as Command))
             queue.queue(try (IoC.register("Game.List") { _ in
                 gameList
             } as Command))
@@ -175,6 +198,12 @@ class GlobalRegister {
             } as Command))
             queue.queue(try (IoC.register("ThreadQueue") {_ in
                 ThreadQueue()
+            } as Command))
+            queue.queue(try (IoC.register("Area.10") {_ in
+                area10
+            } as Command))
+            queue.queue(try (IoC.register("Area.5") {_ in
+                area5
             } as Command))
             while !queue.isEmpty() {
                 try queue.dequeue()!.execute()

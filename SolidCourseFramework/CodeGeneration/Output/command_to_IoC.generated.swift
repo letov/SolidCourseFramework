@@ -21,10 +21,24 @@ class CommandRegister {
                     r: try IoC.resolve("Adapter", Rotable.self, $0[1]) as Rotable
                 )
             } as Command))
+            commandList.append(CheckCollision.self)
+            queue.queue(try (IoC.register("Command.CheckCollision") {
+                CheckCollision(
+                    m: try IoC.resolve("Adapter", Movable.self, $0[0]) as Movable, 
+                    objectId: $0[1] as! Int
+                )
+            } as Command))
             commandList.append(CheckFuelCommand.self)
             queue.queue(try (IoC.register("Command.CheckFuel") {
                 CheckFuelCommand(
                     f: try IoC.resolve("Adapter", Fuelable.self, $0[0]) as Fuelable
+                )
+            } as Command))
+            commandList.append(MoveCollisionCommand.self)
+            queue.queue(try (IoC.register("Command.MoveCollision") {
+                MoveCollisionCommand(
+                    m: try IoC.resolve("Adapter", Movable.self, $0[0]) as Movable, 
+                    objectId: $0[1] as! Int
                 )
             } as Command))
             commandList.append(MoveCommand.self)

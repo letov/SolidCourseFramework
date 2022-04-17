@@ -19,7 +19,6 @@
 		B2332E3927C545DA006E0439 /* DB.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2332E3727C545D9006E0439 /* DB.swift */; };
 		B2332E3A27C545E5006E0439 /* db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = B2332E3627C545D9006E0439 /* db.sqlite */; };
 		B24FBA7D279D8E19004B6E09 /* Abstract.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24FBA7C279D8E19004B6E09 /* Abstract.swift */; };
-		B270091527CFCF9A0003960A /* InterpretCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270091427CFCF9A0003960A /* InterpretCommand.swift */; };
 		B270091727D0F9070003960A /* command_json_args_to_IoC.stencil in Resources */ = {isa = PBXBuildFile; fileRef = B270091627D0F9060003960A /* command_json_args_to_IoC.stencil */; };
 		B270091B27D122840003960A /* command_json_args_to_IoC.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270091A27D122840003960A /* command_json_args_to_IoC.generated.swift */; };
 		B270091F27D12DB40003960A /* GameApiDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270091C27D12DB40003960A /* GameApiDelegate.swift */; };
@@ -38,6 +37,8 @@
 		B27EC7072773689E00BD3E4D /* SolidCourseFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B27EC6FE2773689E00BD3E4D /* SolidCourseFramework.framework */; };
 		B27EC70C2773689E00BD3E4D /* SolidCourseFrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27EC70B2773689E00BD3E4D /* SolidCourseFrameworkTests.swift */; };
 		B27EC717277368F600BD3E4D /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27EC716277368F600BD3E4D /* Common.swift */; };
+		B2867C42280C0EE500F57160 /* Area.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2867C41280C0EE500F57160 /* Area.swift */; };
+		B2867C48280C660800F57160 /* Interpret.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2867C47280C660800F57160 /* Interpret.swift */; };
 		B2A321A527C9200A0051144F /* api_model_to_IoC.stencil in Resources */ = {isa = PBXBuildFile; fileRef = B2A321A327C9200A0051144F /* api_model_to_IoC.stencil */; };
 		B2A321A627C9200A0051144F /* command_to_IoC.stencil in Resources */ = {isa = PBXBuildFile; fileRef = B2A321A427C9200A0051144F /* command_to_IoC.stencil */; };
 		B2A321A927C9206B0051144F /* adapter_generator.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A321A727C9206B0051144F /* adapter_generator.generated.swift */; };
@@ -76,7 +77,6 @@
 		B2332E3627C545D9006E0439 /* db.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = db.sqlite; sourceTree = "<group>"; };
 		B2332E3727C545D9006E0439 /* DB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DB.swift; sourceTree = "<group>"; };
 		B24FBA7C279D8E19004B6E09 /* Abstract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Abstract.swift; sourceTree = "<group>"; };
-		B270091427CFCF9A0003960A /* InterpretCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterpretCommand.swift; sourceTree = "<group>"; };
 		B270091627D0F9060003960A /* command_json_args_to_IoC.stencil */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = command_json_args_to_IoC.stencil; sourceTree = "<group>"; };
 		B270091A27D122840003960A /* command_json_args_to_IoC.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = command_json_args_to_IoC.generated.swift; sourceTree = "<group>"; };
 		B270091C27D12DB40003960A /* GameApiDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameApiDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +94,8 @@
 		B27EC7062773689E00BD3E4D /* SolidCourseFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SolidCourseFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B27EC70B2773689E00BD3E4D /* SolidCourseFrameworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolidCourseFrameworkTests.swift; sourceTree = "<group>"; };
 		B27EC716277368F600BD3E4D /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		B2867C41280C0EE500F57160 /* Area.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Area.swift; sourceTree = "<group>"; };
+		B2867C47280C660800F57160 /* Interpret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interpret.swift; sourceTree = "<group>"; };
 		B2A321A327C9200A0051144F /* api_model_to_IoC.stencil */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = api_model_to_IoC.stencil; sourceTree = "<group>"; };
 		B2A321A427C9200A0051144F /* command_to_IoC.stencil */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = command_to_IoC.stencil; sourceTree = "<group>"; };
 		B2A321A727C9206B0051144F /* adapter_generator.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = adapter_generator.generated.swift; sourceTree = "<group>"; };
@@ -164,8 +166,9 @@
 				B2332E3727C545D9006E0439 /* DB.swift */,
 				B27EC716277368F600BD3E4D /* Common.swift */,
 				B2A3221827C93D6E0051144F /* UserManager.swift */,
-				B270091427CFCF9A0003960A /* InterpretCommand.swift */,
 				B2AFC13627EC619C00D0F1CB /* ThreadQueue.swift */,
+				B2867C41280C0EE500F57160 /* Area.swift */,
+				B2867C47280C660800F57160 /* Interpret.swift */,
 			);
 			path = System;
 			sourceTree = "<group>";
@@ -551,12 +554,12 @@
 				B270099A27D39BD60003960A /* JwtTokenAPIModel.swift in Sources */,
 				B270099E27D39BD60003960A /* UserAPIModel.swift in Sources */,
 				B2A321A927C9206B0051144F /* adapter_generator.generated.swift in Sources */,
-				B270091527CFCF9A0003960A /* InterpretCommand.swift in Sources */,
 				B270091F27D12DB40003960A /* GameApiDelegate.swift in Sources */,
 				B270099C27D39BD60003960A /* UsersAPIModel.swift in Sources */,
 				B2A321AC27C921C60051144F /* api_model_to_IoC.generated.swift in Sources */,
 				B270099F27D39BD60003960A /* UserIdsAPIModel.swift in Sources */,
 				B27EC717277368F600BD3E4D /* Common.swift in Sources */,
+				B2867C48280C660800F57160 /* Interpret.swift in Sources */,
 				B270091B27D122840003960A /* command_json_args_to_IoC.generated.swift in Sources */,
 				B24FBA7D279D8E19004B6E09 /* Abstract.swift in Sources */,
 				B2A321AA27C9206B0051144F /* command_to_IoC.generated.swift in Sources */,
@@ -569,6 +572,7 @@
 				B2A3221727C93CC80051144F /* routes.swift in Sources */,
 				B270099D27D39BD60003960A /* GameAPIModel.swift in Sources */,
 				B2A321EA27C92AEA0051144F /* APIController.swift in Sources */,
+				B2867C42280C0EE500F57160 /* Area.swift in Sources */,
 				B270092127D12DB40003960A /* UserApiDelegate.swift in Sources */,
 				B2086370279C80F20000F0C6 /* Queue.swift in Sources */,
 				B2086374279C86090000F0C6 /* Helper.swift in Sources */,
