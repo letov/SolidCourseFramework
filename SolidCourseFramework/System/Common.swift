@@ -75,6 +75,23 @@ class ObjectList {
     }
 }
 
+class UserObjectList {
+    var table = Dictionary<Int, [Int]>()
+    subscript(_ userId: Int) -> [Int]? {
+        get {
+            return table[userId]
+        }
+    }
+    func append(userId: Int, oid: Int) {
+        if nil != table[userId] {
+            table[userId]?.append(oid)
+        } else {
+            table[userId] = [oid]
+        }
+        
+    }
+}
+
 class CommandList {
     var table = [Command.Type]()
     subscript(_ commandId: Int) -> Command.Type? {
@@ -131,6 +148,7 @@ class GlobalRegister {
             let adapterList = AdapterList()
             let userManager = try UserManager()
             let objectList = ObjectList()
+            let userObjectList = UserObjectList()
             let commandList = CommandList()
             let gameList = GameList()
             let area10 = Area(width: 100, height: 100, xCount: 10, yCount: 10)
@@ -164,6 +182,9 @@ class GlobalRegister {
             } as Command))
             queue.queue(try (IoC.register("Object.List") { _ in
                 objectList
+            } as Command))
+            queue.queue(try (IoC.register("User.Object.List") { _ in
+                userObjectList
             } as Command))
             queue.queue(try (IoC.register("Game.List") { _ in
                 gameList

@@ -1,4 +1,4 @@
-// MARK: - Mocks generated from file: SolidCourseFramework/System/Common.swift at 2022-04-17 14:41:18 +0000
+// MARK: - Mocks generated from file: SolidCourseFramework/System/Common.swift at 2022-04-17 15:59:56 +0000
 
 //
 //  SolidCourseFramework.swift
@@ -816,6 +816,144 @@ import simd
     
     
      override func append(_ o: UObject)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+}
+
+
+
+ class MockUserObjectList: UserObjectList, Cuckoo.ClassMock {
+    
+     typealias MocksType = UserObjectList
+    
+     typealias Stubbing = __StubbingProxy_UserObjectList
+     typealias Verification = __VerificationProxy_UserObjectList
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: UserObjectList?
+
+     func enableDefaultImplementation(_ stub: UserObjectList) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+    
+    
+     override var table: Dictionary<Int, [Int]> {
+        get {
+            return cuckoo_manager.getter("table",
+                superclassCall:
+                    
+                    super.table
+                    ,
+                defaultCall: __defaultImplStub!.table)
+        }
+        
+        set {
+            cuckoo_manager.setter("table",
+                value: newValue,
+                superclassCall:
+                    
+                    super.table = newValue
+                    ,
+                defaultCall: __defaultImplStub!.table = newValue)
+        }
+        
+    }
+    
+
+    
+
+    
+    
+    
+     override func append(userId: Int, oid: Int)  {
+        
+    return cuckoo_manager.call("append(userId: Int, oid: Int)",
+            parameters: (userId, oid),
+            escapingParameters: (userId, oid),
+            superclassCall:
+                
+                super.append(userId: userId, oid: oid)
+                ,
+            defaultCall: __defaultImplStub!.append(userId: userId, oid: oid))
+        
+    }
+    
+
+	 struct __StubbingProxy_UserObjectList: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    var table: Cuckoo.ClassToBeStubbedProperty<MockUserObjectList, Dictionary<Int, [Int]>> {
+	        return .init(manager: cuckoo_manager, name: "table")
+	    }
+	    
+	    
+	    func append<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(userId: M1, oid: M2) -> Cuckoo.ClassStubNoReturnFunction<(Int, Int)> where M1.MatchedType == Int, M2.MatchedType == Int {
+	        let matchers: [Cuckoo.ParameterMatcher<(Int, Int)>] = [wrap(matchable: userId) { $0.0 }, wrap(matchable: oid) { $0.1 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockUserObjectList.self, method: "append(userId: Int, oid: Int)", parameterMatchers: matchers))
+	    }
+	    
+	}
+
+	 struct __VerificationProxy_UserObjectList: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	    
+	    var table: Cuckoo.VerifyProperty<Dictionary<Int, [Int]>> {
+	        return .init(manager: cuckoo_manager, name: "table", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	
+	    
+	    @discardableResult
+	    func append<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(userId: M1, oid: M2) -> Cuckoo.__DoNotUse<(Int, Int), Void> where M1.MatchedType == Int, M2.MatchedType == Int {
+	        let matchers: [Cuckoo.ParameterMatcher<(Int, Int)>] = [wrap(matchable: userId) { $0.0 }, wrap(matchable: oid) { $0.1 }]
+	        return cuckoo_manager.verify("append(userId: Int, oid: Int)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	}
+}
+
+ class UserObjectListStub: UserObjectList {
+        
+    
+    
+     override var table: Dictionary<Int, [Int]> {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (Dictionary<Int, [Int]>).self)
+        }
+        
+        set { }
+        
+    }
+    
+
+    
+
+    
+    
+    
+     override func append(userId: Int, oid: Int)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     

@@ -682,5 +682,29 @@ class SolidCourseFrameworkTests: XCTestCase {
         XCTAssertEqual([], try area10.getNearObjectIds(m: adapter2, objectId: 2))
         XCTAssertEqual([], try area5.getNearObjectIds(m: adapter2, objectId: 2))
     }
+    
+    func testInterpretCommand() throws {
+        stub(sut1) { mock in
+            when(mock.getProperty(propertyName: "Position")).thenReturn((value: simd_int2(2, 2), canChange: true))
+            when(mock.getProperty(propertyName: "Velocity")).thenReturn((value: simd_int2(0, 0), canChange: true))
+            when(mock.setProperty(propertyName: "Position", propertyValue: any())).then {
+                _, propertyValue in
+                XCTAssertEqual(propertyValue.value as? simd_int2, simd_int2(7, 7))
+            }
+            when(mock.setProperty(propertyName: "Velocity", propertyValue: any())).then {
+                _, propertyValue in
+                XCTAssertEqual(propertyValue.value as? simd_int2, simd_int2(5, 5))
+                when(mock.getProperty(propertyName: "Velocity")).thenReturn(propertyValue)
+            }
+        }
+        let objectList = try! (IoC.resolve("Object.List") as ObjectList)
+        objectList.append(sut1)
+        XCTAssertThrowsError(try InterpretCommand(objectId: 0, commandName: "SetStartVelocityAndMove", args: "{\"startVelocity\":[5,5]}", userId: 0).execute())
+        let userObjectList: UserObjectList = try IoC.resolve("User.Object.List")
+        userObjectList.append(userId: 0, oid: 0)
+        try InterpretCommand(objectId: 0, commandName: "SetStartVelocityAndMove", args: "{\"startVelocity\":[5,5]}", userId: 0).execute()
+        verify(sut1).setProperty(propertyName: "Position", propertyValue: any())
+        verify(sut1).setProperty(propertyName: "Velocity", propertyValue: any())
+    }
 }
 

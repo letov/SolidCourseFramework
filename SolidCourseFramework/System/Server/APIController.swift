@@ -123,7 +123,7 @@ class GameApi: GameApiDelegate {
     
     func gameCommandPut(with req: Request, asAuthenticated user: AuthType, body: InterpretCommandAPIModel) throws -> EventLoopFuture<gameCommandPutResponse> {
         do {
-            let command = InterpretCommand(objectId: Int(body.objectId!), commandId: Int(body.commandId!), args: body.args!)
+            let command = try InterpretCommand(objectId: Int(body.objectId!), commandId: Int(body.commandId!), args: body.args!)
             let queue: Queue<Command> = try IoC.resolve("Queue.Command")
             queue.queue(command)
         } catch {
