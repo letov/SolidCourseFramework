@@ -546,7 +546,7 @@ class SolidCourseFrameworkTests: XCTestCase {
         try cmd.execute()
     }
 
-    func testInterpretCommand() throws {
+    /*func testInterpretCommand() throws {
         stub(sut1) { mock in
             when(mock.getProperty(propertyName: "Position")).thenReturn((value: simd_int2(2, 2), canChange: true))
             when(mock.getProperty(propertyName: "Velocity")).thenReturn((value: simd_int2(0, 0), canChange: true))
@@ -565,7 +565,7 @@ class SolidCourseFrameworkTests: XCTestCase {
         try InterpretCommand(objectId: 0, commandId: 7, args: "{\"startVelocity\":[5,5]}").execute()
         verify(sut1).setProperty(propertyName: "Position", propertyValue: any())
         verify(sut1).setProperty(propertyName: "Velocity", propertyValue: any())
-    }
+    }*/
     
     func fillStartCommand(start: @escaping () -> ()) -> Command {
         class MoveCommandStart: Command  {
