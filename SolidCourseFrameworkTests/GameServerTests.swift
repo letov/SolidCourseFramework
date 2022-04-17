@@ -129,7 +129,7 @@ final class GameServerTests: XCTestCase {
         })
     }
     
-    func testGameCommandPut() throws {
+    /*func testGameCommandPut() throws {
         let obj = MockUObject()
         stub(obj) { mock in
             when(mock.getProperty(propertyName: "Position")).thenReturn((value: simd_int2(0, 0), canChange: true))
@@ -152,7 +152,7 @@ final class GameServerTests: XCTestCase {
             try queue.dequeue()?.execute()
             verify(obj).setProperty(propertyName: "Position", propertyValue: any())
         })
-    }
+    }*/
     
     // openssl genrsa -out key.pem ; openssl rsa -in key.pem -outform PEM -pubout -out public.pem
     func getRSAKeys() -> (String, String, String) {
