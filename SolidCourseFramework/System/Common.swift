@@ -133,6 +133,8 @@ class GlobalRegister {
             let objectList = ObjectList()
             let commandList = CommandList()
             let gameList = GameList()
+            let area10 = Area(width: 100, height: 100, xCount: 10, yCount: 10)
+            let area5 = Area(width: 100, height: 100, xCount: 5, yCount: 5)
             try (IoC.register("Queue.Command") { _ in
                 queue
             } as Command).execute()
@@ -175,6 +177,12 @@ class GlobalRegister {
             } as Command))
             queue.queue(try (IoC.register("ThreadQueue") {_ in
                 ThreadQueue()
+            } as Command))
+            queue.queue(try (IoC.register("Area.10") {_ in
+                area10
+            } as Command))
+            queue.queue(try (IoC.register("Area.5") {_ in
+                area5
             } as Command))
             while !queue.isEmpty() {
                 try queue.dequeue()!.execute()

@@ -138,3 +138,33 @@ class SetStartVelocityAndMoveCommand: MacroCommand {
         ])
     }
 }
+
+class CheckCollision: Command {
+    let m: Movable
+    let objectId: Int
+
+    init(m: Movable, objectId: Int) {
+        self.m = m
+        self.objectId = objectId
+    }
+    func execute() throws {
+        let area10 = (try! IoC.resolve("Area.10") as Area)
+        let area5 = (try! IoC.resolve("Area.5") as Area)
+        try area10.updateTable(m: m, objectId: objectId)
+        try area5.updateTable(m: m, objectId: objectId)
+        let objectIds10 = try area10.getNearObjectIds(m: m, objectId: objectId)
+        let objectIds5 = try area10.getNearObjectIds(m: m, objectId: objectId)
+        let objectIds = Array(Set(objectIds10 + objectIds5))
+        // check collision objectId with objectIds
+    }
+}
+
+
+class MoveCollisionCommand: MacroCommand {
+    init(m: Movable, objectId: Int) {
+        super.init(commands: [
+            MoveCommand.init(m: m),
+            CheckCollision.init(m: m, objectId: objectId),
+        ])
+    }
+}

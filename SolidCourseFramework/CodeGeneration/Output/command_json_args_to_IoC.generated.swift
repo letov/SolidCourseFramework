@@ -5,6 +5,14 @@ import simd
 
 protocol CommandJSONArgs: Decodable & Encodable {}
 
+class CheckCollisionParamModel: CommandJSONArgs {
+    var objectId: Int?
+}
+
+class MoveCollisionCommandParamModel: CommandJSONArgs {
+    var objectId: Int?
+}
+
 class SetStartVelocityAndMoveCommandParamModel: CommandJSONArgs {
     var startVelocity: simd_int2?
 }
@@ -24,8 +32,22 @@ class CommandJSONArgsRegister {
             queue.queue(try (IoC.register("Command.JSONArgs.ChangeVelocity") {
                 try IoC.resolve("Command.ChangeVelocity", $0[0])
             } as Command))
+            queue.queue(try (IoC.register("Command.JSONArgs.CheckCollision") {
+                let json = $0[1] as! String
+                let args = try decoder.decode(CheckCollisionParamModel.self, from: json.data(using: .utf8)!)
+                return try IoC.resolve("Command.CheckCollision", $0[0],
+                        args.objectId!
+                ) as Command
+            } as Command))
             queue.queue(try (IoC.register("Command.JSONArgs.CheckFuel") {
                 try IoC.resolve("Command.CheckFuel", $0[0])
+            } as Command))
+            queue.queue(try (IoC.register("Command.JSONArgs.MoveCollision") {
+                let json = $0[1] as! String
+                let args = try decoder.decode(MoveCollisionCommandParamModel.self, from: json.data(using: .utf8)!)
+                return try IoC.resolve("Command.MoveCollision", $0[0],
+                        args.objectId!
+                ) as Command
             } as Command))
             queue.queue(try (IoC.register("Command.JSONArgs.Move") {
                 try IoC.resolve("Command.Move", $0[0])

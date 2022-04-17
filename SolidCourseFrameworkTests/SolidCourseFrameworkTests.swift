@@ -640,5 +640,47 @@ class SolidCourseFrameworkTests: XCTestCase {
         }
         XCTAssertLessThan(threadQueue.queue.operationCount, 10)
     }
+    
+    func testCollisionSameBlock() throws {
+        stub(sut1) { mock in
+            when(mock.getProperty(propertyName: "Position")).thenReturn((value: simd_int2(5, 6), canChange: true))
+        }
+        let adapter1 = MovableAdapter(o: sut1)
+        stub(sut2) { mock in
+            when(mock.getProperty(propertyName: "Position")).thenReturn((value: simd_int2(2, 1), canChange: true))
+        }
+        let adapter2 = MovableAdapter(o: sut2)
+        let area10 = (try! IoC.resolve("Area.10") as Area)
+        let area5 = (try! IoC.resolve("Area.5") as Area)
+        try area10.updateTable(m: adapter1, objectId: 1)
+        try area5.updateTable(m: adapter1, objectId: 1)
+        try area10.updateTable(m: adapter2, objectId: 2)
+        try area5.updateTable(m: adapter2, objectId: 2)
+        XCTAssertEqual([2], try area10.getNearObjectIds(m: adapter1, objectId: 1))
+        XCTAssertEqual([2], try area5.getNearObjectIds(m: adapter1, objectId: 1))
+        XCTAssertEqual([1], try area10.getNearObjectIds(m: adapter2, objectId: 2))
+        XCTAssertEqual([1], try area5.getNearObjectIds(m: adapter2, objectId: 2))
+    }
+    
+    func testCollisionDifferentBlock() throws {
+        stub(sut1) { mock in
+            when(mock.getProperty(propertyName: "Position")).thenReturn((value: simd_int2(5, 6), canChange: true))
+        }
+        let adapter1 = MovableAdapter(o: sut1)
+        stub(sut2) { mock in
+            when(mock.getProperty(propertyName: "Position")).thenReturn((value: simd_int2(22, 15), canChange: true))
+        }
+        let adapter2 = MovableAdapter(o: sut2)
+        let area10 = (try! IoC.resolve("Area.10") as Area)
+        let area5 = (try! IoC.resolve("Area.5") as Area)
+        try area10.updateTable(m: adapter1, objectId: 1)
+        try area5.updateTable(m: adapter1, objectId: 1)
+        try area10.updateTable(m: adapter2, objectId: 2)
+        try area5.updateTable(m: adapter2, objectId: 2)
+        XCTAssertEqual([], try area10.getNearObjectIds(m: adapter1, objectId: 1))
+        XCTAssertEqual([], try area5.getNearObjectIds(m: adapter1, objectId: 1))
+        XCTAssertEqual([], try area10.getNearObjectIds(m: adapter2, objectId: 2))
+        XCTAssertEqual([], try area5.getNearObjectIds(m: adapter2, objectId: 2))
+    }
 }
 
